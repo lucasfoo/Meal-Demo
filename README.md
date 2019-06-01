@@ -3,7 +3,7 @@
 Meal is a platform for home chefs to sell their home cook food to the consumers. It consists of a front end based on an Android App and a backend based on Firebase(TBC).
 The level of acheivement we are aiming for is Gemini.
 
-##TODO
+## TODO
 
 ## Getting Started
 
