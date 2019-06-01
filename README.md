@@ -29,8 +29,6 @@ To Compile, simply open this folder in Android Studio and make.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
 Android Studio
 
 ### Installing
