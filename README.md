@@ -14,10 +14,12 @@ The level of acheivement we are aiming for is Gemini.
    * Menu List
    * Cart
    * Checkout and Payment
+   * Leave a review
  * Seller Interface
- 
-*Backend
-### Not started
+   * Orders list
+   * Edit restaurant information
+   * Edit menu
+* Backend
 
 
 ## Getting Started
