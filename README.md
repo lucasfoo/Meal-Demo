@@ -1,9 +1,24 @@
 # Meal-Demo
  
 Meal is a platform for home chefs to sell their home cook food to the consumers. It consists of a front end based on an Android App and a backend based on Firebase(TBC).
+
 The level of acheivement we are aiming for is Gemini.
 
 ## TODO
+### Completed
+
+### In progress
+*App frontend
+ *Buyer Interface
+   *Restuarant List
+   *Menu List
+   *Cart
+   *Checkout and Payment
+ *Seller Interface
+ 
+*Backend
+### Not started
+
 
 ## Getting Started
 
