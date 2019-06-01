@@ -10,7 +10,7 @@ The level of acheivement we are aiming for is Gemini.
 ### In progress
 * App frontend
  * Buyer Interface
-   * Restuarant List
+  * Restuarant List
    * Menu List
    * Cart
    * Checkout and Payment
