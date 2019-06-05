@@ -1,0 +1,53 @@
+# Meal-Demo
+ 
+Meal is a platform for home chefs to sell their home cook food to the consumers. It consists of a front end based on an Android App and a backend based on Firebase(TBC).
+
+The level of acheivement we are aiming for is Gemini.
+
+## TODO
+### Completed
+
+### In progress
+
+* App frontend
+   * Buyer Interface
+      * Restuarant List
+      * Menu List
+      * Cart
+      * Checkout and Payment
+      * Leave a review
+   * Seller Interface
+     * Orders list
+     * Edit restaurant information
+     * Edit menu
+* Backend
+
+
+## Getting Started
+
+To Compile, simply open this folder in Android Studio and make.
+
+### Prerequisites
+
+Android Studio
+
+### Installing
+
+Just clone using android studio and run!
+
+## Built With
+
+* [Android Studio](https://developer.android.com/studio) - Android Studio
+
+## Authors
+
+* **Lucas Foo** - *Initial work* - [lucasfoo](https://github.com/lucasfoo)
+* **Zheng Shaopeng** - *Initial work* - [arhpeng](https://github.com/arhpeng)
+
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## Acknowledgments
+
+* NUS Orbital Team for putting together this module.
+
