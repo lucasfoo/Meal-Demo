@@ -54,6 +54,9 @@ public class MainMenu extends AppCompatActivity
 
         RestaurantDataAdapter restaurantDataAdapter = new RestaurantDataAdapter(createList(30));
         recList.setAdapter(restaurantDataAdapter);
+
+
+
     }
 
     @Override
@@ -115,7 +118,7 @@ public class MainMenu extends AppCompatActivity
 
     private List<RestaurantData> createList(int size){
         List<RestaurantData> res = new ArrayList<RestaurantData>();
-        for(int i = 1; i < size; ++i){
+        for(int i = 1; i <= size; i++){
             RestaurantData restaurantData = new RestaurantData();
             restaurantData.name = "RESTAURANT NUMBER: " + i;
 
