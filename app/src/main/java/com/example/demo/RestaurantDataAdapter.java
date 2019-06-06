@@ -33,14 +33,17 @@ public class RestaurantDataAdapter extends RecyclerView.Adapter<RestaurantDataAd
     public void onBindViewHolder(RestaurantViewHolder restaurantViewHolder, int i){
         RestaurantData restaurantData = RestaurantList.get(i);
         RestaurantViewHolder.mName.setText(restaurantData.name);
+        RestaurantViewHolder.mAddress.setText(restaurantData.address);
     }
 
     public static class  RestaurantViewHolder extends RecyclerView.ViewHolder {
         protected static TextView mName;
+        protected static TextView mAddress;
 
         public RestaurantViewHolder(View view) {
             super(view);
             mName = view.findViewById(R.id.restaurant_name);
+            mAddress = view.findViewById(R.id.restaurant_address);
         }
     }
 

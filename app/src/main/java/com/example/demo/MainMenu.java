@@ -121,6 +121,7 @@ public class MainMenu extends AppCompatActivity
         for(int i = 1; i <= size; i++){
             RestaurantData restaurantData = new RestaurantData();
             restaurantData.name = "RESTAURANT NUMBER: " + i;
+            restaurantData.address = "address_" + i;
 
             res.add(restaurantData);
         }
