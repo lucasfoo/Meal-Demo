@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.CardView;
@@ -44,6 +45,12 @@ public class RestaurantDataAdapter extends RecyclerView.Adapter<RestaurantDataAd
             super(view);
             mName = view.findViewById(R.id.restaurant_name);
             mAddress = view.findViewById(R.id.restaurant_address);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    view.getContext().startActivity(new Intent(view.getContext(), Rdetail.class));
+                }
+            });
         }
     }
 
