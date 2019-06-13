@@ -9,9 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class RestaurantDataAdapter extends RecyclerView.Adapter<RestaurantDataAdapter.RestaurantViewHolder> {
+public class RestaurantDataAdapter extends RecyclerView.Adapter<RestaurantDataAdapter.RestaurantViewHolder>{
     private List<RestaurantData> RestaurantList;
 
     public  RestaurantDataAdapter(List<RestaurantData> RestaurantList){
@@ -37,21 +38,25 @@ public class RestaurantDataAdapter extends RecyclerView.Adapter<RestaurantDataAd
         RestaurantViewHolder.mAddress.setText(restaurantData.address);
     }
 
-    public static class  RestaurantViewHolder extends RecyclerView.ViewHolder {
+    public static class  RestaurantViewHolder extends RecyclerView.ViewHolder{
         protected static TextView mName;
         protected static TextView mAddress;
 
-        public RestaurantViewHolder(View view) {
+        public RestaurantViewHolder(View view){
             super(view);
             mName = view.findViewById(R.id.restaurant_name);
             mAddress = view.findViewById(R.id.restaurant_address);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    view.getContext().startActivity(new Intent(view.getContext(), Rdetail.class));
+                    Intent intent = new Intent(view.getContext(), Rdetail.class);
+                    intent.putExtra("rname", mName.getText().toString());
+                    intent.putExtra("raddress", mAddress.getText().toString());
+                    view.getContext().startActivity(intent);
                 }
             });
         }
     }
+
 
 }

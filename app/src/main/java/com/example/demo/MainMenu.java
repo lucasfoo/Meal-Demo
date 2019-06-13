@@ -48,6 +48,7 @@ public class MainMenu extends AppCompatActivity
         //RecylcerView code below
         RecyclerView recList = (RecyclerView)findViewById(R.id.cardList);
         recList.setHasFixedSize(true);
+        recList.setClickable(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(linearLayoutManager);
@@ -127,6 +128,5 @@ public class MainMenu extends AppCompatActivity
         }
         return res;
     }
-
 
 }

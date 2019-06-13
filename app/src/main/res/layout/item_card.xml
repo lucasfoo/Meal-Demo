@@ -1,7 +1,7 @@
 <android.support.design.card.MaterialCardView
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_menu_item"
+    android:id="@+id/item_card"
     android:layout_width="match_parent"
     android:layout_height="200dp"
     card_view:cardCornerRadius="4dp"
@@ -9,21 +9,21 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/main_menu_container">
+        android:id="@+id/item_container">
         <TextView
-            android:id="@+id/restaurant_name"
-            android:layout_above="@id/restaurant_address"
+            android:id="@+id/item_name"
+            android:layout_above="@id/item_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="restaurant_name"
+            android:text="item_name"
             android:textSize="24sp"
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/restaurant_address"
-            android:text="address"
+            android:id="@+id/item_price"
+            android:text="item_price"
             android:textSize="18sp"
             android:layout_alignParentBottom="true"
             />

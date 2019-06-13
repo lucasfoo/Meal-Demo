@@ -1,11 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Rdetail"
-    tools:showIn="@layout/activity_rdetail">
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Restaurant_Name"
+        android:layout_gravity="left"
+        android:textSize="24dp"
+        android:text="Restaurant_name"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Restaurant_Address"
+        android:layout_gravity="left"
+        android:textSize="18dp"
+        android:layout_below="@id/Restaurant_Name"
+        android:text="Restaurant Address"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Restaurant_Address"
+        android:id="@+id/ItemRecyclerView"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+</RelativeLayout>
