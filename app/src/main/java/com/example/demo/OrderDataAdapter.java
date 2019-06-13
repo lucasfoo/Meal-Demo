@@ -26,16 +26,16 @@ public class OrderDataAdapter extends RecyclerView.Adapter<OrderDataAdapter.Orde
     @NonNull
     @Override
     public OrderDataAdapter.OrderViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.main_menu_card, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.single_order, viewGroup, false);
         return new OrderViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(OrderViewHolder OrderViewHolder, int i){
+    public void onBindViewHolder(OrderViewHolder orderViewHolder, int i){
         OrderData orderData = OrderList.get(i);
-        OrderViewHolder.Dish_name.setText(orderData.dish_name);
-        OrderViewHolder.Order_num.setText(orderData.order_number);
-        OrderViewHolder.Collection_time.setText(orderData.collection_time);
+        orderViewHolder.Dish_name.setText(orderData.dish_name);
+        orderViewHolder.Order_num.setText(orderData.order_number);
+        orderViewHolder.Collection_time.setText(orderData.collection_time);
     }
 
     public static class  OrderViewHolder extends RecyclerView.ViewHolder {
@@ -48,12 +48,14 @@ public class OrderDataAdapter extends RecyclerView.Adapter<OrderDataAdapter.Orde
             Dish_name = view.findViewById(R.id.dish_name);
             Order_num = view.findViewById(R.id.dish_num);
             Collection_time = view.findViewById(R.id.collection_time);
+            /*
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     view.getContext().startActivity(new Intent(view.getContext(), Rdetail.class));
                 }
             });
+            */
         }
     }
 

@@ -38,13 +38,15 @@ public class sellerP1 extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        RecyclerView recList = (RecyclerView)findViewById(R.id.orderList);
+
+        RecyclerView recList = findViewById(R.id.orderList);
         recList.setHasFixedSize(true);
+        recList.setClickable(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(linearLayoutManager);
 
-        OrderDataAdapter orderDataAdapter = new OrderDataAdapter(createList(30));
+        OrderDataAdapter orderDataAdapter = new OrderDataAdapter(createList(10));
         recList.setAdapter(orderDataAdapter);
 
     }
