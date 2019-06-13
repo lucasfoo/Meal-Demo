@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".sellerP1"
+            android:label="@string/title_activity_seller_p1"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".Rdetail"
             android:label="@string/title_activity_rdetail"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Register" />
         <activity
             android:name=".MainMenu"

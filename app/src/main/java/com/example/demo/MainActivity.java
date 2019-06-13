@@ -29,8 +29,15 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, MainMenu.class);
-                startActivity(intent);
+               EditText e1 = (EditText) findViewById(R.id.ev_user_id);
+               String id = String.valueOf(e1.getText());
+                if(id.equalsIgnoreCase("buyer")) {
+                    Intent intent = new Intent(MainActivity.this, MainMenu.class);
+                    startActivity(intent);
+                }else if(id.equalsIgnoreCase("seller")){
+                    Intent intent = new Intent(MainActivity.this, sellerP1.class);
+                    startActivity(intent);
+                }
             }
         });
 
