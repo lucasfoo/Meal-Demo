@@ -23,6 +23,8 @@ public class Rdetail extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
+
+
     }
 
     @Override
