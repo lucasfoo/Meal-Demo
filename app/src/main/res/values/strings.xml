@@ -16,4 +16,5 @@
     <string name="menu_send">Send</string>
     <string name="title_activity_rdetail">Rdetail</string>
     <string name="title_activity_seller_p1">sellerP1</string>
+    <string name="title_activity_restuarant_dish_editor">Restuarant_dish_editor</string>
 </resources>
