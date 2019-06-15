@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Restaurant_dish_editor"
-    tools:showIn="@layout/activity_restuarant_dish_editor">
+    tools:context=".Insert_new_dish"
+    tools:showIn="@layout/activity_insert_new_dish">
 
 </android.support.constraint.ConstraintLayout>

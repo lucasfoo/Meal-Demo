@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Insert_new_dish"
+            android:label="@string/title_activity_insert_new_dish"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".Restaurant_dish_editor"
             android:label="@string/title_activity_restuarant_dish_editor"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SellerP1"
             android:label="@string/title_activity_seller_p1"
