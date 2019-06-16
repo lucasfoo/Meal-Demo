@@ -46,7 +46,16 @@ public class RestaurantEditorDataAdapter extends RecyclerView.Adapter<Restaurant
             super(view);
             mName = view.findViewById(R.id.editor_dish_name);
             mPrice = view.findViewById(R.id.editor_price);
-
+            View a = view.findViewById(R.id.editor_container);
+            a.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), Edit_dish.class);
+                    intent.putExtra("rname", mName.getText().toString());
+                    intent.putExtra("raddress", mPrice.getText().toString());
+                    view.getContext().startActivity(intent);
+                }
+            });
         }
     }
 

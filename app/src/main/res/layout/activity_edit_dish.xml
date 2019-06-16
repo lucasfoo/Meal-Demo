@@ -35,58 +35,58 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
-                android:layout_above = "@id/enter_dish_name"
+                android:layout_above = "@id/edit_dish_name"
                 android:text="Dish name"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/enter_dish_name"
+                android:id="@+id/edit_dish_name"
                 android:textSize="22sp"
                 android:hint="enter dish name"
                 android:imeOptions="actionDone"/>
             <TextView
-                android:id="@+id/description"
+                android:id="@+id/change_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
-                android:layout_below = "@id/enter_dish_name"
+                android:layout_below = "@id/edit_dish_name"
                 android:text="Description"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:id="@+id/enter_description"
+                android:id="@+id/edit_description"
                 android:background="@drawable/edit_box"
                 android:textSize="22sp"
-                android:layout_below="@id/description"
+                android:layout_below="@id/change_description"
                 android:hint=" Description"
                 android:imeOptions="actionDone"/>
             <TextView
-                android:layout_below="@id/enter_description"
+                android:layout_below="@id/edit_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
-                android:id="@+id/price"
+                android:id="@+id/change_price"
                 android:text="Price"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/price"
-                android:id="@+id/enter_price"
+                android:layout_below="@id/change_price"
+                android:id="@+id/edit_price"
                 android:textSize="22sp"
                 android:hint="Enter your price"
                 android:imeOptions="actionDone"/>
             <TextView
-                android:layout_below="@id/price"
+                android:layout_below="@id/edit_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
-                android:id="@+id/enter_photo"
+                android:id="@+id/change_photo"
                 android:text="Dish photo"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/enter_photo"
-                android:id="@+id/photo"
+                android:layout_below="@id/change_photo"
+                android:id="@+id/edit_photo"
                 android:textSize="22sp"
                 android:hint=" the photo should be here after adding by clicking the camera"
                 android:imeOptions="actionDone"/>

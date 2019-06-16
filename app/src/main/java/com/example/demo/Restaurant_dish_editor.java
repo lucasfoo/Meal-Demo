@@ -36,9 +36,12 @@ public class Restaurant_dish_editor extends AppCompatActivity {
         });
 
 
+
         RecyclerView editor_List = findViewById(R.id.restaurant_editor_list);
         editor_List.setHasFixedSize(true);
         editor_List.setClickable(true);
+
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         editor_List.setLayoutManager(linearLayoutManager);
