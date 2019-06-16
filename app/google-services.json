@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "708821937731",
+    "firebase_url": "https://meal-demo.firebaseio.com",
+    "project_id": "meal-demo",
+    "storage_bucket": "meal-demo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708821937731:android:2889d4d8c9335bd0",
+        "android_client_info": {
+          "package_name": "com.example.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "708821937731-hh6gapjlumaatso8a77juk20vkirspcv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDHosl1nHv6dPK3eZkR1CILrM4RHOpkFY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "708821937731-hh6gapjlumaatso8a77juk20vkirspcv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
