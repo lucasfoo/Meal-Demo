@@ -7,5 +7,19 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Insert_new_dish"
     tools:showIn="@layout/activity_insert_new_dish">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Dish name"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/enter_dish_name"
+            android:hint="Enter dish name"/>
+
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
