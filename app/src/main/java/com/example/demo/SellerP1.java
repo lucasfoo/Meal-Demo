@@ -98,7 +98,7 @@ public class SellerP1 extends AppCompatActivity
 
         } else if (id == R.id.nav_tools) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_seller) {
 
         } else if (id == R.id.nav_logout) {
             FirebaseAuth.getInstance().signOut();
