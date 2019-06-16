@@ -2,6 +2,7 @@ package com.example.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -10,22 +11,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
-
-
-
-
+    private FirebaseAuth mAuth;
     private Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user != null) {
             Intent intent = new Intent(MainActivity.this, MainMenu.class);
             startActivity(intent);
         }
@@ -40,15 +42,26 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               EditText e1 = (EditText) findViewById(R.id.ev_user_id);
-               String id = String.valueOf(e1.getText());
-                if(id.equalsIgnoreCase("buyer")) {
-                    Intent intent = new Intent(MainActivity.this, MainMenu.class);
-                    startActivity(intent);
-                }else if(id.equalsIgnoreCase("seller")){
+               EditText emailEditText = (EditText) findViewById(R.id.ev_user_id);
+               EditText passwordEditText = findViewById(R.id.ev_password);
+               String email = emailEditText.getText().toString();
+               String password = passwordEditText.getText().toString();
+                if(email.equalsIgnoreCase("seller")){
                     Intent intent = new Intent(MainActivity.this, SellerP1.class);
                     startActivity(intent);
                 }
+               mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                   @Override
+                   public void onComplete(@NonNull Task<AuthResult> task) {
+                       if(task.isSuccessful()){
+                           Intent intent = new Intent(MainActivity.this, MainMenu.class);
+                           startActivity(intent);
+                       }else{
+                           Toast.makeText(MainActivity.this, "Authentication failed.",
+                                   Toast.LENGTH_SHORT).show();
+                       }
+                   }
+               });
             }
         });
 

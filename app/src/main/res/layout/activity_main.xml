@@ -37,8 +37,12 @@
         android:padding="16dp"
         android:textSize="22sp"
         android:layout_marginTop="60dp"
-        android:hint="Username"
-        android:imeOptions="actionDone"/>
+        android:hint="Email"
+        android:imeOptions="actionNext"
+        android:maxLines="1"
+        android:inputType="textEmailAddress"
+        android:nextFocusDown="@id/ev_password"
+        />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,6 +51,7 @@
         android:textSize="22sp"
         android:layout_marginTop="104dp"
         android:hint="Password"
+        android:inputType="textPassword"
         android:imeOptions="actionDone"/>
 
     <Button
