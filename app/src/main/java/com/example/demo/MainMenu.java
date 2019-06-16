@@ -15,6 +15,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +27,13 @@ import java.util.List;
 public class MainMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String name = user.getDisplayName();
+        String email = user.getEmail();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -45,11 +54,18 @@ public class MainMenu extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
+        View view = navigationView.getHeaderView(0);
+        TextView emailTextView = view.findViewById(R.id.tv_user_email);
+        TextView nameTextView = view.findViewById(R.id.tv_user_id);
+        emailTextView.setText(email);
+        nameTextView.setText(name);
+
         //RecylcerView code below
         RecyclerView recList = (RecyclerView)findViewById(R.id.cardList);
         recList.setHasFixedSize(true);
         recList.setClickable(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(linearLayoutManager);
 
