@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,6 +22,8 @@ public class Register extends AppCompatActivity {
     private Button button_back;
     private Button button_create;
     private FirebaseAuth mAuth;
+    private ToggleButton accType;
+    private boolean is_buyer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +32,17 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         button_back  = (Button) findViewById(R.id.back_to_login_page);
-
+        accType = (ToggleButton) findViewById(R.id.accType);
+        is_buyer = true;
         button_create = findViewById(R.id.btn_signup);
 
-        button_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Register.this,MainActivity.class);
-                startActivity(intent);
+        accType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    is_buyer = false;
+                } else {
+                    is_buyer = true;
+                }
             }
         });
 
@@ -53,6 +60,13 @@ public class Register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
+                           if(user != null){
+                               if(is_buyer == true) {
+                                   user.getUid() = "buyer";
+                               } else{
+
+                               }
+                           }
                             UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
                                     .setDisplayName(name).build();
                             user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
