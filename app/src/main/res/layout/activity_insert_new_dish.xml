@@ -82,14 +82,42 @@
                 android:textSize="25sp"
                 android:id="@+id/enter_photo"
                 android:text="Dish photo"/>
-            <EditText
+
+            <ImageView
+                android:id="@+id/enter_photo"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+
+                android:layout_marginLeft="3dp"
+                android:adjustViewBounds="true"
+                android:imeOptions="actionDone"
+                android:maxWidth="42dp"
+                android:maxHeight="42dp"
+                android:scaleType="fitCenter"
+                android:visibility="visible"
+                tools:visibility="visible" />
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/enter_photo"
-                android:id="@+id/photo"
+                android:text = "choose photo"
                 android:textSize="22sp"
-                android:hint=" the photo should be here after adding by clicking the camera"
-                android:imeOptions="actionDone"/>
+                android:layout_below="@id/enter_photo"
+                android:id="@+id/chooseFile"
+
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text = "Post dish"
+                android:textSize="22sp"
+                android:layout_below="@id/chooseFile"
+                android:id="@+id/Post"
+
+                />
+
+
 
         </LinearLayout>
     </ScrollView>
@@ -98,10 +126,12 @@
         android:id="@+id/take_photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:layout_margin="20dp"
         android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:clickable="true"
         app:srcCompat="@drawable/ic_menu_camera" />
+
+
 
 
 </FrameLayout>

@@ -60,13 +60,7 @@ public class Register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
-                           if(user != null){
-                               if(is_buyer == true) {
-                                   user.getUid() = "buyer";
-                               } else{
 
-                               }
-                           }
                             UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
                                     .setDisplayName(name).build();
                             user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
