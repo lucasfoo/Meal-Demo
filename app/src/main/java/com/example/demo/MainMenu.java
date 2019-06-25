@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -20,6 +21,8 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +31,16 @@ import java.util.List;
 public class MainMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         String name = user.getDisplayName();
         String email = user.getEmail();
+
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
@@ -112,6 +119,7 @@ public class MainMenu extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -124,7 +132,13 @@ public class MainMenu extends AppCompatActivity
         } else if (id == R.id.nav_tools) {
 
         } else if (id == R.id.nav_seller) {
-
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String userID = user.getUid();
+            String email = user.getEmail();
+            Seller seller = new Seller(email);
+            mDatabase.child("sellers").child(userID).setValue(seller);
+            Intent intent = new Intent(MainMenu.this, InitialActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_logout) {
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(MainMenu.this, InitialActivity.class);
