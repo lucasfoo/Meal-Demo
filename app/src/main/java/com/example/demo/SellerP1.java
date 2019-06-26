@@ -78,6 +78,9 @@ public class SellerP1 extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(SellerP1.this, InitialActivity.class);
+            startActivity(intent);
             return true;
         }
 
