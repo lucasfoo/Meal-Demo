@@ -66,6 +66,16 @@ public class MainMenu extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        FloatingActionButton edit_menu = (FloatingActionButton) findViewById(R.id.cart1);
+        edit_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainMenu.this, Cart.class);
+                startActivity(intent);
+            }
+        });
+
         View view = navigationView.getHeaderView(0);
         TextView emailTextView = view.findViewById(R.id.tv_user_email);
         TextView nameTextView = view.findViewById(R.id.tv_user_id);

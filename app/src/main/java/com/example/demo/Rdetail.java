@@ -39,6 +39,18 @@ public class Rdetail extends AppCompatActivity {
         mName.setText(rname);
         mAddress.setText(raddress);
 
+
+        FloatingActionButton edit_menu = (FloatingActionButton) findViewById(R.id.cart2);
+        edit_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Rdetail.this, Cart.class);
+                startActivity(intent);
+            }
+        });
+
+
+
         //RecyclerVIew Code below
         RecyclerView ItemList = findViewById(R.id.ItemRecyclerView);
         ItemList.setHasFixedSize(true);
