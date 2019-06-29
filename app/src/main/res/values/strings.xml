@@ -20,4 +20,5 @@
     <string name="title_activity_insert_new_dish">Insert_new_dish</string>
     <string name="title_activity_edit_dish">Edit_dish</string>
     <string name="title_activity_cart">Cart</string>
+    <string name="title_activity_buyer_dish_detail">Buyer_dish_detail</string>
 </resources>

@@ -17,7 +17,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Rdetail extends AppCompatActivity {
+public class Rdetail extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,14 @@ public class Rdetail extends AppCompatActivity {
         mName.setText(rname);
         mAddress.setText(raddress);
 
+        View one_item = (View) findViewById(R.id.ItemRecyclerView);
+        one_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Rdetail.this, Buyer_dish_detail.class);
+                startActivity(intent);
+            }
+        });
 
         FloatingActionButton edit_menu = (FloatingActionButton) findViewById(R.id.cart2);
         edit_menu.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +68,10 @@ public class Rdetail extends AppCompatActivity {
         ItemList.setLayoutManager(linearLayoutManager);
         ItemListAdapter itemListAdapter = new ItemListAdapter(createList(5));
         ItemList.setAdapter(itemListAdapter);
+
+
+
+
     }
 
     @Override
@@ -82,5 +94,11 @@ public class Rdetail extends AppCompatActivity {
             items.add(itemData);
         }
         return  items;
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(Rdetail.this,Buyer_dish_detail.class);
+        startActivity(intent);
     }
 }

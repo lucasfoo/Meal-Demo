@@ -34,6 +34,8 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
         ItemListViewHolder.mName.setText(itemData.ItemName);
         String price = "$" + itemData.dollars + '.' + itemData.cents;
         ItemListViewHolder.mPrice.setText(price);
+
+
     }
 
     public static class ItemListViewHolder extends RecyclerView.ViewHolder{

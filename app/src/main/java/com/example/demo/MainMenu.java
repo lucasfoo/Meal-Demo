@@ -99,14 +99,14 @@ public class MainMenu extends AppCompatActivity
                 }
 
 
-                final RecyclerView recList = findViewById(R.id.cardList);
+                RecyclerView recList = findViewById(R.id.cardList);
                 recList.setHasFixedSize(true);
                 recList.setClickable(true);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
                 linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
                 recList.setLayoutManager(linearLayoutManager);
-                final RestaurantDataAdapter restaurantDataAdapter = new RestaurantDataAdapter(res);
+                RestaurantDataAdapter restaurantDataAdapter = new RestaurantDataAdapter(res);
                 recList.setAdapter(restaurantDataAdapter);
             }
 

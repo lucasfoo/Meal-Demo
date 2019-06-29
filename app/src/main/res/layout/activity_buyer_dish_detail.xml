@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Insert_new_dish">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:padding="20dp" >
+            <TextView
+                android:layout_marginTop="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This is for buyer to see the detail of the dish"
+                />
+            <TextView
+                android:layout_marginTop="45dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:layout_above = "@id/view_dish_name"
+                android:text="Dish name"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/view_dish_name"
+                android:textSize="22sp"
+                android:hint="dish name"
+                android:imeOptions="actionDone"/>
+            <TextView
+                android:id="@+id/view_description"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:layout_below = "@id/view_dish_name"
+                android:text="Description"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:id="@+id/view_Alldescription"
+                android:background="@drawable/edit_box"
+                android:textSize="22sp"
+                android:layout_below="@id/view_description"
+                android:hint=" Description"
+                android:imeOptions="actionDone"/>
+            <TextView
+                android:layout_below="@id/view_Alldescription"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:id="@+id/view_price"
+                android:text="Price"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/view_price"
+                android:id="@+id/view_edit_price"
+                android:textSize="22sp"
+                android:hint="Enter your price"
+                android:imeOptions="actionDone"/>
+            <TextView
+                android:layout_below="@id/view_edit_price"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:id="@+id/view_photo"
+                android:text="Dish photo"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/view_photo"
+                android:id="@+id/view_edit_photo"
+                android:textSize="22sp"
+                android:hint=" the photo should be here after adding by clicking the camera"
+                android:imeOptions="actionDone"/>
+
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/add_to_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:clickable="true"
+            android:cursorVisible="true"
+            android:text="Add to cart"
+            android:textSize="20dp" />
+    </ScrollView>
+
+
+
+
+</FrameLayout>
