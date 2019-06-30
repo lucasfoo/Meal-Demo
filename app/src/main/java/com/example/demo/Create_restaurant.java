@@ -19,11 +19,15 @@ public class Create_restaurant extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 EditText restaurantName = (EditText) findViewById(R.id.enter_restaurant_name);
-                EditText restaurantAddress = findViewById(R.id.enter_restaurant_address);
+                EditText restaurantStreet = findViewById(R.id.enter_street);
+                EditText restaurantBlk = findViewById(R.id.enter_blk);
+                EditText restaurantPostcode= findViewById(R.id.enter_postcode);
                 String Name = restaurantName.getText().toString();
-                String Address = restaurantAddress.getText().toString();
-                if(Name.isEmpty() || Address.isEmpty()){
-
+                String Street = restaurantStreet.getText().toString();
+                String Blk = restaurantBlk.getText().toString();
+                String Postcode = restaurantPostcode.getText().toString();
+                if(Name.isEmpty() || Street.isEmpty() || Blk.isEmpty() || Postcode.isEmpty()){
+                    // do something here
                 }else{
                     Intent intent = new Intent(Create_restaurant.this, SellerP1.class);
                     startActivity(intent);
