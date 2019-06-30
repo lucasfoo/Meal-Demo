@@ -35,13 +35,15 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
         ItemListViewHolder.mName.setText(itemData.ItemName);
         String price = "$" + itemData.Price;
         ItemListViewHolder.mPrice.setText(price);
-
-
+        ItemListViewHolder.mDishID = itemData.ItemID;
+        ItemListViewHolder.mRestaurantID = itemData.RestaurantID;
     }
 
     public static class ItemListViewHolder extends RecyclerView.ViewHolder{
         protected static TextView mName;
         protected static TextView mPrice;
+        protected static String mDishID;
+        protected static String mRestaurantID;
 
         public ItemListViewHolder(View view){
             super(view);
@@ -51,7 +53,8 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(view.getContext(),Buyer_dish_detail.class);
-
+                    intent.putExtra("DishID", mDishID);
+                    intent.putExtra("RestaurantID", mRestaurantID);
                     view.getContext().startActivity(intent);
                 }
             });

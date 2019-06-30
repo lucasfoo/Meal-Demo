@@ -29,75 +29,42 @@
             android:layout_height="fill_parent"
             android:orientation="vertical"
             android:padding="20dp" >
-            <TextView
-                android:layout_marginTop="35dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="This is for buyer to see the detail of the dish"
-                />
+
             <TextView
                 android:layout_marginTop="45dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
-                android:layout_above = "@id/view_dish_name"
-                android:text="Dish name"/>
+                android:id="@+id/view_photo"
+                android:text="Dish photo"/>
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/view_dish_name"
-                android:textSize="22sp"
-                android:hint="dish name"
-                android:imeOptions="actionDone"/>
-            <TextView
-                android:id="@+id/view_description"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="45dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
-                android:layout_below = "@id/view_dish_name"
-                android:text="Description"/>
+                android:id="@+id/tv_dish_name"
+                android:text="Dish name"/>
+
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:id="@+id/view_Alldescription"
+                android:id="@+id/tv_alldescription"
                 android:background="@drawable/edit_box"
                 android:textSize="22sp"
-                android:layout_below="@id/view_description"
                 android:hint=" Description"
                 android:imeOptions="actionDone"/>
             <TextView
-                android:layout_below="@id/view_Alldescription"
+                android:layout_below="@id/tv_alldescription"
                 android:layout_marginTop="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
                 android:id="@+id/view_price"
                 android:text="Price"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/view_price"
-                android:id="@+id/view_edit_price"
-                android:textSize="22sp"
-                android:hint="Enter your price"
-                android:imeOptions="actionDone"/>
-            <TextView
-                android:layout_below="@id/view_edit_price"
-                android:layout_marginTop="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:id="@+id/view_photo"
-                android:text="Dish photo"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/view_photo"
-                android:id="@+id/view_edit_photo"
-                android:textSize="22sp"
-                android:hint=" the photo should be here after adding by clicking the camera"
-                android:imeOptions="actionDone"/>
+
+
 
 
         </LinearLayout>

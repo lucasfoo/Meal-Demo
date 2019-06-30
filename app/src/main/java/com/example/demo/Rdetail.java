@@ -42,7 +42,7 @@ public class Rdetail extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
         Bundle extras = getIntent().getExtras();
-        String restaurantID = extras.getString("rID");
+        final String restaurantID = extras.getString("rID");
         String rname = extras.getString("rname");
         String raddress = extras.getString("raddress");
         TextView mName = findViewById(R.id.Restaurant_Name);
@@ -61,8 +61,10 @@ public class Rdetail extends AppCompatActivity {
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     ItemData itemData = new ItemData();
                     Dish dish = dataSnapshot1.getValue(Dish.class);
+                    itemData.RestaurantID = restaurantID;
                     itemData.ItemName = dish.DishName;
                     itemData.Price = dish.DishPrice;
+                    itemData.ItemID = dataSnapshot1.getKey();
                     itemDataList.add(itemData);
                 }
 
@@ -104,19 +106,6 @@ public class Rdetail extends AppCompatActivity {
 
 
 
-        //RecyclerVIew Code below
-        RecyclerView ItemList = findViewById(R.id.ItemRecyclerView);
-        ItemList.setHasFixedSize(true);
-        ItemList.setClickable(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        ItemList.setLayoutManager(linearLayoutManager);
-        ItemListAdapter itemListAdapter = new ItemListAdapter(createList(5));
-        ItemList.setAdapter(itemListAdapter);
-
-
-
-
     }
 
     @Override
@@ -129,16 +118,6 @@ public class Rdetail extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private List<ItemData> createList(int size) {
-        List<ItemData> items = new ArrayList<>();
-        for (int i = 1; i <= size; ++i) {
-            ItemData itemData = new ItemData();
-            itemData.Price = "5";
-            itemData.ItemName = "ITEM " + i;
-            items.add(itemData);
-        }
-        return  items;
-    }
 
 
 }
