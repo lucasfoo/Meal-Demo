@@ -15,8 +15,14 @@ import java.util.List;
 public class RestaurantDataAdapter extends RecyclerView.Adapter<RestaurantDataAdapter.RestaurantViewHolder>{
     private List<RestaurantData> RestaurantList;
 
+    public interface OnRestaurantClickListener{
+        void onRestaurantClick(RestaurantData restaurantData);
+    }
+
+
     public  RestaurantDataAdapter(List<RestaurantData> RestaurantList){
         this.RestaurantList = RestaurantList;
+
     }
 
     @Override
@@ -33,33 +39,40 @@ public class RestaurantDataAdapter extends RecyclerView.Adapter<RestaurantDataAd
 
     @Override
     public void onBindViewHolder(RestaurantViewHolder restaurantViewHolder, int i){
-        RestaurantData restaurantData = RestaurantList.get(i);
+        final RestaurantData restaurantData = RestaurantList.get(i);
         RestaurantViewHolder.mName.setText(restaurantData.name);
         RestaurantViewHolder.mAddress.setText(restaurantData.address);
         RestaurantViewHolder.mRestaurantID = restaurantData.restaurantID;
+        RestaurantViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), Rdetail.class);
+                intent.putExtra("rname",restaurantData.name );
+                intent.putExtra("raddress", restaurantData.address);
+                intent.putExtra("rID", restaurantData.restaurantID);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     public static class  RestaurantViewHolder extends RecyclerView.ViewHolder{
+        protected static CardView cardView;
         protected static TextView mName;
         protected static TextView mAddress;
         protected static String mRestaurantID;
 
         public RestaurantViewHolder(View view){
             super(view);
+            cardView = view.findViewById(R.id.main_menu_item);
             mName = view.findViewById(R.id.restaurant_name);
             mAddress = view.findViewById(R.id.restaurant_address);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), Rdetail.class);
-                    intent.putExtra("rname", mName.getText().toString());
-                    intent.putExtra("raddress", mAddress.getText().toString());
-                    intent.putExtra("rID", mRestaurantID);
-                    view.getContext().startActivity(intent);
+
                 }
             });
         }
     }
-
 
 }
