@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -46,6 +47,14 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
             super(view);
             mName = view.findViewById(R.id.item_name);
             mPrice = view.findViewById(R.id.item_price);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(),Buyer_dish_detail.class);
+
+                    view.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }

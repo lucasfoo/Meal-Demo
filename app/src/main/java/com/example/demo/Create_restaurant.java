@@ -12,6 +12,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.StringReader;
+
 public class Create_restaurant extends AppCompatActivity {
     private DatabaseReference mDatabase;
 
@@ -40,7 +42,9 @@ public class Create_restaurant extends AppCompatActivity {
                     String userID = user.getUid();
                     String name = restaurantName.getText().toString();
                     String email = user.getEmail();
-                    String address = Street + ' ' + Blk + " " +  Postcode;
+                    StringBuilder addressBuilder = new StringBuilder();
+                    addressBuilder.append(Street+" ").append(Blk+ " ").append(Postcode);
+                    String address = addressBuilder.toString();
                     Seller seller = new Seller(email, name, address);
                     mDatabase.child("sellers").child(userID).setValue(seller);
                     Intent intent = new Intent(Create_restaurant.this, InitialActivity.class);
