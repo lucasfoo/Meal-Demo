@@ -88,8 +88,7 @@ public class Rdetail extends AppCompatActivity {
         List<ItemData> items = new ArrayList<>();
         for (int i = 1; i <= size; ++i) {
             ItemData itemData = new ItemData();
-            itemData.dollars = "5";
-            itemData.cents = "00";
+            itemData.Price = "5";
             itemData.ItemName = "ITEM " + i;
             items.add(itemData);
         }
