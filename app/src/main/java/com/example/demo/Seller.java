@@ -11,9 +11,11 @@ public class Seller {
     public Seller(){}
 
 
-    public Seller(String email, String restaurant_name){
+    public Seller(String email, String restaurant_name, String address){
         this.email = email;
         this.name = restaurant_name;
+        this.address = address;
+
     }
 
     public void editAddress(String address){
