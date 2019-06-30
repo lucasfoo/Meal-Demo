@@ -1,7 +1,7 @@
 <android.support.v7.widget.CardView
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/single_item"
+    android:id="@+id/seller_history"
     android:layout_width="match_parent"
     android:layout_height="200dp"
     card_view:cardCornerRadius="4dp"
@@ -10,13 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:id="@+id/cart_container">
+        android:id="@+id/seller_history_container">
         <TextView
-            android:id="@+id/item_name"
-            android:layout_above="@id/item_price"
+            android:id="@+id/seller_history_dish_name"
+            android:layout_above="@id/seller_history_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="dish name"
+            android:text="dish_name"
             android:textSize="24sp"
             />
 
@@ -24,31 +24,30 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/item_price"
+            android:id="@+id/seller_history_price"
             android:text="price"
             android:textSize="18sp"
             android:layout_alignParentBottom="true"
             />
-        <CheckBox
-            android:id="@+id/checkBox"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="pay"
-
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"/>
-
-        <ImageButton
-            android:id="@+id/delete_from_cart"
+            android:id="@+id/seller_history_collector"
+            android:text="Name of collector"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="18sp"
+            android:layout_alignParentBottom="true"
+            />
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_gravity="end"
-            android:backgroundTint="@color/fui_bgEmail"
-            android:foregroundTint="#FFEB3B"
-            card_view:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
-
+            android:id="@+id/seller_history_time"
+            android:text="DDMMYYYY"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:textSize="18sp"
+            android:layout_alignParentBottom="true"
+            />
     </RelativeLayout>
-
-
 </android.support.v7.widget.CardView>

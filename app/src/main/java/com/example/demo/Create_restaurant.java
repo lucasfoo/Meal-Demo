@@ -28,14 +28,14 @@ public class Create_restaurant extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 EditText restaurantName = (EditText) findViewById(R.id.enter_restaurant_name);
-                EditText restaurantStreet = findViewById(R.id.enter_street);
-                EditText restaurantBlk = findViewById(R.id.enter_blk);
+                EditText restaurantAddress = findViewById(R.id.enter_address);
+                EditText restaurantApt = findViewById(R.id.enter_apt);
                 EditText restaurantPostcode= findViewById(R.id.enter_postcode);
                 String Name = restaurantName.getText().toString();
-                String Street = restaurantStreet.getText().toString();
-                String Blk = restaurantBlk.getText().toString();
+                String Address = restaurantAddress.getText().toString();
+                String Apt = restaurantApt.getText().toString();
                 String Postcode = restaurantPostcode.getText().toString();
-                if(Name.isEmpty() || Street.isEmpty() || Blk.isEmpty() || Postcode.isEmpty()){
+                if(Name.isEmpty() || Address.isEmpty() || Apt.isEmpty() || Postcode.isEmpty()){
                     // do something here
                 }else{
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -43,7 +43,7 @@ public class Create_restaurant extends AppCompatActivity {
                     String name = restaurantName.getText().toString();
                     String email = user.getEmail();
                     StringBuilder addressBuilder = new StringBuilder();
-                    addressBuilder.append(Street+" ").append(Blk+ " ").append(Postcode);
+                    addressBuilder.append(Address+" ").append(Apt+ " ").append(Postcode);
                     String address = addressBuilder.toString();
                     Seller seller = new Seller(email, name, address);
                     mDatabase.child("sellers").child(userID).setValue(seller);

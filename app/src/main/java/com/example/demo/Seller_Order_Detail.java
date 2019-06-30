@@ -18,6 +18,7 @@ public class Seller_Order_Detail extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+
         RecyclerView orderDetail_List = findViewById(R.id.seller_order_detail_view);
         orderDetail_List.setHasFixedSize(true);
         orderDetail_List.setClickable(true);

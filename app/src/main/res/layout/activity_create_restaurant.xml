@@ -53,47 +53,48 @@
                 android:layout_below = "@id/enter_restaurant_name"
                 android:text="Restaurant Address"/>
             <EditText
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:id="@+id/enter_street"
+                android:layout_height="40dp"
+                android:id="@+id/enter_address"
                 android:background="@drawable/edit_box"
                 android:textSize="22sp"
                 android:layout_below="@id/enter_restaurant_name"
                 android:imeOptions="actionDone"/>
             <TextView
-                android:id="@+id/street"
+                android:id="@+id/address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
-                android:layout_below = "@id/enter_street"
-                android:text="Street"/>
+                android:layout_below = "@id/enter_address"
+                android:text="Address"/>
 
             <EditText
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:id="@+id/enter_blk"
+                android:layout_height="40dp"
+                android:id="@+id/enter_apt"
                 android:background="@drawable/edit_box"
                 android:textSize="22sp"
-                android:layout_below="@id/street"
+                android:layout_below="@id/address"
                 android:imeOptions="actionDone"/>
+
             <TextView
-                android:id="@+id/blk"
+                android:id="@+id/apt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
-                android:layout_below = "@id/enter_street"
-                android:text="Block"/>
+                android:layout_below = "@id/enter_apt"
+                android:text="Apartment"/>
 
             <EditText
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:id="@+id/enter_postcode"
                 android:background="@drawable/edit_box"
                 android:textSize="22sp"
-                android:layout_below="@id/blk"
+                android:layout_below="@id/apt"
                 android:imeOptions="actionDone"/>
             <TextView
                 android:id="@+id/postcode"

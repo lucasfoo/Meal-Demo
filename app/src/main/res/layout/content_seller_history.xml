@@ -1,0 +1,31 @@
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/seller_history_past_orders"
+        android:layout_alignParentLeft="true"
+
+        android:textSize="24dp"
+        android:text="Past Orders"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/seller_history_past_orders"
+        android:layout_marginTop="20dp"
+        android:id="@+id/seller_history_view"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+</RelativeLayout>
+
+
+
+
+

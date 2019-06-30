@@ -73,7 +73,7 @@ public class SellerP1 extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.history, menu);
         return true;
     }
 
@@ -85,11 +85,9 @@ public class SellerP1 extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(SellerP1.this, InitialActivity.class);
+        if (id == R.id.action_history) {
+            Intent intent = new Intent(SellerP1.this, Seller_Order_Detail.class);
             startActivity(intent);
-            return true;
         }
 
         return super.onOptionsItemSelected(item);
