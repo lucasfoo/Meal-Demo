@@ -79,7 +79,7 @@ public class Register extends AppCompatActivity {
                                     .setDisplayName(name).build();
 
                             Buyer buyer = new Buyer(email, false);
-                            mDatabase.child("buyers").push().setValue(buyer);
+                            mDatabase.child("buyers").child(user.getUid()).setValue(buyer);
 
                             user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

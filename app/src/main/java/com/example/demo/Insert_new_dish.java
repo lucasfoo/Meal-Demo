@@ -97,9 +97,7 @@ public class Insert_new_dish extends AppCompatActivity implements View.OnClickLi
            String userID = user.getUid();
            DatabaseReference DishRef = mDatabase.child("sellers").child(userID).child("Dishes").push();
            DishRef.setValue(dish);
-
-            Intent intent = new Intent(Insert_new_dish.this, SellerP1.class);
-            startActivity(intent);
+           finish();
 //            FSdish.add(dish)
 //                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
 //                        @Override

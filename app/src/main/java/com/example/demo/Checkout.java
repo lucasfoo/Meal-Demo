@@ -52,6 +52,7 @@ public class Checkout extends AppCompatActivity {
         return  items;
     }
 
+    /*
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -61,4 +62,5 @@ public class Checkout extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+    */
 }
