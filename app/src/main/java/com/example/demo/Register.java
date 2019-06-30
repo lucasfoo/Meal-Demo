@@ -36,9 +36,19 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         button_back  = (Button) findViewById(R.id.back_to_login_page);
+
+        button_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Register.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
         accType = (ToggleButton) findViewById(R.id.accType);
         is_buyer = true;
         button_create = findViewById(R.id.btn_signup);
+
 
         accType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

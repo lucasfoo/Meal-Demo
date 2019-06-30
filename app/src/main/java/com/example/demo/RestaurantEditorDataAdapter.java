@@ -36,26 +36,31 @@ public class RestaurantEditorDataAdapter extends RecyclerView.Adapter<Restaurant
         RestaurantEditorData dish = dishList.get(i);
         EditorViewHolder.mName.setText(dish.dish_name);
         EditorViewHolder.mPrice.setText(dish.cost);
+
+        RestaurantEditorDataAdapter.EditorViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(view.getContext(), Edit_dish.class);
+                intent.putExtra("rname", EditorViewHolder.mName.getText().toString());
+                intent.putExtra("raddress", EditorViewHolder.mPrice.getText().toString());
+                view.getContext().startActivity(intent);
+
+            }
+        });
     }
 
     public static class  EditorViewHolder extends RecyclerView.ViewHolder{
         protected static TextView mName;
         protected static TextView mPrice;
+        public static View cardView;
 
         public EditorViewHolder(View view){
             super(view);
+            cardView = view.findViewById(R.id.editor_container);
             mName = view.findViewById(R.id.editor_dish_name);
             mPrice = view.findViewById(R.id.editor_price);
-            View a = view.findViewById(R.id.editor_container);
-            a.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), Edit_dish.class);
-                    intent.putExtra("rname", mName.getText().toString());
-                    intent.putExtra("raddress", mPrice.getText().toString());
-                    view.getContext().startActivity(intent);
-                }
-            });
+
         }
     }
 
