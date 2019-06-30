@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Create_restaurant">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:padding="20dp" >
+            <TextView
+                android:layout_marginTop="45dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:layout_above = "@id/enter_restaurant_name"
+                android:text="Restaurant name"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/enter_restaurant_name"
+                android:textSize="22sp"
+                android:hint="Enter Restaurant Name"
+                android:imeOptions="actionDone"/>
+            <TextView
+                android:id="@+id/new_restaurant_address"
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:layout_below = "@id/enter_restaurant_name"
+                android:text="Enter Restaurant Address"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/enter_restaurant_address"
+                android:textSize="22sp"
+                android:layout_below="@id/new_restaurant_address"
+                android:hint="Enter Restaurant Address"
+                android:imeOptions="actionDone"/>
+            <TextView
+                android:layout_below="@id/edit_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:id="@+id/change_price"
+                android:text="Price"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/change_price"
+                android:id="@+id/edit_price"
+                android:textSize="22sp"
+                android:hint="Enter your price"
+                android:imeOptions="actionDone"/>
+        </LinearLayout>
+    </ScrollView>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Create Restaurant"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/Create_restaurant"/>
+
+
+</FrameLayout>

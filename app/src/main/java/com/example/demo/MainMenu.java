@@ -170,13 +170,15 @@ public class MainMenu extends AppCompatActivity
         } else if (id == R.id.nav_tools) {
 
         } else if (id == R.id.nav_seller) {
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            String userID = user.getUid();
-            String name = user.getDisplayName();
-            String email = user.getEmail();
-            Seller seller = new Seller(email, name);
-            mDatabase.child("sellers").child(userID).setValue(seller);
-            Intent intent = new Intent(MainMenu.this, InitialActivity.class);
+//            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//            String userID = user.getUid();
+//            String name = user.getDisplayName();
+//            String email = user.getEmail();
+//            Seller seller = new Seller(email, name);
+//            mDatabase.child("sellers").child(userID).setValue(seller);
+//            Intent intent = new Intent(MainMenu.this, InitialActivity.class);
+//            startActivity(intent);
+            Intent intent = new Intent(MainMenu.this, Create_restaurant.class);
             startActivity(intent);
         } else if (id == R.id.nav_logout) {
             FirebaseAuth.getInstance().signOut();
