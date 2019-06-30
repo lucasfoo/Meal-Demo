@@ -66,12 +66,6 @@ public class RestaurantDataAdapter extends RecyclerView.Adapter<RestaurantDataAd
             cardView = view.findViewById(R.id.main_menu_item);
             mName = view.findViewById(R.id.restaurant_name);
             mAddress = view.findViewById(R.id.restaurant_address);
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
         }
     }
 
