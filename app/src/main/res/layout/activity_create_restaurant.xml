@@ -51,30 +51,59 @@
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
                 android:layout_below = "@id/enter_restaurant_name"
-                android:text="Enter Restaurant Address"/>
+                android:text="Restaurant Address"/>
             <EditText
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/enter_restaurant_address"
+                android:layout_height="35dp"
+                android:id="@+id/enter_street"
+                android:background="@drawable/edit_box"
                 android:textSize="22sp"
-                android:layout_below="@id/new_restaurant_address"
-                android:hint="Enter Restaurant Address"
+                android:layout_below="@id/enter_restaurant_name"
                 android:imeOptions="actionDone"/>
             <TextView
-                android:layout_below="@id/edit_description"
+                android:id="@+id/street"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
-                android:id="@+id/change_price"
-                android:text="Price"/>
+                android:layout_below = "@id/enter_street"
+                android:text="Street"/>
+
             <EditText
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/change_price"
-                android:id="@+id/edit_price"
+                android:layout_height="35dp"
+                android:id="@+id/enter_blk"
+                android:background="@drawable/edit_box"
                 android:textSize="22sp"
-                android:hint="Enter your price"
+                android:layout_below="@id/street"
                 android:imeOptions="actionDone"/>
+            <TextView
+                android:id="@+id/blk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:layout_below = "@id/enter_street"
+                android:text="Block"/>
+
+            <EditText
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:id="@+id/enter_postcode"
+                android:background="@drawable/edit_box"
+                android:textSize="22sp"
+                android:layout_below="@id/blk"
+                android:imeOptions="actionDone"/>
+            <TextView
+                android:id="@+id/postcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:layout_below = "@id/enter_postcode"
+                android:text="Postcode"/>
+
+
         </LinearLayout>
     </ScrollView>
     <Button
