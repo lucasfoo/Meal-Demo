@@ -92,10 +92,10 @@ public class Insert_new_dish extends AppCompatActivity implements View.OnClickLi
 
 
 
-           Dish dish = new Dish(name,desc,price);
            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
            String userID = user.getUid();
            DatabaseReference DishRef = mDatabase.child("sellers").child(userID).child("Dishes").push();
+            Dish dish = new Dish(name,desc,price, DishRef.getKey());
            DishRef.setValue(dish);
            finish();
 //            FSdish.add(dish)

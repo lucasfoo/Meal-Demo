@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -41,7 +42,7 @@ public class Cart extends AppCompatActivity {
         }
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("buyers")
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("buyers")
                 .child(user.getUid()).child("cart");
         databaseReference.addValueEventListener(new ValueEventListener() {
             List<CartData> cartDataList = new ArrayList<>();
@@ -51,23 +52,19 @@ public class Cart extends AppCompatActivity {
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     final CartData cartData = new CartData();
                     Cart_item cart_item = dataSnapshot1.getValue(Cart_item.class);
-                    DatabaseReference itemRef = FirebaseDatabase.getInstance().getReference().child("sellers")
-                            .child(cart_item.restaurantID).child("Dishes").child(cart_item.itemID);
                     cartData.restaurantID = cart_item.restaurantID;
                     cartData.itemID = cart_item.itemID;
+                    DatabaseReference itemRef = FirebaseDatabase.getInstance().getReference("sellers").child(cartData.restaurantID).child("Dishes").child(cartData.itemID);
                     itemRef.addValueEventListener(new ValueEventListener() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            Dish dish = dataSnapshot.getValue(Dish.class);
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot2) {
+                            Dish dish = dataSnapshot2.getValue(Dish.class);
                             cartData.name = dish.DishName;
                             cartData.cost = dish.DishPrice;
                         }
-
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
-
                         }
-
 
                     });
                     cartDataList.add(cartData);
