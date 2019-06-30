@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
@@ -28,27 +30,26 @@ import java.util.HashSet;
 import java.util.Map;
 
 public class Insert_new_dish extends AppCompatActivity implements View.OnClickListener {
-    private EditText DN;
-    private EditText DS;
-    private EditText DP;
+    private EditText dishName;
+    private EditText dishPrice;
+    private EditText dishDiscription;
     private ImageView DPhoto;
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference FS;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_new_dish);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        FS = database.getReference("DISHES");
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .setTimestampsInSnapshotsEnabled(true)
                 .build();
 
 
-        DN = (EditText) findViewById(R.id.enter_dish_name);
-        DS = (EditText) findViewById((R.id.enter_price));
-        DP = (EditText) findViewById(R.id.enter_description) ;
+        dishName = (EditText) findViewById(R.id.enter_dish_name);
+        dishPrice = (EditText) findViewById((R.id.enter_price));
+        dishDiscription = (EditText) findViewById(R.id.enter_description) ;
 //        DPhoto = (ImageView) findViewById(R.id.enter_photo);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -59,20 +60,20 @@ public class Insert_new_dish extends AppCompatActivity implements View.OnClickLi
     }
     private boolean validateInputs(String name, String price, String desc) {
         if (name.isEmpty()) {
-            DN.setError("Name required");
-            DN.requestFocus();
+            dishName.setError("Name required");
+            dishName.requestFocus();
             return true;
         }
 
         if (price.isEmpty()) {
-            DP.setError("Price required");
-            DP.requestFocus();
+            dishPrice.setError("Price required");
+            dishPrice.requestFocus();
             return true;
         }
 
         if (desc.isEmpty()) {
-            DS.setError("Description required");
-            DS.requestFocus();
+            dishDiscription.setError("Description required");
+            dishDiscription.requestFocus();
             return true;
         }
         return false;
@@ -81,9 +82,9 @@ public class Insert_new_dish extends AppCompatActivity implements View.OnClickLi
 
     public void onClick(View v) {
 
-        String name = DN.getText().toString().trim();
-        String price = DP.getText().toString().trim();
-        String desc = DS.getText().toString().trim();
+        String name = dishName.getText().toString().trim();
+        String price = dishPrice.getText().toString().trim();
+        String desc = dishDiscription.getText().toString().trim();
 //        ImageView photo = DPhoto;
 
 
@@ -92,12 +93,11 @@ public class Insert_new_dish extends AppCompatActivity implements View.OnClickLi
 
 
            Dish dish = new Dish(name,desc,price);
-            DatabaseReference usersRef = FS;
+           FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+           String userID = user.getUid();
+           DatabaseReference DishRef = mDatabase.child("sellers").child(userID).child("Dishes").push();
+           DishRef.setValue(dish);
 
-            Map<Integer,Dish> dish_set = new HashMap<>();
-            dish_set.put(1,dish);
-
-            usersRef.setValue(dish_set);
             Intent intent = new Intent(Insert_new_dish.this, SellerP1.class);
             startActivity(intent);
 //            FSdish.add(dish)

@@ -32,7 +32,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
     public void onBindViewHolder( ItemListViewHolder itemListViewHolder, int i) {
         ItemData itemData = ItemList.get(i);
         ItemListViewHolder.mName.setText(itemData.ItemName);
-        String price = "$" + itemData.dollars + '.' + itemData.cents;
+        String price = "$" + itemData.Price;
         ItemListViewHolder.mPrice.setText(price);
 
 

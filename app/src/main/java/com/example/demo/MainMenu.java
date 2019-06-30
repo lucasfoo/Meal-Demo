@@ -95,6 +95,7 @@ public class MainMenu extends AppCompatActivity
                     Seller seller = dataSnapshot1.getValue(Seller.class);
                     restaurantData.name = seller.name;
                     restaurantData.address = seller.address;
+                    restaurantData.restaurantID = dataSnapshot1.getKey();
                     res.add(restaurantData);
                 }
 

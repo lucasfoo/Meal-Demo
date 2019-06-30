@@ -36,11 +36,13 @@ public class RestaurantDataAdapter extends RecyclerView.Adapter<RestaurantDataAd
         RestaurantData restaurantData = RestaurantList.get(i);
         RestaurantViewHolder.mName.setText(restaurantData.name);
         RestaurantViewHolder.mAddress.setText(restaurantData.address);
+        RestaurantViewHolder.mRestaurantID = restaurantData.restaurantID;
     }
 
     public static class  RestaurantViewHolder extends RecyclerView.ViewHolder{
         protected static TextView mName;
         protected static TextView mAddress;
+        protected static String mRestaurantID;
 
         public RestaurantViewHolder(View view){
             super(view);
@@ -52,6 +54,7 @@ public class RestaurantDataAdapter extends RecyclerView.Adapter<RestaurantDataAd
                     Intent intent = new Intent(view.getContext(), Rdetail.class);
                     intent.putExtra("rname", mName.getText().toString());
                     intent.putExtra("raddress", mAddress.getText().toString());
+                    intent.putExtra("rID", mRestaurantID);
                     view.getContext().startActivity(intent);
                 }
             });
