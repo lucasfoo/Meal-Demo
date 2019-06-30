@@ -40,7 +40,7 @@ public class Create_restaurant extends AppCompatActivity {
                     String userID = user.getUid();
                     String name = restaurantName.getText().toString();
                     String email = user.getEmail();
-                    String address = restaurantAddress.getText().toString();
+                    String address = Street + ' ' + Blk + " " +  Postcode;
                     Seller seller = new Seller(email, name, address);
                     mDatabase.child("sellers").child(userID).setValue(seller);
                     Intent intent = new Intent(Create_restaurant.this, InitialActivity.class);

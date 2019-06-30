@@ -102,13 +102,6 @@ public class Rdetail extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-
-
-
-
-
-
-
     }
 
     @Override
