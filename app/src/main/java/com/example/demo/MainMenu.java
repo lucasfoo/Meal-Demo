@@ -132,10 +132,11 @@ public class MainMenu extends AppCompatActivity
         }
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.history, menu);
         return true;
     }
 
@@ -147,8 +148,9 @@ public class MainMenu extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_history) {
+            Intent intent = new Intent(MainMenu.this, Buyer_History.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

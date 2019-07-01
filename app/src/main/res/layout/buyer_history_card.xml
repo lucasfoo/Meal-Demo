@@ -1,0 +1,53 @@
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/buyer_history"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    card_view:cardCornerRadius="4dp"
+    android:layout_margin="5dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:id="@+id/buyer_history_container">
+        <TextView
+            android:id="@+id/buyer_history_dish_name"
+            android:layout_above="@id/buyer_history_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="dish_name"
+            android:textSize="24sp"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buyer_history_price"
+            android:text="price"
+            android:textSize="18sp"
+            android:layout_alignParentBottom="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buyer_history_restaurant"
+            android:text="Restaurant name"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="18sp"
+            android:layout_alignParentBottom="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buyer_history_time"
+            android:text="DDMMYYYY"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:textSize="18sp"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
