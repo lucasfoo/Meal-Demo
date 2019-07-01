@@ -55,19 +55,8 @@ public class Cart extends AppCompatActivity {
                     Cart_item cart_item = dataSnapshot1.getValue(Cart_item.class);
                     cartData.restaurantID = cart_item.restaurantID;
                     cartData.itemID = cart_item.itemID;
-                    DatabaseReference itemRef = FirebaseDatabase.getInstance().getReference("sellers").child(cartData.restaurantID).child("Dishes").child(cartData.itemID);
-                    itemRef.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot2) {
-                            Dish dish = dataSnapshot2.getValue(Dish.class);
-                            cartData.name = dish.DishName;
-                            cartData.cost = dish.DishPrice;
-                        }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                        }
-
-                    });
+                    cartData.cost = cart_item.price;
+                    cartData.name = cart_item.itemName;
                     cartDataList.add(cartData);
                 }
                 RecyclerView cart_List = findViewById(R.id.cart_view);
