@@ -83,6 +83,8 @@ public class Cart extends AppCompatActivity {
 
 
 
+
+
         Button button =  findViewById(R.id.checkout);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,15 +94,9 @@ public class Cart extends AppCompatActivity {
                 finish();
             }
         });
-        /*
-        ImageButton delete = findViewById(R.id.delete_from_cart);
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
-        */
+
+
 
     }
 

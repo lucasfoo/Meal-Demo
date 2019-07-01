@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -34,16 +36,27 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
         CartData item = CartList.get(i);
         CartDataAdapter.EditorViewHolder.mName.setText(item.name);
         CartDataAdapter.EditorViewHolder.mPrice.setText(item.cost);
+        CartDataAdapter.EditorViewHolder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
     }
 
     public static class  EditorViewHolder extends RecyclerView.ViewHolder{
         protected static TextView mName;
         protected static TextView mPrice;
+        protected static View cardView;
+        protected static ImageButton delete;
 
         public EditorViewHolder(View view){
             super(view);
             mName = view.findViewById(R.id.item_name);
             mPrice = view.findViewById(R.id.item_price);
+            cardView = view.findViewById((R.id.cart_view));
+            delete = view.findViewById(R.id.delete_from_cart);
         }
     }
 }

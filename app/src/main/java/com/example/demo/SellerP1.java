@@ -57,16 +57,8 @@ public class SellerP1 extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        Button collection = (Button) findViewById(R.id.collectButton);
 
-        /*
-        collection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
-        */
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid()).child("orders");
 
