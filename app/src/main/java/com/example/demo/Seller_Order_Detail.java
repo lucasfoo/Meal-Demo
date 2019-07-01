@@ -21,13 +21,6 @@ public class Seller_Order_Detail extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        Button collection = (Button) findViewById(R.id.collectButton);
-        collection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
         RecyclerView orderDetail_List = findViewById(R.id.seller_order_detail_view);
         orderDetail_List.setHasFixedSize(true);
