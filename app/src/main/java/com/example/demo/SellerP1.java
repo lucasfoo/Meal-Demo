@@ -119,7 +119,7 @@ public class SellerP1 extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_history) {
-            Intent intent = new Intent(SellerP1.this, Seller_Order_Detail.class);
+            Intent intent = new Intent(SellerP1.this, Seller_history.class);
             startActivity(intent);
         }
 

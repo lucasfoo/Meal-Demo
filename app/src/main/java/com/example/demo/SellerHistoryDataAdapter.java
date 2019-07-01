@@ -32,10 +32,14 @@ public class SellerHistoryDataAdapter extends RecyclerView.Adapter<SellerHistory
     @Override
     public void onBindViewHolder( SellerHistoryViewHolder sellerorderViewHolder, int i) {
         SellerHistoryData data = SellerHistoryList.get(i);
-        sellerorderViewHolder.collector.setText(data.CollectorName);
-        sellerorderViewHolder.collectionTime.setText(data.Date);
-        sellerorderViewHolder.dishName.setText(data.DishName);
-        sellerorderViewHolder.price.setText(data.price);
+        try {
+            sellerorderViewHolder.collector.setText(data.CollectorName);
+            sellerorderViewHolder.collectionTime.setText(data.Date);
+            sellerorderViewHolder.dishName.setText(data.DishName);
+            sellerorderViewHolder.price.setText(data.price);
+        }catch (Exception exception){
+
+        }
 
     }
 
