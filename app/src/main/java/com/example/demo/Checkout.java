@@ -51,25 +51,10 @@ public class Checkout extends AppCompatActivity {
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     final CartData cartData = new CartData();
                     Cart_item cart_item = dataSnapshot1.getValue(Cart_item.class);
-                    DatabaseReference itemRef = FirebaseDatabase.getInstance().getReference().child("sellers")
-                            .child(cart_item.restaurantID).child("Dishes").child(cart_item.itemID);
                     cartData.restaurantID = cart_item.restaurantID;
                     cartData.itemID = cart_item.itemID;
-                    itemRef.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot2) {
-                            Dish dish = dataSnapshot2.getValue(Dish.class);
-                            cartData.name = dish.DishName;
-                            cartData.cost = dish.DishPrice;
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-
-
-                    });
+                    cartData.cost = cart_item.price;
+                    cartData.name = cart_item.itemName;
                     if(cartData.cost != null){
                         totalPrice += Double.valueOf(cartData.cost);
                     }
