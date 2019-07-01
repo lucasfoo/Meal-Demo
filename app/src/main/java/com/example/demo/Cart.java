@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -99,6 +100,14 @@ public class Cart extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Cart.this, Checkout.class);
                 startActivity(intent);
+            }
+        });
+
+        ImageButton delete = (ImageButton) findViewById(R.id.delete_from_cart);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
 
