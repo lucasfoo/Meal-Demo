@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Checkout extends AppCompatActivity {
@@ -28,10 +31,13 @@ public class Checkout extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        final List<CartData> cartDataList = new ArrayList<>();
         totalPrice = 0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Button button = findViewById(R.id.pay);
+
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
 
@@ -41,15 +47,14 @@ public class Checkout extends AppCompatActivity {
         }
 
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("buyers")
+        DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference().child("buyers")
                 .child(user.getUid()).child("cart");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            List<CartData> cartDataList = new ArrayList<>();
+        cartRef.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
-                    final CartData cartData = new CartData();
+                    CartData cartData = new CartData();
                     Cart_item cart_item = dataSnapshot1.getValue(Cart_item.class);
                     cartData.restaurantID = cart_item.restaurantID;
                     cartData.itemID = cart_item.itemID;
@@ -72,7 +77,6 @@ public class Checkout extends AppCompatActivity {
 
                 CartDataAdapter editorDataAdapter = new CartDataAdapter(cartDataList);
                 cart_List.setAdapter(editorDataAdapter);
-
                 TextView mTotalPrice = findViewById(R.id.show_price);
                 DecimalFormat decimalFormat = new DecimalFormat("$0.00");
                 mTotalPrice.append(" " + decimalFormat.format(totalPrice));
@@ -82,6 +86,29 @@ public class Checkout extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
+        });
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReference sellerRef = FirebaseDatabase.getInstance().getReference("sellers");
+                DatabaseReference buyerRef = FirebaseDatabase.getInstance().getReference("buyers").child(user.getUid());
+                for(CartData cartData : cartDataList){
+                    String restaurantID = cartData.restaurantID;
+                    String itemID = cartData.itemID;
+                    String itemName = cartData.name;
+                    String itemCost = cartData.cost;
+                    DatabaseReference sellerOrderRef = sellerRef.child(restaurantID).child("orders").push();
+                    sellerOrderRef.setValue(cartData);
+                    String orderID = sellerOrderRef.getKey();
+                    BuyerOrderData buyerOrderData = new BuyerOrderData(orderID, restaurantID, itemID,itemCost, itemName);
+                    DatabaseReference buyerOrderRef = buyerRef.child("orders").push();
+                    buyerOrderRef.setValue(buyerOrderData);
+                    buyerRef.child("cart").removeValue();
+                }
+                finish();
+            }
+
         });
 
 

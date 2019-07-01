@@ -31,21 +31,26 @@ public class SellerOrderDataAdapter extends RecyclerView.Adapter<SellerOrderData
 
     @Override
     public void onBindViewHolder( SellerOrderViewHolder sellerorderViewHolder, int i) {
-        SellerOrderData data = OrderDetailList.get(i);
+        SellerOrderData sellerOrderData = OrderDetailList.get(i);
+//        SellerOrderViewHolder.itemName.setText(sellerOrderData.itemName);
 //        SellerOrderViewHolder.collector.setText(data.Collector);
-//        SellerOrderViewHolder.collectionTime.setText(data.CollectionTime);
+//        SellerOrderViewHolder.collectionTime.setText(sellerOrderData.CollectionTime);
 
     }
 
     public static class SellerOrderViewHolder extends RecyclerView.ViewHolder{
         public static View cardView;
         protected static TextView collector;
+        protected static TextView itemName;
+        protected static TextView itemPrice;
         protected static TextView collectionTime;
 
         public SellerOrderViewHolder(View view){
             super(view);
             cardView = view.findViewById(R.id.seller_order_detail_view);
             collector = view.findViewById(R.id.seller_order_collector);
+            itemName = view.findViewById(R.id.seller_order_detail_dish_name);
+            itemPrice = view.findViewById(R.id.seller_order_detail_price);
             collectionTime = view.findViewById(R.id.seller_order_collection_time);
 
 

@@ -34,8 +34,8 @@ public class OrderDataAdapter extends RecyclerView.Adapter<OrderDataAdapter.Orde
     public void onBindViewHolder(OrderViewHolder orderViewHolder, int i){
         OrderData orderData = OrderList.get(i);
         orderViewHolder.Dish_name.setText(orderData.dish_name);
-        orderViewHolder.Order_num.setText(orderData.order_number);
-        orderViewHolder.Collection_time.setText(orderData.collection_time);
+        orderViewHolder.Order_num.setText("Order number: " + orderData.order_number);
+        orderViewHolder.Collection_time.setText("Collection time: " + orderData.collection_time);
         OrderDataAdapter.OrderViewHolder.cardView.setOnClickListener(new View.OnClickListener()  {
             @Override
             public void onClick(View view) {

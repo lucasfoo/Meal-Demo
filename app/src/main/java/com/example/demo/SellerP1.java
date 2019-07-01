@@ -2,6 +2,7 @@ package com.example.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +17,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +36,7 @@ public class SellerP1 extends AppCompatActivity
         setContentView(R.layout.activity_seller_p1);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         FloatingActionButton edit_menu = (FloatingActionButton) findViewById(R.id.edit_menu_id);
         edit_menu.setOnClickListener(new View.OnClickListener() {
@@ -47,16 +55,41 @@ public class SellerP1 extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid()).child("orders");
 
-        RecyclerView recList = findViewById(R.id.orderList);
-        recList.setHasFixedSize(true);
-        recList.setClickable(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recList.setLayoutManager(linearLayoutManager);
+        ordersRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<OrderData> orderDataList = new ArrayList<>();
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                    CartData item = dataSnapshot1.getValue(CartData.class);
+                    OrderData orderData = new OrderData();
+                    orderData.dish_name = item.name;
+                    orderData.order_number = dataSnapshot1.getKey();
+                    orderData.collection_time = "Soon";
+                    orderDataList.add(orderData);
+                }
+                RecyclerView recList = findViewById(R.id.orderList);
+                recList.setHasFixedSize(true);
+                recList.setClickable(true);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                recList.setLayoutManager(linearLayoutManager);
 
-        OrderDataAdapter orderDataAdapter = new OrderDataAdapter(createList(10));
-        recList.setAdapter(orderDataAdapter);
+                OrderDataAdapter orderDataAdapter = new OrderDataAdapter(orderDataList);
+                recList.setAdapter(orderDataAdapter);
+            }
+
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
 
     }
     @Override

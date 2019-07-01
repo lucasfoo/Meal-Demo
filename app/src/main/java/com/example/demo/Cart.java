@@ -89,6 +89,7 @@ public class Cart extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Cart.this, Checkout.class);
                 startActivity(intent);
+                finish();
             }
         });
 

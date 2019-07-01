@@ -46,16 +46,12 @@ public class MainActivity extends AppCompatActivity {
                EditText passwordEditText = findViewById(R.id.ev_password);
                String email = emailEditText.getText().toString();
                String password = passwordEditText.getText().toString();
-                if(email.equalsIgnoreCase("seller")){
-                    Intent intent = new Intent(MainActivity.this, SellerP1.class);
-                    startActivity(intent);
-                }
+
                mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                    @Override
                    public void onComplete(@NonNull Task<AuthResult> task) {
                        if(task.isSuccessful()){
-                           Intent intent = new Intent(MainActivity.this, MainMenu.class);
-                           startActivity(intent);
+                           finish();
                        }else{
                            Toast.makeText(MainActivity.this, "Authentication failed.",
                                    Toast.LENGTH_SHORT).show();
