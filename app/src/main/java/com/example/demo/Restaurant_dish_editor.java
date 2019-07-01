@@ -2,6 +2,8 @@ package com.example.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -10,6 +12,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,33 +47,45 @@ public class Restaurant_dish_editor extends AppCompatActivity {
             }
         });
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference dishRef = FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid())
+                .child("Dishes");
+        dishRef.addValueEventListener(new ValueEventListener() {
+            List<RestaurantEditorData> items = new ArrayList<>();
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    Dish dish = dataSnapshot1.getValue(Dish.class);
+                    RestaurantEditorData restaurantEditorData = new RestaurantEditorData();
+                    restaurantEditorData.cost = dish.DishPrice;
+                    restaurantEditorData.dish_name = dish.DishName;
+                    items.add(restaurantEditorData);
+                }
+
+                RecyclerView editor_List = findViewById(R.id.restaurant_editor_list);
+                editor_List.setHasFixedSize(true);
+                editor_List.setClickable(true);
 
 
-        RecyclerView editor_List = findViewById(R.id.restaurant_editor_list);
-        editor_List.setHasFixedSize(true);
-        editor_List.setClickable(true);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                editor_List.setLayoutManager(linearLayoutManager);
 
+                RestaurantEditorDataAdapter editorDataAdapter = new RestaurantEditorDataAdapter(items);
+                editor_List.setAdapter(editorDataAdapter);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        editor_List.setLayoutManager(linearLayoutManager);
+            }
 
-        RestaurantEditorDataAdapter editorDataAdapter = new RestaurantEditorDataAdapter(createList(10));
-        editor_List.setAdapter(editorDataAdapter);
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
     }
 
-    private List<RestaurantEditorData> createList(int size) {
-        List<RestaurantEditorData> items = new ArrayList<>();
-        for (int i = 1; i <= size; ++i) {
-            RestaurantEditorData data = new RestaurantEditorData();
-            data.cost = "5";
-            data.dish_name = "dish name "+ i;
-            items.add(data);
-        }
-        return  items;
-
-    }
     /*
     @Override
     public void onBackPressed() {
