@@ -58,13 +58,15 @@ public class SellerP1 extends AppCompatActivity
 
 
         Button collection = (Button) findViewById(R.id.collectButton);
+
+        /*
         collection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
         });
-
+        */
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid()).child("orders");
 
@@ -73,11 +75,13 @@ public class SellerP1 extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<OrderData> orderDataList = new ArrayList<>();
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                    CartData item = dataSnapshot1.getValue(CartData.class);
+                    SellerOrderData item = dataSnapshot1.getValue(SellerOrderData.class);
                     OrderData orderData = new OrderData();
-                    orderData.dish_name = item.name;
-                    orderData.order_number = dataSnapshot1.getKey();
-                    orderData.collection_time = "Soon";
+                    orderData.dishName = item.dishName;
+                    orderData.buyerName = item.buyerName;
+                    orderData.orderTime = item.orderDate + " " + item.orderTime ;
+                    orderData.orderID = dataSnapshot1.getKey();
+                    orderData.collectionTime = "Soon";
                     orderDataList.add(orderData);
                 }
                 RecyclerView recList = findViewById(R.id.orderList);
@@ -164,17 +168,5 @@ public class SellerP1 extends AppCompatActivity
         return true;
     }
 
-
-    private List<OrderData> createList(int size){
-        List<OrderData> res = new ArrayList<>();
-        for(int i = 1; i <= size; i++){
-            OrderData orderData = new OrderData();
-            orderData.dish_name = "dish_name" + i;
-            orderData.order_number = "number of number" + i;
-            orderData.collection_time = "collection time" + i;
-            res.add(orderData);
-        }
-        return res;
-    }
 }
 

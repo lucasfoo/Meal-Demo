@@ -83,7 +83,7 @@ public class Cart extends AppCompatActivity {
 
 
 
-        Button button = (Button) findViewById(R.id.checkout);
+        Button button =  findViewById(R.id.checkout);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,27 +92,18 @@ public class Cart extends AppCompatActivity {
                 finish();
             }
         });
-
-        ImageButton delete = (ImageButton) findViewById(R.id.delete_from_cart);
+        /*
+        ImageButton delete = findViewById(R.id.delete_from_cart);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
         });
+        */
 
     }
 
-    private List<CartData> createList(int size) {
-        List<CartData> items = new ArrayList<>();
-        for (int i = 1; i <= size; ++i) {
-            CartData data = new CartData();
-            data.cost = "5";
-            data.name = "dish name "+ i;
-            items.add(data);
-        }
-        return  items;
-    }
 
     /*
     @Override

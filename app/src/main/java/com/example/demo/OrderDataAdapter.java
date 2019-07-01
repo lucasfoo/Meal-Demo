@@ -32,27 +32,32 @@ public class OrderDataAdapter extends RecyclerView.Adapter<OrderDataAdapter.Orde
 
     @Override
     public void onBindViewHolder(OrderViewHolder orderViewHolder, int i){
-        OrderData orderData = OrderList.get(i);
-        orderViewHolder.Dish_name.setText(orderData.dish_name);
-        orderViewHolder.Order_num.setText("Order number: " + orderData.order_number);
-        orderViewHolder.Collection_time.setText("Collection time: " + orderData.collection_time);
+        final OrderData orderData = OrderList.get(i);
+        orderViewHolder.buyersName.setText(orderData.buyerName);
+        orderViewHolder.Dish_name.setText(orderData.dishName);
+        orderViewHolder.Order_num.setText("Order number: " + orderData.orderID);
+        orderViewHolder.Collection_time.setText("Order time: " + orderData.orderTime);
+        /*
         OrderDataAdapter.OrderViewHolder.cardView.setOnClickListener(new View.OnClickListener()  {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(),Seller_Order_Detail.class);
-
+                intent.putExtra("orderID",orderData.orderID);
                 view.getContext().startActivity(intent);
             }
         });
+        */
     }
 
     public static class  OrderViewHolder extends RecyclerView.ViewHolder {
+        protected static TextView buyersName;
         protected static TextView Dish_name;
         protected static TextView Order_num;
         protected static TextView Collection_time;
         public static View cardView;
         public OrderViewHolder(View view) {
             super(view);
+            buyersName = view.findViewById(R.id.buyers_name);
             cardView = view.findViewById(R.id.single_order);
             Dish_name = view.findViewById(R.id.dish_name);
             Order_num = view.findViewById(R.id.dish_num);

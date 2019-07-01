@@ -20,6 +20,14 @@
             android:textSize="20dp"
             android:text="Collect" />
         <TextView
+            android:id="@+id/buyers_name"
+            android:layout_above="@id/dish_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="dish name"
+            android:textSize="22sp"
+            />
+        <TextView
             android:id="@+id/dish_name"
             android:layout_above="@id/dish_num"
             android:layout_width="match_parent"

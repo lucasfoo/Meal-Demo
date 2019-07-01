@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import android.provider.CalendarContract;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v4.view.GravityCompat;
@@ -21,10 +22,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Calendar;
+
 
 public class Checkout extends AppCompatActivity {
     private double totalPrice;
@@ -98,8 +103,15 @@ public class Checkout extends AppCompatActivity {
                     String itemID = cartData.itemID;
                     String itemName = cartData.name;
                     String itemCost = cartData.cost;
+                    String buyerName = user.getDisplayName();
+                    String buyerID = user.getUid();
+                    DateFormat df = new SimpleDateFormat("MMM d, ''yyyy");
+                    String date = df.format(Calendar.getInstance().getTime());
+                    df = new SimpleDateFormat("h:mm a");
+                    String time = df.format(Calendar.getInstance().getTime());
+                    SellerOrderData sellerOrderData = new SellerOrderData(buyerName, buyerID, date, time, itemCost, itemName);
                     DatabaseReference sellerOrderRef = sellerRef.child(restaurantID).child("orders").push();
-                    sellerOrderRef.setValue(cartData);
+                    sellerOrderRef.setValue(sellerOrderData);
                     String orderID = sellerOrderRef.getKey();
                     BuyerOrderData buyerOrderData = new BuyerOrderData(orderID, restaurantID, itemID,itemCost, itemName);
                     DatabaseReference buyerOrderRef = buyerRef.child("orders").push();

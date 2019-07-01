@@ -16,10 +16,17 @@
             android:layout_above="@id/seller_order_detail_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="the dish name"
+            android:text="Dish name"
             android:textSize="24sp"
             />
-
+        <TextView
+            android:id="@+id/seller_order_buyer_name"
+            android:layout_above="@id/seller_order_detail_dish_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Buyer's name"
+            android:textSize="20sp"
+            />
 
         <TextView
             android:layout_width="match_parent"

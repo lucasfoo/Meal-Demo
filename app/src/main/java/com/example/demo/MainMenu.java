@@ -166,7 +166,8 @@ public class MainMenu extends AppCompatActivity
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_orders) {
-
+            Intent intent = new Intent(getApplicationContext(), Buyer_History.class);
+            startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_tools) {

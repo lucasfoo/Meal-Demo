@@ -51,9 +51,9 @@ public class Seller_history extends AppCompatActivity implements NavigationView.
         List<SellerHistoryData> items = new ArrayList<>();
         for (int i = 1; i <= size; ++i) {
             SellerHistoryData data = new SellerHistoryData();
-            data.Date = i+""+i+i+i+i+i+i+i+i;
-            data.CollectorName = "shaopeng "+ i;
-            data.DishName = "dish name "+i;
+            data.dishName = i+""+i+i+i+i+i+i+i+i;
+            data.buyerName = "shaopeng "+ i;
+            data.dishName = "dish name "+i;
             data.price = "5."+ i;
             items.add(data);
         }
