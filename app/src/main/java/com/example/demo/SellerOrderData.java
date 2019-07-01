@@ -5,4 +5,5 @@ public class SellerOrderData {
     public String itemID;
     public String Collector;
     public String CollectionTime = "Soon";
+
 }

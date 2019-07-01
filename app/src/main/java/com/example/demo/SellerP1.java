@@ -145,6 +145,7 @@ public class SellerP1 extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(SellerP1.this, InitialActivity.class);
+            finish();
             startActivity(intent);
         }
 

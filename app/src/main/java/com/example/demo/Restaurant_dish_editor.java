@@ -64,7 +64,7 @@ public class Restaurant_dish_editor extends AppCompatActivity {
         return  items;
 
     }
-
+    /*
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -74,5 +74,6 @@ public class Restaurant_dish_editor extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+    */
 
 }
