@@ -2,7 +2,7 @@
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/seller_history_drawer_layout"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,24 +11,31 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".SellerHistory">
+        tools:context=".SellerExistingOrder">
 
         <include
             layout="@layout/app_bar_buyer_view_restaurant"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <include layout="@layout/content_seller_history">
+        <include layout="@layout/content_seller_existing_order">
         </include>
-
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/edit_menu_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:clickable="true"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@android:drawable/ic_menu_edit" />
 
     </android.support.design.widget.CoordinatorLayout>
     <android.support.design.widget.NavigationView
-        android:id="@+id/seller_history_nav"
+        android:id="@+id/seller_nav"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main_menu"
-        app:menu="@menu/seller_history_menu_nav" />
+        app:menu="@menu/activity_main_menu_drawer" />
 </android.support.v4.widget.DrawerLayout>

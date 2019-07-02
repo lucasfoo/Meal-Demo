@@ -40,7 +40,7 @@ public class Register extends AppCompatActivity {
         button_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Register.this, MainActivity.class);
+                Intent intent = new Intent(Register.this, Login.class);
                 startActivity(intent);
             }
         });
@@ -91,7 +91,7 @@ public class Register extends AppCompatActivity {
                                 }
                             });
 
-                            Intent intent = new Intent(Register.this, MainMenu.class);
+                            Intent intent = new Intent(Register.this, BuyerViewRestaurant.class);
                             startActivity(intent);
                         }else {
                             Toast.makeText(Register.this, "Authentication failed.",

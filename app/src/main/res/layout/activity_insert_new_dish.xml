@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Insert_new_dish">
+    tools:context=".InsertNewDish">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -84,7 +84,7 @@
                 android:text="Dish photo"/>
 
             <ImageView
-                android:id="@+id/enter_photo"
+                android:id="@+id/photo"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
 

@@ -3,12 +3,12 @@ package com.example.demo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,50 +21,56 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cart extends AppCompatActivity {
+public class SellerRestaurantDishEditor extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart);
+        setContentView(R.layout.activity_seller_restaurant_dish_editor);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
+        FloatingActionButton add = (FloatingActionButton) findViewById(R.id.new_dish);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SellerRestaurantDishEditor.this, InsertNewDish.class);
+                startActivity(intent);
+            }
+        });
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("buyers")
-                .child(user.getUid()).child("cart");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            List<CartData> cartDataList = new ArrayList<>();
+        DatabaseReference dishRef = FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid())
+                .child("Dishes");
+        dishRef.addValueEventListener(new ValueEventListener() {
+            List<SellerRestaurantDishEditorData> items = new ArrayList<>();
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
-                    final CartData cartData = new CartData();
-                    CartItem cart_item = dataSnapshot1.getValue(CartItem.class);
-                    cartData.restaurantID = cart_item.restaurantID;
-                    cartData.itemID = cart_item.itemID;
-                    cartData.cost = cart_item.price;
-                    cartData.name = cart_item.itemName;
-                    cartDataList.add(cartData);
+                    Dish dish = dataSnapshot1.getValue(Dish.class);
+                    SellerRestaurantDishEditorData sellerRestaurantDishEditorData = new SellerRestaurantDishEditorData();
+                    sellerRestaurantDishEditorData.cost = dish.DishPrice;
+                    sellerRestaurantDishEditorData.dish_name = dish.DishName;
+                    items.add(sellerRestaurantDishEditorData);
                 }
-                RecyclerView cart_List = findViewById(R.id.cart_view);
-                cart_List.setHasFixedSize(true);
-                cart_List.setClickable(true);
+
+                RecyclerView editor_List = findViewById(R.id.restaurant_editor_list);
+                editor_List.setHasFixedSize(true);
+                editor_List.setClickable(true);
 
 
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
                 linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                cart_List.setLayoutManager(linearLayoutManager);
+                editor_List.setLayoutManager(linearLayoutManager);
 
-                CartDataAdapter editorDataAdapter = new CartDataAdapter(cartDataList);
-                cart_List.setAdapter(editorDataAdapter);
-
+                SellerRestaurantDishEditorDataAdapter editorDataAdapter = new SellerRestaurantDishEditorDataAdapter(items);
+                editor_List.setAdapter(editorDataAdapter);
 
             }
 
@@ -75,25 +81,7 @@ public class Cart extends AppCompatActivity {
         });
 
 
-
-
-
-
-        Button button =  findViewById(R.id.checkout);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Cart.this, Checkout.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-
-
-
     }
-
 
     /*
     @Override
@@ -106,6 +94,5 @@ public class Cart extends AppCompatActivity {
         }
     }
     */
-
 
 }

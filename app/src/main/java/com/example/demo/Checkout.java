@@ -1,10 +1,6 @@
 package com.example.demo;
 
-import android.provider.CalendarContract;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,12 +17,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Calendar;
 
@@ -40,7 +34,7 @@ public class Checkout extends AppCompatActivity {
         totalPrice = 0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
-        Button button = findViewById(R.id.pay);
+        Button pay = findViewById(R.id.pay);
 
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -60,7 +54,7 @@ public class Checkout extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     CartData cartData = new CartData();
-                    Cart_item cart_item = dataSnapshot1.getValue(Cart_item.class);
+                    CartItem cart_item = dataSnapshot1.getValue(CartItem.class);
                     cartData.restaurantID = cart_item.restaurantID;
                     cartData.itemID = cart_item.itemID;
                     cartData.cost = cart_item.price;
@@ -93,7 +87,7 @@ public class Checkout extends AppCompatActivity {
             }
         });
 
-        button.setOnClickListener(new View.OnClickListener() {
+        pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatabaseReference sellerRef = FirebaseDatabase.getInstance().getReference("sellers");
@@ -109,9 +103,9 @@ public class Checkout extends AppCompatActivity {
                     String date = df.format(Calendar.getInstance().getTime());
                     df = new SimpleDateFormat("h:mm a");
                     String time = df.format(Calendar.getInstance().getTime());
-                    SellerOrderData sellerOrderData = new SellerOrderData(buyerName, buyerID, date, time, itemCost, itemName);
+                    SellerOrderDetailData sellerOrderDetailData = new SellerOrderDetailData(buyerName, buyerID, date, time, itemCost, itemName);
                     DatabaseReference sellerOrderRef = sellerRef.child(restaurantID).child("orders").push();
-                    sellerOrderRef.setValue(sellerOrderData);
+                    sellerOrderRef.setValue(sellerOrderDetailData);
                     String orderID = sellerOrderRef.getKey();
                     BuyerOrderData buyerOrderData = new BuyerOrderData(orderID, restaurantID, itemID,itemCost, itemName);
                     DatabaseReference buyerOrderRef = buyerRef.child("orders").push();

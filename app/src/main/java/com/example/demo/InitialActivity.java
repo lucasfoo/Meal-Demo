@@ -28,10 +28,10 @@ public class InitialActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.exists()){
-                            Intent intent = new Intent(InitialActivity.this, SellerP1.class);
+                            Intent intent = new Intent(InitialActivity.this, SellerExistingOrder.class);
                             startActivity(intent);
                         }else{
-                            Intent intent = new Intent(InitialActivity.this, MainMenu.class);
+                            Intent intent = new Intent(InitialActivity.this, BuyerViewRestaurant.class);
                             startActivity(intent);
                         }
                     }
@@ -42,7 +42,7 @@ public class InitialActivity extends AppCompatActivity {
                 }
             });
         }else{
-            Intent intent = new Intent(InitialActivity.this, MainActivity.class);
+            Intent intent = new Intent(InitialActivity.this, Login.class);
             startActivity(intent);
         }
     }
