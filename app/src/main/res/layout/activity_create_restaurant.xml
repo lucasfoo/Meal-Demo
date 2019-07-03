@@ -104,17 +104,61 @@
                 android:layout_below = "@id/enter_postcode"
                 android:text="Postcode"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/operation_hour"
+                android:text="Operation Hour"
+                android:layout_below = "@+id/postcode"
+                android:textSize="25dp"
+                android:layout_marginTop="20dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_box"
+                android:imeOptions="actionDone"
+                android:textSize="22sp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/enter_opening_hour"
+                android:layout_below="@+id/operation_hour"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Opening Hour"
+                android:textSize="25sp"
+                android:layout_below="@id/enter_opening_hour"
+                android:id="@+id/opening_hour"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_box"
+                android:imeOptions="actionDone"
+                android:textSize="22sp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/enter_closing_hour"
+                android:layout_below="@+id/opening_hour"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Closing Hour"
+                android:textSize="25sp"
+                android:layout_below="@id/enter_closing_hour"
+                android:id="@+id/closing_hour"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "Create Restaurant"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/Create_restaurant"/>
+
+
 
         </LinearLayout>
     </ScrollView>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text = "Create Restaurant"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="15dp"
-        android:layout_marginRight="10dp"
-        android:id="@+id/Create_restaurant"/>
+
 
 
 </FrameLayout>

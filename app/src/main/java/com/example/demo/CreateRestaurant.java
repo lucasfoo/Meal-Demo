@@ -29,11 +29,15 @@ public class CreateRestaurant extends AppCompatActivity {
                 EditText restaurantAddress = findViewById(R.id.enter_address);
                 EditText restaurantApt = findViewById(R.id.enter_apt);
                 EditText restaurantPostcode= findViewById(R.id.enter_postcode);
+                EditText restaurantOpeningHour = findViewById(R.id.enter_opening_hour);
+                EditText restaurantClosingHour = findViewById(R.id.enter_closing_hour);
                 String Name = restaurantName.getText().toString();
                 String Address = restaurantAddress.getText().toString();
                 String Apt = restaurantApt.getText().toString();
                 String Postcode = restaurantPostcode.getText().toString();
-                if(Name.isEmpty() || Address.isEmpty() || Apt.isEmpty() || Postcode.isEmpty()){
+                String OpeningHour = restaurantOpeningHour.getText().toString();
+                String ClosingHour = restaurantClosingHour.getText().toString();
+                if(Name.isEmpty() || Address.isEmpty() || Apt.isEmpty() || Postcode.isEmpty() || OpeningHour.isEmpty() || ClosingHour.isEmpty()){
                     // do something here
                 }else{
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
