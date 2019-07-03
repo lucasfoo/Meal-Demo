@@ -9,17 +9,16 @@
             android:icon="@drawable/profile_icon"
             android:title="Profile" />
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:id="@+id/nav_restaurant_profile"
+            android:icon="@drawable/restaurant_icon"
+            android:title="Restaurant Profile"/>
+
+
         <item
             android:id="@+id/nav_orders"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_orders" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+
         <item
             android:id="@+id/nav_tools"
             android:icon="@drawable/ic_menu_manage"
@@ -28,9 +27,7 @@
 
     <item android:title="Communicate">
         <menu>
-            <item
-                android:id="@+id/nav_seller"
-                android:title="@string/menu_seller" />
+
             <item
                 android:id="@+id/nav_logout"
                 android:title="@string/menu_Logout" />

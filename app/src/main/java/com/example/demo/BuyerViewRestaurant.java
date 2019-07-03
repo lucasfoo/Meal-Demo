@@ -161,6 +161,10 @@ public class BuyerViewRestaurant extends AppCompatActivity
 
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        if(id == R.id.nav_profile){
+            Intent intent = new Intent(BuyerViewRestaurant.this, BuyerProfileEditor.class);
+            startActivity(intent);
+        }
 
         if (id == R.id.nav_home) {
             // Handle the camera action

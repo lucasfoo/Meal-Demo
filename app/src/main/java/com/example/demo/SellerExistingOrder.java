@@ -47,7 +47,7 @@ public class SellerExistingOrder extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.seller_existing_order_drawer_layout);
         NavigationView navigationView = findViewById(R.id.seller_nav);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -137,15 +137,14 @@ public class SellerExistingOrder extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_orders) {
+        if (id == R.id.nav_profile) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_restaurant_profile) {
+            Intent intent = new Intent(SellerExistingOrder.this, SellerRestaurantProfileEditor.class);
+
+            startActivity(intent);
 
         } else if (id == R.id.nav_tools) {
-
-        } else if (id == R.id.nav_seller) {
 
         } else if (id == R.id.nav_logout) {
             FirebaseAuth.getInstance().signOut();

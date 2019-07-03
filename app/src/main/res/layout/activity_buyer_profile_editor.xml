@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp" >
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="56dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id = "@+id/buyer_profile_editor_first_name"
+                android:text = "First name"
+                android:textSize="30sp"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="First Name"
+                android:textSize="24sp"
+                android:id = "@+id/buyer_profile_editor_change_first_name"
+                android:layout_below="@id/buyer_profile_editor_first_name"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id = "@+id/buyer_profile_editor_last_name"
+                android:text = "Last name"
+                android:textSize="30sp"
+                />
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Last name"
+                android:textSize="24sp"
+                android:id = "@+id/buyer_profile_editor_change_last_name"
+                android:layout_below="@id/buyer_profile_editor_last_name"
+                />
+
+
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id = "@+id/buyer_profile_editor_DOB"
+                android:text = "Birthday"
+                android:textSize="30sp"
+                />
+
+            <DatePicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:datePickerMode="spinner"
+                android:calendarViewShown="false"
+                android:id = "@+id/buyer_profile_editor_choose_date"
+                android:layout_below="@id/buyer_profile_editor_first_name"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buyer_profile_get_date"
+                android:text="Get date"
+                android:textSize="15sp"
+                android:padding="5dp"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Birthday : "
+                android:id="@+id/buyer_profile_editor_birthday"
+                android:textSize="20sp"
+                android:padding="5dp"
+                />
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/buyer_profile_editor_birthday"
+                android:id = "@+id/buyer_profile_editor_password"
+                android:text = "Password"
+                android:textSize="30sp"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your new password "
+                android:textSize="24sp"
+                android:id = "@+id/buyer_profile_editor_change_password"
+                android:layout_below="@id/buyer_profile_editor_password"
+                />
+
+                <Button
+                    android:layout_marginTop="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Save"
+                    android:textSize="40dp"
+                    android:padding="9dp"
+                    android:id="@+id/buyer_profile_editor_save_button"
+                    android:layout_gravity="center"/>
+
+
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</RelativeLayout>

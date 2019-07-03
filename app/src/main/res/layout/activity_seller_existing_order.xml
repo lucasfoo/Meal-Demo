@@ -2,7 +2,7 @@
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/drawer_layout"
+    android:id="@+id/seller_existing_order_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -37,5 +37,5 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main_menu"
-        app:menu="@menu/activity_main_menu_drawer" />
+        app:menu="@menu/seller_existing_order_nav" />
 </android.support.v4.widget.DrawerLayout>

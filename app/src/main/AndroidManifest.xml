@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BuyerHistory"></activity>
+        <activity android:name=".SellerRestaurantProfileEditor"></activity>
+        <activity android:name=".BuyerProfileEditor" />
+        <activity android:name=".BuyerHistory" />
         <activity android:name=".SellerHistory" />
         <activity android:name=".SellerOrderDetail" />
         <activity android:name=".CreateRestaurant" />
