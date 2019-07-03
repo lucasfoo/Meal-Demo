@@ -37,6 +37,7 @@ public class BuyerRestaurantItemListAdapter extends RecyclerView.Adapter<BuyerRe
         ItemListViewHolder.mPrice.setText(price);
         ItemListViewHolder.mDishID = buyerRestaurantItemData.ItemID;
         ItemListViewHolder.mRestaurantID = buyerRestaurantItemData.RestaurantID;
+
         BuyerRestaurantItemListAdapter.ItemListViewHolder.cardView.setOnClickListener(new View.OnClickListener()  {
             @Override
             public void onClick(View view) {
@@ -54,12 +55,14 @@ public class BuyerRestaurantItemListAdapter extends RecyclerView.Adapter<BuyerRe
         protected static TextView mPrice;
         protected static String mDishID;
         protected static String mRestaurantID;
+        protected static String mPreparationDuration;
 
         public ItemListViewHolder(View view){
             super(view);
             cardView = view.findViewById(R.id.item_card);
             mName = view.findViewById(R.id.item_name);
             mPrice = view.findViewById(R.id.item_price);
+
 
       
         }

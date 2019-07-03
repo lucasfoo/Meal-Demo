@@ -45,6 +45,7 @@
                 android:hint="enter dish name"
                 android:imeOptions="actionDone"/>
             <TextView
+                android:layout_marginTop="20dp"
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,15 +54,32 @@
                 android:text="Description"/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/enter_description"
-                android:background="@drawable/edit_box"
+
                 android:textSize="22sp"
                 android:layout_below="@id/description"
                 android:hint=" Description"
                 android:imeOptions="actionDone"/>
             <TextView
+                android:layout_marginTop="20dp"
                 android:layout_below="@id/enter_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:id="@+id/preparation_duration"
+                android:text="Preparation Duration"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/preparation_duration"
+                android:id="@+id/enter_preparation_duration"
+                android:textSize="22sp"
+                android:hint="Enter Dish Preparation Duration"
+                android:imeOptions="actionDone"/>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/enter_preparation_duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
@@ -76,6 +94,7 @@
                 android:hint="Enter your price"
                 android:imeOptions="actionDone"/>
             <TextView
+                android:layout_marginTop="20dp"
                 android:layout_below="@id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

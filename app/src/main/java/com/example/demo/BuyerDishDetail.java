@@ -26,6 +26,7 @@ public class BuyerDishDetail extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         final TextView mDishName = findViewById(R.id.tv_dish_name);
+        final TextView mPreparationTime = findViewById(R.id.buyer_dish_detail_preparation_duration);
         final TextView mDishPrice = findViewById(R.id.view_price);
         final TextView mDishDesc = findViewById(R.id.tv_alldescription);
         final Button AddToCart = findViewById(R.id.add_to_cart);

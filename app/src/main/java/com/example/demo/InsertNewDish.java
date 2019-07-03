@@ -32,7 +32,8 @@ import java.util.Map;
 public class InsertNewDish extends AppCompatActivity implements View.OnClickListener {
     private EditText dishName;
     private EditText dishPrice;
-    private EditText dishDiscription;
+    private EditText dishDescription;
+    private EditText dishPreparationDuration;
     private ImageView DPhoto;
     private DatabaseReference mDatabase;
 
@@ -49,8 +50,8 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
 
         dishName = (EditText) findViewById(R.id.enter_dish_name);
         dishPrice = (EditText) findViewById((R.id.enter_price));
-        dishDiscription = (EditText) findViewById(R.id.enter_description) ;
-//        DPhoto = (ImageView) findViewById(R.id.enter_photo);
+        dishDescription = (EditText) findViewById(R.id.enter_description) ;
+        dishPreparationDuration = (EditText) findViewById(R.id.enter_preparation_duration);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -58,7 +59,7 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
 
 
     }
-    private boolean validateInputs(String name, String price, String desc) {
+    private boolean validateInputs(String name, String price, String desc,String preparationDuration) {
         if (name.isEmpty()) {
             dishName.setError("Name required");
             dishName.requestFocus();
@@ -72,8 +73,15 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
         }
 
         if (desc.isEmpty()) {
-            dishDiscription.setError("Description required");
-            dishDiscription.requestFocus();
+            dishDescription.setError("Description required");
+            dishDescription.requestFocus();
+            return true;
+        }
+
+
+        if (preparationDuration.isEmpty()) {
+            dishPreparationDuration.setError("Preparation duration required");
+            dishPreparationDuration.requestFocus();
             return true;
         }
         return false;
@@ -84,11 +92,12 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
 
         String name = dishName.getText().toString().trim();
         String price = dishPrice.getText().toString().trim();
-        String desc = dishDiscription.getText().toString().trim();
+        String desc = dishDescription.getText().toString().trim();
+        String preparationDuration = dishPreparationDuration.getText().toString().trim();
 //        ImageView photo = DPhoto;
 
 
-        if (!validateInputs(name, price, desc)) {
+        if (!validateInputs(name, price, desc,preparationDuration)) {
 
 
 

@@ -48,16 +48,26 @@
 
 
             <TextView
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:id="@+id/tv_alldescription"
-                android:background="@drawable/edit_box"
                 android:textSize="22sp"
                 android:hint=" Description"
                 android:imeOptions="actionDone"/>
+
             <TextView
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/enter_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:id="@+id/buyer_dish_detail_preparation_duration"
+                android:text="Preparation Duration"/>
+
+            <TextView
+                android:layout_marginTop="20dp"
                 android:layout_below="@id/tv_alldescription"
-                android:layout_marginTop="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"

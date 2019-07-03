@@ -5,4 +5,5 @@ public class BuyerRestaurantItemData {
     protected String ItemName;
     protected String Price;
     protected String ItemID;
+    protected String preparationDuration;
 }

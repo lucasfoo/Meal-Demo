@@ -5,6 +5,7 @@ import android.widget.ImageView;
 public class Dish {
     public String DishName;
     public String DishDescription;
+//    public String DishPreparationDuration;
     public String DishPrice;
     public String DishID;
 
