@@ -8,4 +8,13 @@
         app:showAsAction="always">
     </item>
 
+    <item
+        android:id="@+id/action_cart"
+        android:icon="@drawable/shopping_cart_black_icon"
+        android:title="@string/action_settings"
+        app:showAsAction="always">
+
+    </item>
+
+
 </menu>

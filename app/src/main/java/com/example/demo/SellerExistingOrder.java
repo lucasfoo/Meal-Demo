@@ -111,7 +111,7 @@ public class SellerExistingOrder extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.history, menu);
+        getMenuInflater().inflate(R.menu.history_cart_menu, menu);
         return true;
     }
 
@@ -127,6 +127,9 @@ public class SellerExistingOrder extends AppCompatActivity
             Intent intent = new Intent(SellerExistingOrder.this, SellerHistory.class);
             startActivity(intent);
         }
+
+
+
 
         return super.onOptionsItemSelected(item);
     }

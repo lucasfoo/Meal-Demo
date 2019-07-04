@@ -20,15 +20,6 @@
 
         <include layout="@layout/content_buyer_view_restaurant">
         </include>
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/cart1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:clickable="true"
-            app:backgroundTint="#3498db"
-            android:layout_margin="@dimen/fab_margin"
-            app:srcCompat="@drawable/ic_cart" />
 
     </android.support.design.widget.CoordinatorLayout>
     <android.support.design.widget.NavigationView

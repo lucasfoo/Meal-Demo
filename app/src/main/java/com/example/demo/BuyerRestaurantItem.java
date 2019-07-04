@@ -4,10 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -23,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BuyerRestaurantItem extends AppCompatActivity {
+public class BuyerRestaurantItem extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DatabaseReference mDatabase;
 
     @Override
@@ -33,11 +38,17 @@ public class BuyerRestaurantItem extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        DrawerLayout drawer = findViewById(R.id.buyer_restaurant_item_drawer_layout);
+        NavigationView navigationView = findViewById(R.id.buyer_restaurant_item_nav_view);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
+
+
         // add back arrow to toolbar
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
+
         Bundle extras = getIntent().getExtras();
         final String restaurantID = extras.getString("rID");
         String rname = extras.getString("rname");
@@ -92,29 +103,67 @@ public class BuyerRestaurantItem extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton edit_menu = (FloatingActionButton) findViewById(R.id.cart2);
-        edit_menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(BuyerRestaurantItem.this, Cart.class);
-                startActivity(intent);
-            }
-        });
+
 
 
 
     }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.history_cart_menu, menu);
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // handle arrow click here
-        if (item.getItemId() == android.R.id.home) {
-            finish(); // close this activity and return to preview activity (if there is any)
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_history) {
+            Intent intent = new Intent(BuyerRestaurantItem.this, BuyerHistory.class);
+            startActivity(intent);
+        }
+        if (id == R.id.action_cart) {
+            Intent intent = new Intent(BuyerRestaurantItem.this, Cart.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
     }
 
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+        if(id == R.id.nav_profile){
+            Intent intent = new Intent(BuyerRestaurantItem.this, BuyerProfileEditor.class);
+            startActivity(intent);
+        }
 
+        if (id == R.id.nav_home) {
+            // Handle the camera action
+        } else if (id == R.id.nav_orders) {
+            Intent intent = new Intent(getApplicationContext(), BuyerHistory.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_tools) {
+
+        } else if (id == R.id.nav_seller) {
+//
+            Intent intent = new Intent(BuyerRestaurantItem.this, CreateRestaurant.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_logout) {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(BuyerRestaurantItem.this, InitialActivity.class);
+            finish();
+            startActivity(intent);
+
+        }
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }

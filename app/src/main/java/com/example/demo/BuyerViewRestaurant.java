@@ -65,14 +65,7 @@ public class BuyerViewRestaurant extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        FloatingActionButton edit_menu = (FloatingActionButton) findViewById(R.id.cart1);
-        edit_menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(BuyerViewRestaurant.this, Cart.class);
-                startActivity(intent);
-            }
-        });
+
 
         View view = navigationView.getHeaderView(0);
         TextView emailTextView = view.findViewById(R.id.tv_user_email);
@@ -135,7 +128,7 @@ public class BuyerViewRestaurant extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.history, menu);
+        getMenuInflater().inflate(R.menu.history_cart_menu, menu);
         return true;
     }
 
@@ -149,6 +142,10 @@ public class BuyerViewRestaurant extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_history) {
             Intent intent = new Intent(BuyerViewRestaurant.this, BuyerHistory.class);
+            startActivity(intent);
+        }
+        if (id == R.id.action_cart) {
+            Intent intent = new Intent(BuyerViewRestaurant.this, Cart.class);
             startActivity(intent);
         }
 
