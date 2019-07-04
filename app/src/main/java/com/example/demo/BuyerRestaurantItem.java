@@ -165,9 +165,9 @@ public class BuyerRestaurantItem extends AppCompatActivity implements Navigation
             startActivity(intent);
 
         }
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+
     }
 }

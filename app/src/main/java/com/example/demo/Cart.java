@@ -45,8 +45,8 @@ public class Cart extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
-                    CartItem cart_item = dataSnapshot1.getValue(CartItem.class);
-                    cartItemList.add(cart_item);
+                    CartItem cartItem = dataSnapshot1.getValue(CartItem.class);
+                    cartItemList.add(cartItem);
                 }
                 RecyclerView cart_List = findViewById(R.id.cart_view);
                 cart_List.setHasFixedSize(true);

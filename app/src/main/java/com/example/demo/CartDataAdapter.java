@@ -10,6 +10,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.List;
 
 public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.EditorViewHolder> {
@@ -32,14 +37,20 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
     }
 
     @Override
-    public void onBindViewHolder(CartDataAdapter.EditorViewHolder cartViewHolder, int i){
-        CartItem item = CartList.get(i);
-        CartDataAdapter.EditorViewHolder.mName.setText(item.restaurantName);
+    public void onBindViewHolder(CartDataAdapter.EditorViewHolder cartViewHolder, final int i){
+        final CartItem item = CartList.get(i);
+        CartDataAdapter.EditorViewHolder.mName.setText(item.itemName);
         CartDataAdapter.EditorViewHolder.mPrice.setText(item.price);
         CartDataAdapter.EditorViewHolder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String cartItemID = item.cartItemID;
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("buyers")
+                        .child(user.getUid()).child("cart").child(cartItemID);
+                databaseReference.removeValue();
+                CartList.remove(i);
+                notifyDataSetChanged();
             }
         });
 

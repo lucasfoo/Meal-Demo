@@ -57,8 +57,8 @@ public class BuyerDishDetail extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference().child("buyers").child(user.getUid()).child("cart");
-                CartItem cart_item = new CartItem(restaurantID, dishID, mDishPrice.getText().toString(), mDishName.getText().toString());
                 cartRef = cartRef.push();
+                CartItem cart_item = new CartItem(restaurantID, dishID, mDishPrice.getText().toString(), mDishName.getText().toString(), cartRef.getKey());
                 cartRef.setValue(cart_item);
                 finish();
             }
