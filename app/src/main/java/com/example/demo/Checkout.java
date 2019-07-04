@@ -30,7 +30,7 @@ public class Checkout extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        final List<CartData> cartDataList = new ArrayList<>();
+        final List<CartItem> cartDataList = new ArrayList<>();
         totalPrice = 0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
@@ -53,16 +53,11 @@ public class Checkout extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
-                    CartData cartData = new CartData();
                     CartItem cart_item = dataSnapshot1.getValue(CartItem.class);
-                    cartData.restaurantID = cart_item.restaurantID;
-                    cartData.itemID = cart_item.itemID;
-                    cartData.cost = cart_item.price;
-                    cartData.name = cart_item.itemName;
-                    if(cartData.cost != null){
-                        totalPrice += Double.valueOf(cartData.cost);
+                    if(cart_item.price != null){
+                        totalPrice += Double.valueOf(cart_item.price);
                     }
-                    cartDataList.add(cartData);
+                    cartDataList.add(cart_item);
                 }
 
                 RecyclerView cart_List = findViewById(R.id.checkout_view);
@@ -92,11 +87,11 @@ public class Checkout extends AppCompatActivity {
             public void onClick(View v) {
                 DatabaseReference sellerRef = FirebaseDatabase.getInstance().getReference("sellers");
                 DatabaseReference buyerRef = FirebaseDatabase.getInstance().getReference("buyers").child(user.getUid());
-                for(CartData cartData : cartDataList){
-                    String restaurantID = cartData.restaurantID;
-                    String itemID = cartData.itemID;
-                    String itemName = cartData.name;
-                    String itemCost = cartData.cost;
+                for(CartItem cartItem : cartDataList){
+                    String restaurantID = cartItem.restaurantID;
+                    String itemID = cartItem.itemID;
+                    String itemName = cartItem.itemName;
+                    String itemCost = cartItem.price;
                     String buyerName = user.getDisplayName();
                     String buyerID = user.getUid();
                     DateFormat df = new SimpleDateFormat("MMM d, ''yyyy");

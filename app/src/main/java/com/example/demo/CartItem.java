@@ -1,6 +1,7 @@
 package com.example.demo;
 
 public class CartItem {
+    public String restaurantName;
     public String restaurantID;
     public String itemID;
     public String price;

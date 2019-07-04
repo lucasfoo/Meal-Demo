@@ -13,9 +13,9 @@ import android.widget.TextView;
 import java.util.List;
 
 public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.EditorViewHolder> {
-    private List<CartData> CartList;
+    private List<CartItem> CartList;
 
-    public  CartDataAdapter(List<CartData> CartList){
+    public  CartDataAdapter(List<CartItem> CartList){
         this.CartList = CartList;
     }
 
@@ -33,9 +33,9 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
 
     @Override
     public void onBindViewHolder(CartDataAdapter.EditorViewHolder cartViewHolder, int i){
-        CartData item = CartList.get(i);
-        CartDataAdapter.EditorViewHolder.mName.setText(item.name);
-        CartDataAdapter.EditorViewHolder.mPrice.setText(item.cost);
+        CartItem item = CartList.get(i);
+        CartDataAdapter.EditorViewHolder.mName.setText(item.restaurantName);
+        CartDataAdapter.EditorViewHolder.mPrice.setText(item.price);
         CartDataAdapter.EditorViewHolder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

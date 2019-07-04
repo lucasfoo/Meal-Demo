@@ -40,18 +40,13 @@ public class Cart extends AppCompatActivity {
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("buyers")
                 .child(user.getUid()).child("cart");
         databaseReference.addValueEventListener(new ValueEventListener() {
-            List<CartData> cartDataList = new ArrayList<>();
+            List<CartItem> cartItemList = new ArrayList<>();
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
-                    final CartData cartData = new CartData();
                     CartItem cart_item = dataSnapshot1.getValue(CartItem.class);
-                    cartData.restaurantID = cart_item.restaurantID;
-                    cartData.itemID = cart_item.itemID;
-                    cartData.cost = cart_item.price;
-                    cartData.name = cart_item.itemName;
-                    cartDataList.add(cartData);
+                    cartItemList.add(cart_item);
                 }
                 RecyclerView cart_List = findViewById(R.id.cart_view);
                 cart_List.setHasFixedSize(true);
@@ -62,7 +57,7 @@ public class Cart extends AppCompatActivity {
                 linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                 cart_List.setLayoutManager(linearLayoutManager);
 
-                CartDataAdapter editorDataAdapter = new CartDataAdapter(cartDataList);
+                CartDataAdapter editorDataAdapter = new CartDataAdapter(cartItemList);
                 cart_List.setAdapter(editorDataAdapter);
 
 
