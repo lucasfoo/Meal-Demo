@@ -39,6 +39,7 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
     @Override
     public void onBindViewHolder(CartDataAdapter.EditorViewHolder cartViewHolder, final int i){
         final CartItem item = CartList.get(i);
+        CartDataAdapter.EditorViewHolder.rName.setText(item.restaurantName);
         CartDataAdapter.EditorViewHolder.mName.setText(item.itemName);
         CartDataAdapter.EditorViewHolder.mPrice.setText(item.price);
         CartDataAdapter.EditorViewHolder.delete.setOnClickListener(new View.OnClickListener() {
@@ -50,13 +51,14 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
                         .child(user.getUid()).child("cart").child(cartItemID);
                 databaseReference.removeValue();
                 CartList.remove(i);
-                notifyDataSetChanged();
+                notifyItemRemoved(i);
             }
         });
 
     }
 
     public static class  EditorViewHolder extends RecyclerView.ViewHolder{
+        protected static TextView rName;
         protected static TextView mName;
         protected static TextView mPrice;
         protected static View cardView;
@@ -64,6 +66,7 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
 
         public EditorViewHolder(View view){
             super(view);
+            rName = view.findViewById(R.id.cart_restaurant_name);
             mName = view.findViewById(R.id.item_name);
             mPrice = view.findViewById(R.id.item_price);
             cardView = view.findViewById((R.id.cart_view));

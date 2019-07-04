@@ -18,6 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class BuyerDishDetail extends AppCompatActivity {
     private DatabaseReference mDatabase;
+    private String restaurantName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,19 @@ public class BuyerDishDetail extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         final String dishID = extras.getString("DishID");
         final String restaurantID = extras.getString("RestaurantID");
+        DatabaseReference restaurantRef = FirebaseDatabase.getInstance().getReference("sellers").child(restaurantID).child("name");
+        restaurantRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                restaurantName = dataSnapshot.getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         mDatabase = FirebaseDatabase.getInstance().getReference().child("sellers").child(restaurantID)
                 .child("Dishes").child(dishID);
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -57,8 +71,9 @@ public class BuyerDishDetail extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference().child("buyers").child(user.getUid()).child("cart");
+
                 cartRef = cartRef.push();
-                CartItem cart_item = new CartItem(restaurantID, dishID, mDishPrice.getText().toString(), mDishName.getText().toString(), cartRef.getKey());
+                CartItem cart_item = new CartItem(restaurantID,restaurantName ,dishID, mDishPrice.getText().toString(), mDishName.getText().toString(), cartRef.getKey());
                 cartRef.setValue(cart_item);
                 finish();
             }

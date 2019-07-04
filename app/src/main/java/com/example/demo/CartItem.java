@@ -10,8 +10,9 @@ public class CartItem {
 
     public CartItem(){};
 
-    public CartItem(String RestaurantID, String ItemID, String price, String itemName, String cartItemID){
+    public CartItem(String RestaurantID, String restaurantName ,String ItemID, String price, String itemName, String cartItemID){
         this.restaurantID = RestaurantID;
+        this.restaurantName = restaurantName;
         this.itemID = ItemID;
         this.price = price;
         this.itemName = itemName;

@@ -88,7 +88,7 @@ public class Checkout extends AppCompatActivity {
                 DatabaseReference sellerRef = FirebaseDatabase.getInstance().getReference("sellers");
                 DatabaseReference buyerRef = FirebaseDatabase.getInstance().getReference("buyers").child(user.getUid());
                 for(CartItem cartItem : cartDataList){
-                    String restaurantID = cartItem.restaurantID;
+                    String restaurantID = cartItem.restaurantName;
                     String itemID = cartItem.itemID;
                     String itemName = cartItem.itemName;
                     String itemCost = cartItem.price;
