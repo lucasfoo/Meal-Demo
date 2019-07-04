@@ -119,6 +119,10 @@ public class BuyerRestaurantItem extends AppCompatActivity implements Navigation
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        if (id == R.id.action_search) {
+            Intent intent = new Intent(BuyerRestaurantItem.this, BuyerSearchFunction.class);
+            startActivity(intent);
+        }
         if (id == R.id.action_history) {
             Intent intent = new Intent(BuyerRestaurantItem.this, BuyerHistory.class);
             startActivity(intent);

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp" >
+
+        <EditText
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Enter_search"
+            android:hint="Search in Meal."
+            android:textSize="20dp"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "Search"
+            android:layout_marginTop="20dp"
+            android:textSize="15dp"
+            android:padding="1dp"
+            android:layout_alignRight="@id/Enter_search"
+            android:id="@+id/search_button"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Search History"
+            android:layout_marginTop="40dp"
+            android:textSize="20dp"
+            android:layout_below="@id/Enter_search"
+            android:id="@+id/search_history"/>
+
+
+
+</RelativeLayout>
