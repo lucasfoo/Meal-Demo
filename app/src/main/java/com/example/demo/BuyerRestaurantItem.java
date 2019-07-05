@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +31,7 @@ import java.util.List;
 
 public class BuyerRestaurantItem extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DatabaseReference mDatabase;
+    private RatingBar ratingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,10 @@ public class BuyerRestaurantItem extends AppCompatActivity implements Navigation
         setContentView(R.layout.activity_buyer_restaurant_item);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        ratingBar = findViewById(R.id.restaurant_rating);
+        // change the star here
+        ratingBar.setRating((float) 4.5);
 
         DrawerLayout drawer = findViewById(R.id.buyer_restaurant_item_drawer_layout);
         NavigationView navigationView = findViewById(R.id.buyer_restaurant_item_nav_view);

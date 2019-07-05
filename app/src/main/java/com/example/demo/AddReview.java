@@ -28,11 +28,13 @@ public class AddReview extends AppCompatActivity {
             }
         });
 
-        ratingBar.setOnClickListener(new View.OnClickListener() {
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
-            public void onClick(View v) {
-                String rating = "Rating is :" + ratingBar.getRating();
-                Toast.makeText(AddReview.this, rating, Toast.LENGTH_LONG).show();
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+
+                Toast.makeText(AddReview.this,
+                        "Rating changed, current rating " + ratingBar.getRating(),
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }
