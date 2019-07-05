@@ -6,9 +6,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
+
+import static android.support.v4.content.ContextCompat.startActivity;
 
 public class BuyerHistoryDataAdapter extends RecyclerView.Adapter<BuyerHistoryDataAdapter.BuyerHistoryViewHolder>{
     private List<OrderData> BuyerHistoryList;
@@ -37,9 +40,18 @@ public class BuyerHistoryDataAdapter extends RecyclerView.Adapter<BuyerHistoryDa
             buyerHistoryViewHolder.collectionTime.setText(data.collectionTime);
             buyerHistoryViewHolder.dishName.setText(data.dishName);
             buyerHistoryViewHolder.price.setText(data.price);
+            buyerHistoryViewHolder.addReview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), AddReview.class);
+                    view.getContext().startActivity(intent);
+                }
+            });
         }catch (Exception exception){
 
         }
+
+
 
     }
 
@@ -49,6 +61,7 @@ public class BuyerHistoryDataAdapter extends RecyclerView.Adapter<BuyerHistoryDa
         protected static TextView collectionTime;
         protected static TextView dishName;
         protected static TextView price;
+        protected static ImageButton addReview;
 
         public BuyerHistoryViewHolder(View view){
             super(view);
@@ -57,9 +70,7 @@ public class BuyerHistoryDataAdapter extends RecyclerView.Adapter<BuyerHistoryDa
             restaurantName = view.findViewById(R.id.buyer_history_restaurant);
             collectionTime = view.findViewById(R.id.buyer_history_time);
             dishName = view.findViewById(R.id.buyer_history_dish_name);
-            collectionTime = view.findViewById(R.id.buyer_history_time);
-
-
+            addReview = view.findViewById(R.id.add_review);
         }
     }
 }

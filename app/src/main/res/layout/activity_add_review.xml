@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp" >
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text = "Restaurant Name"
+        android:textSize="23dp"
+        android:id="@+id/review_restaurant_name"/>
+    <RatingBar
+        android:id="@+id/review_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:saveEnabled="true"
+        android:rating="3"
+        android:isIndicator="false"
+        style="?android:attr/ratingBarStyleIndicator"
+        android:layout_alignEnd="@id/review_restaurant_name"
+        android:numStars="5"/>
+
+    <TextView
+        android:layout_below="@id/review_restaurant_name"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text = "Review for Restaurant"
+        android:textSize="23dp"
+        android:id="@+id/review_for_restaurant"/>
+    <EditText
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="What do you think about this restaurant?"
+        android:layout_below="@id/review_for_restaurant"
+        android:id="@+id/enter_review_for_restaurant"/>
+
+    <TextView
+        android:layout_below="@id/enter_review_for_restaurant"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text = "Review for Home Chef"
+        android:textSize="23dp"
+        android:id="@+id/review_for_chef"/>
+    <EditText
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="How is yout overall experience with the seller?"
+        android:layout_below="@id/review_for_chef"
+        android:id="@+id/enter_review_for_chef"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:textSize="20dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/submit_review"/>
+
+</RelativeLayout>

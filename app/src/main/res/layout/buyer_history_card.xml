@@ -39,15 +39,25 @@
             android:textSize="18sp"
             android:layout_alignParentBottom="true"
             />
+        <ImageButton
+            android:id="@+id/add_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            card_view:srcCompat="@drawable/ic_rate_review_black_24dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/buyer_history_time"
             android:text="DDMMYYYY"
-            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:textSize="18sp"
             android:layout_alignParentBottom="true"
             />
+
+
+
     </RelativeLayout>
 </android.support.v7.widget.CardView>
