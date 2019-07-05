@@ -11,9 +11,9 @@ import android.widget.TextView;
 import java.util.List;
 
 public class SellerHistoryDataAdapter extends RecyclerView.Adapter<SellerHistoryDataAdapter.SellerHistoryViewHolder>{
-    private List<SellerHistoryData> SellerHistoryList;
+    private List<OrderData> SellerHistoryList;
 
-    public SellerHistoryDataAdapter(List<SellerHistoryData> SellerHistoryList){
+    public SellerHistoryDataAdapter(List<OrderData> SellerHistoryList){
         this.SellerHistoryList = SellerHistoryList;
     }
 
@@ -31,7 +31,7 @@ public class SellerHistoryDataAdapter extends RecyclerView.Adapter<SellerHistory
 
     @Override
     public void onBindViewHolder( SellerHistoryViewHolder sellerorderViewHolder, int i) {
-        SellerHistoryData data = SellerHistoryList.get(i);
+        OrderData data = SellerHistoryList.get(i);
         try {
             sellerorderViewHolder.collector.setText(data.buyerName);
             sellerorderViewHolder.collectionTime.setText(data.orderDate);

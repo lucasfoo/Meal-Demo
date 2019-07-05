@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -49,6 +50,9 @@ public class SellerExistingOrderDataAdapter extends RecyclerView.Adapter<SellerE
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 DatabaseReference orderRef = FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid())
                         .child("orders").child(orderData.sellerOrderID);
+                DatabaseReference completedRef =  FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid())
+                        .child("completed").push();
+                completedRef.setValue(orderData);
                 orderRef.removeValue();
             }
         });

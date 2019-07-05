@@ -12,6 +12,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.Menu;
 import android.view.View;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,32 +42,43 @@ public class SellerHistory extends AppCompatActivity implements NavigationView.O
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference orderRef = FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid())
+                .child("completed");
+
+        orderRef.addValueEventListener(new ValueEventListener() {
+            List<OrderData> orderDataList = new ArrayList<>();
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                    OrderData orderData = dataSnapshot1.getValue(OrderData.class);
+                    orderDataList.add(orderData);
+                }
 
 
-        RecyclerView recList = findViewById(R.id.seller_history_view);
-        recList.setHasFixedSize(true);
-        recList.setClickable(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                RecyclerView recList = findViewById(R.id.seller_history_view);
+                recList.setHasFixedSize(true);
+                recList.setClickable(true);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        recList.setLayoutManager(linearLayoutManager);
-        SellerHistoryDataAdapter sellerHistoryDataAdapter = new SellerHistoryDataAdapter(createList(10));
-        recList.setAdapter(sellerHistoryDataAdapter);
+                recList.setLayoutManager(linearLayoutManager);
+                SellerHistoryDataAdapter sellerHistoryDataAdapter = new SellerHistoryDataAdapter(orderDataList);
+                recList.setAdapter(sellerHistoryDataAdapter);
+            }
+
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
 
-    private List<SellerHistoryData> createList(int size) {
-        List<SellerHistoryData> items = new ArrayList<>();
-        for (int i = 1; i <= size; ++i) {
-            SellerHistoryData data = new SellerHistoryData();
-            data.dishName = i+""+i+i+i+i+i+i+i+i;
-            data.buyerName = "shaopeng "+ i;
-            data.dishName = "dish name "+i;
-            data.price = "5."+ i;
-            items.add(data);
-        }
-        return  items;
-    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
