@@ -30,9 +30,11 @@ public class InitialActivity extends AppCompatActivity {
                         if(dataSnapshot.exists()){
                             Intent intent = new Intent(InitialActivity.this, SellerExistingOrder.class);
                             startActivity(intent);
+                            finish();
                         }else{
                             Intent intent = new Intent(InitialActivity.this, BuyerViewRestaurant.class);
                             startActivity(intent);
+                            finish();
                         }
                     }
 
@@ -44,6 +46,7 @@ public class InitialActivity extends AppCompatActivity {
         }else{
             Intent intent = new Intent(InitialActivity.this, Login.class);
             startActivity(intent);
+            finish();
         }
     }
 }
