@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.sql.Time;
+
 public class CartItem {
     public String restaurantName;
     public String restaurantID;
@@ -8,9 +10,11 @@ public class CartItem {
     public String itemName;
     public String cartItemID; // this should hold the unique reference to the item in the buyer's cart int Firebase
 
+    public Time collectionTime;
+
     public CartItem(){};
 
-    public CartItem(String RestaurantID, String restaurantName ,String ItemID, String price, String itemName, String cartItemID){
+    public CartItem(String RestaurantID, String restaurantName , String ItemID, String price, String itemName, String cartItemID){
         this.restaurantID = RestaurantID;
         this.restaurantName = restaurantName;
         this.itemID = ItemID;

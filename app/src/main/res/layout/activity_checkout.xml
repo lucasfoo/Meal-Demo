@@ -20,7 +20,20 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_checkout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+
+        >
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/checkout_view"
+            >
+        </android.support.v7.widget.RecyclerView>
+    </ScrollView>
 
     <TextView
         android:layout_width="wrap_content"

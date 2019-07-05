@@ -11,13 +11,14 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:id="@+id/cart_container">
-        <TextView
-            android:id="@+id/item_preparation_duration"
+        <EditText
+            android:id="@+id/item_collection_time"
             android:layout_alignParentStart="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Preparation Duration"
+            android:hint="Add collection time"
             android:textSize="24sp"
+            android:clickable="true"
             />
         <TextView
             android:id="@+id/item_name"
@@ -42,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/item_name"
-            android:id="@+id/cart_restaurant_name"
+            android:id="@+id/item_restaurant_name"
             android:text="restaurant name"
             android:textSize="20sp"/>
 
