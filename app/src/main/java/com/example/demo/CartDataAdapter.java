@@ -75,7 +75,7 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
-                               collection_time.setText(sHour + ":" + sMinute);
+                               collection_time.setText("Collection time: "+sHour + ":" + sMinute);
                             }
                         }, hour, minutes, true);
                 CartDataAdapter.EditorViewHolder.picker.show();

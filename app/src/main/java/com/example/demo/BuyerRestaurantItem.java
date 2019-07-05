@@ -75,7 +75,6 @@ public class BuyerRestaurantItem extends AppCompatActivity implements Navigation
                     buyerRestaurantItemData.ItemID = dataSnapshot1.getKey();
                     buyerRestaurantItemDataList.add(buyerRestaurantItemData);
                 }
-
                 RecyclerView ItemList = findViewById(R.id.ItemRecyclerView);
                 ItemList.setHasFixedSize(true);
                 ItemList.setClickable(true);
@@ -85,9 +84,6 @@ public class BuyerRestaurantItem extends AppCompatActivity implements Navigation
                 BuyerRestaurantItemListAdapter buyerRestaurantItemListAdapter = new BuyerRestaurantItemListAdapter(buyerRestaurantItemDataList);
                 ItemList.setAdapter(buyerRestaurantItemListAdapter);
             }
-
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -117,21 +113,15 @@ public class BuyerRestaurantItem extends AppCompatActivity implements Navigation
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
             Intent intent = new Intent(BuyerRestaurantItem.this, BuyerSearchFunction.class);
             startActivity(intent);
         }
-        if (id == R.id.action_history) {
-            Intent intent = new Intent(BuyerRestaurantItem.this, BuyerHistory.class);
-            startActivity(intent);
-        }
         if (id == R.id.action_cart) {
-            Intent intent = new Intent(BuyerRestaurantItem.this, Cart.class);
+            Intent intent = new Intent(BuyerRestaurantItem.this, Checkout.class);
             startActivity(intent);
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -144,18 +134,14 @@ public class BuyerRestaurantItem extends AppCompatActivity implements Navigation
             Intent intent = new Intent(BuyerRestaurantItem.this, BuyerProfileEditor.class);
             startActivity(intent);
         }
-
         if (id == R.id.nav_home) {
             // Handle the camera action
-        } else if (id == R.id.nav_orders) {
+        } else if (id == R.id.nav_history) {
             Intent intent = new Intent(getApplicationContext(), BuyerHistory.class);
             startActivity(intent);
-        } else if (id == R.id.nav_slideshow) {
-
         } else if (id == R.id.nav_tools) {
 
         } else if (id == R.id.nav_seller) {
-//
             Intent intent = new Intent(BuyerRestaurantItem.this, CreateRestaurant.class);
             startActivity(intent);
         } else if (id == R.id.nav_logout) {
@@ -163,7 +149,6 @@ public class BuyerRestaurantItem extends AppCompatActivity implements Navigation
             Intent intent = new Intent(BuyerRestaurantItem.this, InitialActivity.class);
             finish();
             startActivity(intent);
-
         }
         DrawerLayout drawer = findViewById(R.id.buyer_restaurant_item_drawer_layout);
         if(drawer.isDrawerOpen(GravityCompat.START)) {

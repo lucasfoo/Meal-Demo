@@ -144,12 +144,9 @@ public class BuyerViewRestaurant extends AppCompatActivity
         }
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_history) {
-            Intent intent = new Intent(BuyerViewRestaurant.this, BuyerHistory.class);
-            startActivity(intent);
-        }
+
         if (id == R.id.action_cart) {
-            Intent intent = new Intent(BuyerViewRestaurant.this, Cart.class);
+            Intent intent = new Intent(BuyerViewRestaurant.this, Checkout.class);
             startActivity(intent);
         }
 
@@ -169,11 +166,9 @@ public class BuyerViewRestaurant extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             // Handle the camera action
-        } else if (id == R.id.nav_orders) {
+        } else if (id == R.id.nav_history) {
             Intent intent = new Intent(getApplicationContext(), BuyerHistory.class);
             startActivity(intent);
-        } else if (id == R.id.nav_slideshow) {
-
         } else if (id == R.id.nav_tools) {
 
         } else if (id == R.id.nav_seller) {

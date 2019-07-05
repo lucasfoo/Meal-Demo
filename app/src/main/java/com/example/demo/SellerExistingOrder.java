@@ -115,16 +115,7 @@ public class SellerExistingOrder extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_history) {
-            Intent intent = new Intent(SellerExistingOrder.this, SellerHistory.class);
-            startActivity(intent);
-        }
-
-
-
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -140,8 +131,12 @@ public class SellerExistingOrder extends AppCompatActivity
             Intent intent = new Intent(SellerExistingOrder.this, SellerRestaurantProfileEditor.class);
 
             startActivity(intent);
+        } if (id == R.id.nav_seller_history) {
+            Intent intent = new Intent(SellerExistingOrder.this, SellerHistory.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_tools) {
+
 
         } else if (id == R.id.nav_logout) {
             FirebaseAuth.getInstance().signOut();
