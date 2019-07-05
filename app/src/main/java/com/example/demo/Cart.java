@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart extends AppCompatActivity {
-
+    private List<CartItem> cartItemList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +40,7 @@ public class Cart extends AppCompatActivity {
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("buyers")
                 .child(user.getUid()).child("cart");
         databaseReference.addValueEventListener(new ValueEventListener() {
-            List<CartItem> cartItemList = new ArrayList<>();
+
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

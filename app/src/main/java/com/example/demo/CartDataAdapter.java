@@ -50,8 +50,6 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("buyers")
                         .child(user.getUid()).child("cart").child(cartItemID);
                 databaseReference.removeValue();
-                CartList.remove(i);
-                notifyItemRemoved(i);
             }
         });
 

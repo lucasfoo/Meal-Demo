@@ -1,14 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        debug {
-            storeFile file('C:\\Users\\Lucas\\.android\\studio\\keystore.jks')
-            storePassword 'lucassp'
-            keyAlias = 'key0'
-            keyPassword 'lucassp'
-        }
-    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.demo"
