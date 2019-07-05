@@ -142,6 +142,10 @@ public class BuyerViewRestaurant extends AppCompatActivity
             Intent intent = new Intent(BuyerViewRestaurant.this, BuyerSearchFunction.class);
             startActivity(intent);
         }
+        if (id == R.id.action_track) {
+            Intent intent = new Intent(BuyerViewRestaurant.this, BuyerTrackingCurrentOrder.class);
+            startActivity(intent);
+        }
 
         //noinspection SimplifiableIfStatement
 

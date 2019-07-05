@@ -118,6 +118,11 @@ public class BuyerRestaurantItem extends AppCompatActivity implements Navigation
             Intent intent = new Intent(BuyerRestaurantItem.this, BuyerSearchFunction.class);
             startActivity(intent);
         }
+        if (id == R.id.action_track) {
+            Intent intent = new Intent(BuyerRestaurantItem.this, BuyerTrackingCurrentOrder.class);
+            startActivity(intent);
+        }
+
         if (id == R.id.action_cart) {
             Intent intent = new Intent(BuyerRestaurantItem.this, Checkout.class);
             startActivity(intent);
