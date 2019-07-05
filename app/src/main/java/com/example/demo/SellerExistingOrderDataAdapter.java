@@ -17,9 +17,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
 public class SellerExistingOrderDataAdapter extends RecyclerView.Adapter<SellerExistingOrderDataAdapter.OrderViewHolder> {
-    private List<SellerExistingOrderData> OrderList;
+    private List<OrderData> OrderList;
 
-    public SellerExistingOrderDataAdapter(List<SellerExistingOrderData> OrderList){
+    public SellerExistingOrderDataAdapter(List<OrderData> OrderList){
         this.OrderList = OrderList;
     }
 
@@ -37,18 +37,18 @@ public class SellerExistingOrderDataAdapter extends RecyclerView.Adapter<SellerE
 
     @Override
     public void onBindViewHolder(OrderViewHolder orderViewHolder, int i){
-        final SellerExistingOrderData sellerExistingOrderData = OrderList.get(i);
-        orderViewHolder.buyersName.setText(sellerExistingOrderData.buyerName);
-        orderViewHolder.Dish_name.setText(sellerExistingOrderData.dishName);
-        orderViewHolder.Order_num.setText("Order number: " + sellerExistingOrderData.orderID);
-        orderViewHolder.Collection_time.setText("Order time: " + sellerExistingOrderData.orderTime);
+        final OrderData orderData = OrderList.get(i);
+        orderViewHolder.buyersName.setText(orderData.buyerName);
+        orderViewHolder.Dish_name.setText(orderData.dishName);
+        orderViewHolder.Order_num.setText("Order number: " + orderData.sellerOrderID);
+        orderViewHolder.Collection_time.setText("Order time: " + orderData.orderTime);
 
         SellerExistingOrderDataAdapter.OrderViewHolder.Collect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 DatabaseReference orderRef = FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid())
-                        .child("orders").child(sellerExistingOrderData.orderID);
+                        .child("orders").child(orderData.sellerOrderID);
                 orderRef.removeValue();
             }
         });
@@ -61,7 +61,7 @@ public class SellerExistingOrderDataAdapter extends RecyclerView.Adapter<SellerE
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), SellerOrderDetail.class);
-                intent.putExtra("orderID", sellerExistingOrderData.orderID);
+                intent.putExtra("orderID", orderData.sellerOrderID);
                 view.getContext().startActivity(intent);
             }
         });

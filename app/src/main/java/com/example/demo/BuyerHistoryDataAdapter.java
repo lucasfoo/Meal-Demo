@@ -11,9 +11,9 @@ import android.widget.TextView;
 import java.util.List;
 
 public class BuyerHistoryDataAdapter extends RecyclerView.Adapter<BuyerHistoryDataAdapter.BuyerHistoryViewHolder>{
-    private List<BuyerHistoryData> BuyerHistoryList;
+    private List<OrderData> BuyerHistoryList;
 
-    public BuyerHistoryDataAdapter(List<BuyerHistoryData> BuyerHistoryList){
+    public BuyerHistoryDataAdapter(List<OrderData> BuyerHistoryList){
         this.BuyerHistoryList = BuyerHistoryList;
     }
 
@@ -30,13 +30,13 @@ public class BuyerHistoryDataAdapter extends RecyclerView.Adapter<BuyerHistoryDa
     }
 
     @Override
-    public void onBindViewHolder( BuyerHistoryViewHolder buyerorderViewHolder, int i) {
-        BuyerHistoryData data = BuyerHistoryList.get(i);
+    public void onBindViewHolder( BuyerHistoryViewHolder buyerHistoryViewHolder, int i) {
+        OrderData data = BuyerHistoryList.get(i);
         try {
-            buyerorderViewHolder.restaurantName.setText(data.restaurantName);
-            buyerorderViewHolder.collectionTime.setText(data.Date);
-            buyerorderViewHolder.dishName.setText(data.DishName);
-            buyerorderViewHolder.price.setText(data.price);
+            buyerHistoryViewHolder.restaurantName.setText(data.restaurantName);
+            buyerHistoryViewHolder.collectionTime.setText(data.collectionTime);
+            buyerHistoryViewHolder.dishName.setText(data.dishName);
+            buyerHistoryViewHolder.price.setText(data.price);
         }catch (Exception exception){
 
         }
@@ -53,6 +53,7 @@ public class BuyerHistoryDataAdapter extends RecyclerView.Adapter<BuyerHistoryDa
         public BuyerHistoryViewHolder(View view){
             super(view);
 
+            price = view.findViewById(R.id.buyer_history_price);
             restaurantName = view.findViewById(R.id.buyer_history_restaurant);
             collectionTime = view.findViewById(R.id.buyer_history_time);
             dishName = view.findViewById(R.id.buyer_history_dish_name);

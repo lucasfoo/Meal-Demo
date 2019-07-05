@@ -64,16 +64,10 @@ public class SellerExistingOrder extends AppCompatActivity
         ordersRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                List<SellerExistingOrderData> sellerExistingOrderDataList = new ArrayList<>();
+                List<OrderData> orderDataList = new ArrayList<>();
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                    SellerOrderDetailData item = dataSnapshot1.getValue(SellerOrderDetailData.class);
-                    SellerExistingOrderData sellerExistingOrderData = new SellerExistingOrderData();
-                    sellerExistingOrderData.dishName = item.dishName;
-                    sellerExistingOrderData.buyerName = item.buyerName;
-                    sellerExistingOrderData.orderTime = item.orderDate + " " + item.orderTime ;
-                    sellerExistingOrderData.orderID = dataSnapshot1.getKey();
-                    sellerExistingOrderData.collectionTime = "Soon";
-                    sellerExistingOrderDataList.add(sellerExistingOrderData);
+                    OrderData item = dataSnapshot1.getValue(OrderData.class);
+                    orderDataList.add(item);
                 }
                 RecyclerView recList = findViewById(R.id.orderList);
                 recList.setHasFixedSize(true);
@@ -82,7 +76,7 @@ public class SellerExistingOrder extends AppCompatActivity
                 linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                 recList.setLayoutManager(linearLayoutManager);
 
-                SellerExistingOrderDataAdapter sellerExistingOrderDataAdapter = new SellerExistingOrderDataAdapter(sellerExistingOrderDataList);
+                SellerExistingOrderDataAdapter sellerExistingOrderDataAdapter = new SellerExistingOrderDataAdapter(orderDataList);
                 recList.setAdapter(sellerExistingOrderDataAdapter);
             }
 

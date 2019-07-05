@@ -46,15 +46,10 @@ public class BuyerHistory extends AppCompatActivity implements NavigationView.On
         buyerOrdersRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                List<BuyerHistoryData> buyerHistoryDataList = new ArrayList<>();
+                List<OrderData> buyerHistoryDataList = new ArrayList<>();
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
-                    BuyerHistoryData buyerHistoryData = new BuyerHistoryData();
-                    BuyerOrderData buyerOrderData = dataSnapshot1.getValue(BuyerOrderData.class);
-                    buyerHistoryData.DishName = buyerOrderData.itemName;
-                    buyerHistoryData.Date = buyerOrderData.sellerOrderID;
-                    buyerHistoryData.restaurantName = buyerOrderData.restaurantID;
-                    buyerHistoryData.price = buyerOrderData.price;
-                    buyerHistoryDataList.add(buyerHistoryData);
+                    OrderData orderData = dataSnapshot1.getValue(OrderData.class);
+                    buyerHistoryDataList.add(orderData);
                 }
 
                 RecyclerView recList = findViewById(R.id.buyer_history_view);
@@ -76,20 +71,6 @@ public class BuyerHistory extends AppCompatActivity implements NavigationView.On
 
     }
 
-
-
-    private List<BuyerHistoryData> createList(int size) {
-        List<BuyerHistoryData> items = new ArrayList<>();
-        for (int i = 1; i <= size; ++i) {
-            BuyerHistoryData data = new BuyerHistoryData();
-            data.Date = i+""+i+i+i+i+i+i+i+i;
-            data.restaurantName = "shaopeng's restaurant "+ i;
-            data.DishName = "dish name "+i;
-            data.price = "5."+ i;
-            items.add(data);
-        }
-        return  items;
-    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

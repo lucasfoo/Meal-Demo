@@ -88,9 +88,10 @@ public class Checkout extends AppCompatActivity {
                 DatabaseReference sellerRef = FirebaseDatabase.getInstance().getReference("sellers");
                 DatabaseReference buyerRef = FirebaseDatabase.getInstance().getReference("buyers").child(user.getUid());
                 for(CartItem cartItem : cartDataList){
-                    String restaurantID = cartItem.restaurantName;
+                    String restaurantID = cartItem.restaurantID;
                     String itemID = cartItem.itemID;
                     String itemName = cartItem.itemName;
+                    String restaurantName = cartItem.restaurantName;
                     String itemCost = cartItem.price;
                     String buyerName = user.getDisplayName();
                     String buyerID = user.getUid();
@@ -98,13 +99,12 @@ public class Checkout extends AppCompatActivity {
                     String date = df.format(Calendar.getInstance().getTime());
                     df = new SimpleDateFormat("h:mm a");
                     String time = df.format(Calendar.getInstance().getTime());
-                    SellerOrderDetailData sellerOrderDetailData = new SellerOrderDetailData(buyerName, buyerID, date, time, itemCost, itemName);
                     DatabaseReference sellerOrderRef = sellerRef.child(restaurantID).child("orders").push();
-                    sellerOrderRef.setValue(sellerOrderDetailData);
-                    String orderID = sellerOrderRef.getKey();
-                    BuyerOrderData buyerOrderData = new BuyerOrderData(orderID, restaurantID, itemID,itemCost, itemName);
                     DatabaseReference buyerOrderRef = buyerRef.child("orders").push();
-                    buyerOrderRef.setValue(buyerOrderData);
+                    OrderData orderData = new OrderData(buyerName, buyerID, date, time, itemCost, itemName, sellerOrderRef.getKey(), buyerOrderRef.getKey(), restaurantID,restaurantName);
+                    sellerOrderRef.setValue(orderData);
+                    String orderID = sellerOrderRef.getKey();
+                    buyerOrderRef.setValue(orderData);
                     buyerRef.child("cart").removeValue();
                 }
                 finish();
