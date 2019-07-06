@@ -102,14 +102,64 @@
                 android:textSize="25sp"
                 android:id="@+id/change_photo"
                 android:text="Dish photo"/>
-            <EditText
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/change_photo"
-                android:id="@+id/edit_photo"
+                android:layout_marginTop="20dp"
+                android:weightSum="3"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/edit_photo1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:imeOptions="actionDone"
+                    android:maxWidth="42dp"
+                    android:maxHeight="42dp"
+                    android:scaleType="fitCenter"
+                    android:visibility="visible"
+                    tools:visibility="visible" />
+                <ImageView
+                    android:id="@+id/edit_photo2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="3dp"
+                    android:adjustViewBounds="true"
+                    android:layout_weight="1"
+                    android:imeOptions="actionDone"
+                    android:maxWidth="42dp"
+                    android:maxHeight="42dp"
+                    android:scaleType="fitCenter"
+                    android:visibility="visible"
+                    tools:visibility="visible" />
+                <ImageView
+                    android:id="@+id/edit_photo3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="3dp"
+                    android:adjustViewBounds="true"
+                    android:layout_weight="1"
+                    android:imeOptions="actionDone"
+                    android:maxWidth="42dp"
+                    android:maxHeight="42dp"
+                    android:scaleType="fitCenter"
+                    android:visibility="visible"
+                    tools:visibility="visible" />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text = "choose photo"
                 android:textSize="22sp"
-                android:hint=" the photo should be here after adding by clicking the camera"
-                android:imeOptions="actionDone"/>
+                android:layout_below="@id/enter_photo"
+                android:id="@+id/edit_chooseFile"
+
+                />
+
+
             <Button
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
@@ -123,7 +173,7 @@
     </ScrollView>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/take_photo"
+        android:id="@+id/edit_take_photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"

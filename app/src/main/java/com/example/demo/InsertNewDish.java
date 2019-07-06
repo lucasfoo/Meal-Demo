@@ -42,13 +42,13 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
     private EditText dishPrice;
     private EditText dishDescription;
     private EditText dishPreparationDuration;
-    private ImageView DPhoto;
     private DatabaseReference mDatabase;
     private ImageView imageCapture1;
     private ImageView imageCapture2;
     private ImageView imageCapture3;
     private Button upload;
     String imgDecodableString;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,10 +174,10 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                // Start the Intent
-                startActivityForResult(galleryIntent, 1);
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1);
             }
         });
 
@@ -216,34 +216,25 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
                 try {
                     // When an Image is picked
                     if (requestCode == 1 && resultCode == RESULT_OK
-                            && null != data) {
-                        // Get the Image from data
+                            && data != null) {
+
 
                         Uri selectedImage = data.getData();
-                        String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),selectedImage);
+//
 
-                        // Get the cursor
-                        Cursor cursor = getContentResolver().query(selectedImage,
-                                filePathColumn, null, null, null);
-                        // Move to first row
-
-                        cursor.moveToFirst();
-
-
-                        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                        imgDecodableString = cursor.getString(columnIndex);
-
-                        cursor.close();
                         if(imageCapture1.getDrawable() == null){
-                            Bitmap bmpGallery = BitmapFactory.decodeFile(imgDecodableString);
-                            imageCapture1.setImageBitmap(bmpGallery);
+                            imageCapture1.setImageBitmap(bitmap);
+                            imageCapture1.setVisibility(View.VISIBLE);
 
                         }else if(imageCapture2.getDrawable() == null) {
-                            Bitmap bmpGallery = BitmapFactory.decodeFile(imgDecodableString);
-                            imageCapture2.setImageBitmap(bmpGallery);
+
+                            imageCapture2.setImageBitmap(bitmap);
+                            imageCapture2.setVisibility(View.VISIBLE);
                         }else if(imageCapture3.getDrawable() == null){
-                            Bitmap bmpGallery = BitmapFactory.decodeFile(imgDecodableString);
-                            imageCapture3.setImageBitmap(bmpGallery);
+
+                            imageCapture3.setImageBitmap(bitmap);
+                            imageCapture3.setVisibility(View.VISIBLE);
                         }else {
                             Toast.makeText(this, "At most 3 pictures",
                                     Toast.LENGTH_LONG).show();
@@ -315,13 +306,8 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
         String price = dishPrice.getText().toString().trim();
         String desc = dishDescription.getText().toString().trim();
         String preparationDuration = dishPreparationDuration.getText().toString().trim();
-//        ImageView photo = DPhoto;
-
 
         if (!validateInputs(name, price, desc,preparationDuration)) {
-
-
-
            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
            String userID = user.getUid();
            DatabaseReference DishRef = mDatabase.child("sellers").child(userID).child("Dishes").push();
