@@ -58,7 +58,6 @@ public class SellerHistoryDataAdapter extends RecyclerView.Adapter<SellerHistory
             dishName = view.findViewById(R.id.seller_history_dish_name);
             collectionTime = view.findViewById(R.id.seller_order_collection_time);
 
-
         }
     }
 }

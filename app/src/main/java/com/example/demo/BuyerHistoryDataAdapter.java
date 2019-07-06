@@ -40,13 +40,18 @@ public class BuyerHistoryDataAdapter extends RecyclerView.Adapter<BuyerHistoryDa
             buyerHistoryViewHolder.collectionTime.setText(data.collectionTime);
             buyerHistoryViewHolder.dishName.setText(data.dishName);
             buyerHistoryViewHolder.price.setText(data.price);
-            buyerHistoryViewHolder.addReview.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), AddReview.class);
-                    view.getContext().startActivity(intent);
-                }
-            });
+            if(data.status.equalsIgnoreCase("Uncollected")){
+                buyerHistoryViewHolder.addReview.setVisibility(View.GONE);
+            }else{
+                buyerHistoryViewHolder.addReview.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(view.getContext(), AddReview.class);
+                        view.getContext().startActivity(intent);
+                    }
+                });
+            }
+
         }catch (Exception exception){
 
         }

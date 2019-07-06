@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".AddReview"></activity>
-        <activity android:name=".BuyerTrackingCurrentOrder" />
         <activity android:name=".BuyerSearchFunction" />
         <activity android:name=".SellerRestaurantProfileEditor" />
         <activity android:name=".BuyerProfileEditor" />
@@ -20,6 +19,7 @@
         <activity android:name=".SellerHistory" />
         <activity android:name=".SellerOrderDetail" />
         <activity android:name=".CreateRestaurant" />
+        <activity android:name=".BuyerOngoingOrders" />
         <activity
             android:name=".BuyerDishDetail"
             android:label="@string/title_activity_buyer_dish_detail"

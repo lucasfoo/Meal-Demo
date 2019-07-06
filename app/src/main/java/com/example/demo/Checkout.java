@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -101,18 +102,19 @@ public class Checkout extends AppCompatActivity {
                     String time = df.format(Calendar.getInstance().getTime());
                     DatabaseReference sellerOrderRef = sellerRef.child(restaurantID).child("orders").push();
                     DatabaseReference buyerOrderRef = buyerRef.child("orders").push();
-                    OrderData orderData = new OrderData(buyerName, buyerID, date, time, itemCost, itemName, sellerOrderRef.getKey(), buyerOrderRef.getKey(), restaurantID,restaurantName);
+                    OrderData orderData = new OrderData(buyerName, buyerID, date, time, itemCost, itemName,itemID, sellerOrderRef.getKey(), buyerOrderRef.getKey(), restaurantID,restaurantName, "Uncollected");
+                    orderData.sellerOrderID = sellerOrderRef.getKey();
+                    orderData.buyerOrderID = buyerOrderRef.getKey();
                     sellerOrderRef.setValue(orderData);
-                    String orderID = sellerOrderRef.getKey();
                     buyerOrderRef.setValue(orderData);
                     buyerRef.child("cart").removeValue();
                 }
+                Intent intent = new Intent(Checkout.this, BuyerOngoingOrders.class);
+                startActivity(intent);
                 finish();
             }
 
         });
-
-
     }
 
     /*

@@ -48,12 +48,19 @@ public class SellerExistingOrderDataAdapter extends RecyclerView.Adapter<SellerE
             @Override
             public void onClick(View view) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                DatabaseReference orderRef = FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid())
+                DatabaseReference sellerOrderRef = FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid())
                         .child("orders").child(orderData.sellerOrderID);
-                DatabaseReference completedRef =  FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid())
+                DatabaseReference sellerCompletedRef =  FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid())
                         .child("completed").push();
-                completedRef.setValue(orderData);
-                orderRef.removeValue();
+                DatabaseReference buyerOrderRef = FirebaseDatabase.getInstance().getReference("buyers").child(orderData.buyerID).
+                        child("orders").child(orderData.buyerOrderID);
+                DatabaseReference buyerCompletedRef = FirebaseDatabase.getInstance().getReference("buyers").child(orderData.buyerID)
+                        .child("completed").push();
+                orderData.status = "Collected";
+                buyerCompletedRef.setValue(orderData);
+                buyerOrderRef.removeValue();
+                sellerCompletedRef.setValue(orderData);
+                sellerOrderRef.removeValue();
             }
         });
 

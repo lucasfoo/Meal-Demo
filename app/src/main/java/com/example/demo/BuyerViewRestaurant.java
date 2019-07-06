@@ -143,7 +143,7 @@ public class BuyerViewRestaurant extends AppCompatActivity
             startActivity(intent);
         }
         if (id == R.id.action_track) {
-            Intent intent = new Intent(BuyerViewRestaurant.this, BuyerTrackingCurrentOrder.class);
+            Intent intent = new Intent(BuyerViewRestaurant.this, BuyerOngoingOrders.class);
             startActivity(intent);
         }
 

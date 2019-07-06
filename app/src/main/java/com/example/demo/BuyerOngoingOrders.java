@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import android.content.Intent;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -11,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,12 +25,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BuyerHistory extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class BuyerOngoingOrders extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer__history);
+        TextView textView = findViewById(R.id.buyer_history_past_orders);
+        textView.setText("Ongoing orders");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -41,7 +45,7 @@ public class BuyerHistory extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference buyerOrdersRef = FirebaseDatabase.getInstance().getReference("buyers").child(user.getUid()).child("completed");
+        DatabaseReference buyerOrdersRef = FirebaseDatabase.getInstance().getReference("buyers").child(user.getUid()).child("orders");
 
         buyerOrdersRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -69,6 +73,11 @@ public class BuyerHistory extends AppCompatActivity implements NavigationView.On
             }
         });
 
+    }
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(BuyerOngoingOrders.this ,BuyerViewRestaurant.class);
+        startActivity(intent);
     }
 
 

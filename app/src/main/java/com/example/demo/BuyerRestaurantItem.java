@@ -125,7 +125,7 @@ public class BuyerRestaurantItem extends AppCompatActivity implements Navigation
             startActivity(intent);
         }
         if (id == R.id.action_track) {
-            Intent intent = new Intent(BuyerRestaurantItem.this, BuyerTrackingCurrentOrder.class);
+            Intent intent = new Intent(BuyerRestaurantItem.this, BuyerOngoingOrders.class);
             startActivity(intent);
         }
 
