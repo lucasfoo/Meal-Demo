@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -53,6 +54,7 @@ public class BuyerRestaurantItemListAdapter extends RecyclerView.Adapter<BuyerRe
         public static View cardView;
         protected static TextView mName;
         protected static TextView mPrice;
+        protected static ImageView dishPhoto;
         protected static String mDishID;
         protected static String mRestaurantID;
         protected static String mPreparationDuration;
@@ -62,7 +64,7 @@ public class BuyerRestaurantItemListAdapter extends RecyclerView.Adapter<BuyerRe
             cardView = view.findViewById(R.id.item_card);
             mName = view.findViewById(R.id.item_name);
             mPrice = view.findViewById(R.id.item_price);
-
+            dishPhoto = view.findViewById(R.id.item_photo);
 
       
         }
