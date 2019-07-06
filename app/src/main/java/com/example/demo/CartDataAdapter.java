@@ -90,7 +90,7 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
 
                 }, hour, minutes, false);
                 ((RangeTimePickerDialog) CartDataAdapter.EditorViewHolder.picker).setMax(8,30);
-                ((RangeTimePickerDialog) CartDataAdapter.EditorViewHolder.picker).setMin(22,30);
+                ((RangeTimePickerDialog) CartDataAdapter.EditorViewHolder.picker).setMax(22,30);
 
                 CartDataAdapter.EditorViewHolder.picker.show();
 //                EditorViewHolder.eText.setText("Selected Time: "+ .getText());
@@ -108,7 +108,7 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
         protected static TextView mPrice;
         protected static View cardView;
         protected static ImageButton delete;
-        protected static TimePickerDialog picker;
+        protected static RangeTimePickerDialog picker;
         protected static TextView eText;
 
         public EditorViewHolder(View view){
