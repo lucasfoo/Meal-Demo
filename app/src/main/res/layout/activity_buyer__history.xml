@@ -22,6 +22,7 @@
         </include>
 
 
+
     </android.support.design.widget.CoordinatorLayout>
     <android.support.design.widget.NavigationView
         android:id="@+id/buyer_history_nav"

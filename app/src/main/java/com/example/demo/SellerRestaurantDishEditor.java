@@ -52,6 +52,7 @@ public class SellerRestaurantDishEditor extends AppCompatActivity {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                items.clear();
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     Dish dish = dataSnapshot1.getValue(Dish.class);
                     SellerRestaurantDishEditorData sellerRestaurantDishEditorData = new SellerRestaurantDishEditorData();

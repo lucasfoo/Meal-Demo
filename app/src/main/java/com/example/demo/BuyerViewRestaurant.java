@@ -76,18 +76,15 @@ public class BuyerViewRestaurant extends AppCompatActivity
         //RecylcerView code below
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("sellers");
         databaseReference.addValueEventListener(new ValueEventListener() {
-            List<BuyerViewRestaurantData> res = new ArrayList<>();
+            List<Seller> res = new ArrayList<>();
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    BuyerViewRestaurantData buyerViewRestaurantData = new BuyerViewRestaurantData();
                     Seller seller = dataSnapshot1.getValue(Seller.class);
-                    buyerViewRestaurantData.name = seller.name;
-                    buyerViewRestaurantData.address = seller.address;
-                    buyerViewRestaurantData.restaurantID = dataSnapshot1.getKey();
-                    res.add(buyerViewRestaurantData);
+                    seller.sellerID = dataSnapshot1.getKey();
+                    res.add(seller);
                 }
 
 

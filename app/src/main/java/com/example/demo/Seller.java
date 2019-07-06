@@ -3,19 +3,27 @@ package com.example.demo;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
-public class Seller {
+    public class Seller {
     public  String name;
     public String address;
+    public String apt;
+    public String postalCode;
     public String email;
+    public String openingTime;
+    public String closingTime;
+    public String sellerID;
 
     public Seller(){}
 
 
-    public Seller(String email, String restaurant_name, String address){
+    public Seller(String email, String restaurant_name, String address, String apt, String postalCode, String openingTime, String closingTime){
         this.email = email;
         this.name = restaurant_name;
         this.address = address;
-
+        this.apt = apt;
+        this.postalCode = postalCode;
+        this.openingTime = openingTime;
+        this.closingTime = closingTime;
     }
 
     public void editAddress(String address){

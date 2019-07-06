@@ -12,14 +12,10 @@ import android.widget.TextView;
 import java.util.List;
 
 public class BuyerViewRestaurantDataAdapter extends RecyclerView.Adapter<BuyerViewRestaurantDataAdapter.RestaurantViewHolder>{
-    private List<BuyerViewRestaurantData> RestaurantList;
-
-    public interface OnRestaurantClickListener{
-        void onRestaurantClick(BuyerViewRestaurantData buyerViewRestaurantData);
-    }
+    private List<Seller> RestaurantList;
 
 
-    public BuyerViewRestaurantDataAdapter(List<BuyerViewRestaurantData> RestaurantList){
+    public BuyerViewRestaurantDataAdapter(List<Seller> RestaurantList){
         this.RestaurantList = RestaurantList;
 
     }
@@ -38,17 +34,17 @@ public class BuyerViewRestaurantDataAdapter extends RecyclerView.Adapter<BuyerVi
 
     @Override
     public void onBindViewHolder(RestaurantViewHolder restaurantViewHolder, int i){
-        final BuyerViewRestaurantData buyerViewRestaurantData = RestaurantList.get(i);
-        RestaurantViewHolder.mName.setText(buyerViewRestaurantData.name);
-        RestaurantViewHolder.mAddress.setText(buyerViewRestaurantData.address);
-        RestaurantViewHolder.mRestaurantID = buyerViewRestaurantData.restaurantID;
+        final Seller seller = RestaurantList.get(i);
+        RestaurantViewHolder.mName.setText(seller.name);
+        RestaurantViewHolder.mAddress.setText(seller.address + ' ' + seller.apt + ' ' + seller.postalCode );
+        RestaurantViewHolder.mRestaurantID = seller.sellerID;
         RestaurantViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), BuyerRestaurantItem.class);
-                intent.putExtra("rname", buyerViewRestaurantData.name );
-                intent.putExtra("raddress", buyerViewRestaurantData.address);
-                intent.putExtra("rID", buyerViewRestaurantData.restaurantID);
+                intent.putExtra("rname", seller.name );
+                intent.putExtra("raddress", seller.address);
+                intent.putExtra("rID", seller.sellerID);
                 v.getContext().startActivity(intent);
             }
         });
