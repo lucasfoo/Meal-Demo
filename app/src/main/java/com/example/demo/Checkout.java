@@ -53,6 +53,8 @@ public class Checkout extends AppCompatActivity {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                cartDataList.clear();
+                totalPrice = 0;
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     CartItem cart_item = dataSnapshot1.getValue(CartItem.class);
                     if(cart_item.price != null){
@@ -74,7 +76,7 @@ public class Checkout extends AppCompatActivity {
                 cart_List.setAdapter(editorDataAdapter);
                 TextView mTotalPrice = findViewById(R.id.show_price);
                 DecimalFormat decimalFormat = new DecimalFormat("$0.00");
-                mTotalPrice.append(" " + decimalFormat.format(totalPrice));
+                mTotalPrice.setText(" " + decimalFormat.format(totalPrice));
             }
 
             @Override

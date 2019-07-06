@@ -1,6 +1,9 @@
 package com.example.demo;
 
 import android.app.TimePickerDialog;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
@@ -62,7 +65,7 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
             }
         });
 
-        final EditText collection_time = CartDataAdapter.EditorViewHolder.eText;
+        final TextView collection_time = CartDataAdapter.EditorViewHolder.eText;
         collection_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,13 +74,24 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
                 int minutes = cldr.get(Calendar.MINUTE);
                 // time picker dialog
 
-                CartDataAdapter.EditorViewHolder.picker = new TimePickerDialog(v.getContext(),android.R.style.Theme_Holo_Light_Dialog,
-                        new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
-                               collection_time.setText("Collection time: "+sHour + ":" + sMinute);
-                            }
-                        }, hour, minutes, true);
+                CartDataAdapter.EditorViewHolder.picker = new RangeTimePickerDialog(v.getContext(),
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+                        String AM_PM ;
+                        if(sHour < 12) {
+                            AM_PM = "AM";
+                        } else {
+                            AM_PM = "PM";
+                        }
+                        collection_time.setText("Collection time: "+sHour + ":" + sMinute + ' ' + AM_PM );
+                        collection_time.setTextColor(Color.argb(255, 0, 0, 0));
+                    }
+
+                }, hour, minutes, false);
+                ((RangeTimePickerDialog) CartDataAdapter.EditorViewHolder.picker).setMax(8,30);
+                ((RangeTimePickerDialog) CartDataAdapter.EditorViewHolder.picker).setMin(22,30);
+
                 CartDataAdapter.EditorViewHolder.picker.show();
 //                EditorViewHolder.eText.setText("Selected Time: "+ .getText());
             }
@@ -95,7 +109,7 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
         protected static View cardView;
         protected static ImageButton delete;
         protected static TimePickerDialog picker;
-        protected static EditText eText;
+        protected static TextView eText;
 
         public EditorViewHolder(View view){
             super(view);
@@ -105,8 +119,9 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
             cardView = view.findViewById((R.id.cart_view));
             delete = view.findViewById(R.id.delete_from_cart);
 
-            eText=(EditText) view.findViewById(R.id.item_collection_time);
-            eText.setInputType(InputType.TYPE_NULL);
+            eText= view.findViewById(R.id.item_collection_time);
+            eText.setTextColor(Color.argb(100, 0, 0, 0));
+            eText.setPaintFlags(eText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         }
     }
 }
