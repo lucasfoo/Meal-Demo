@@ -112,12 +112,14 @@
                 android:layout_below = "@+id/postcode"
                 android:textSize="25dp"
                 android:layout_marginTop="20dp"/>
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/edit_box"
                 android:imeOptions="actionDone"
-                android:textSize="22sp"
+                android:clickable="true"
+                android:textSize="20sp"
+                android:hint=" Enter opening hour"
                 android:layout_marginTop="20dp"
                 android:id="@+id/enter_opening_hour"
                 android:layout_below="@+id/operation_hour"/>
@@ -129,12 +131,14 @@
                 android:layout_below="@id/enter_opening_hour"
                 android:id="@+id/opening_hour"/>
 
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/edit_box"
                 android:imeOptions="actionDone"
-                android:textSize="22sp"
+                android:clickable="true"
+                android:textSize="20sp"
+                android:hint="  Enter Closing hour"
                 android:layout_marginTop="20dp"
                 android:id="@+id/enter_closing_hour"
                 android:layout_below="@+id/opening_hour"/>

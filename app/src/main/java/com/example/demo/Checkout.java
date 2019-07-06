@@ -98,6 +98,7 @@ public class Checkout extends AppCompatActivity {
                     String itemCost = cartItem.price;
                     String buyerName = user.getDisplayName();
                     String buyerID = user.getUid();
+
                     DateFormat df = new SimpleDateFormat("MMM d, ''yyyy");
                     String date = df.format(Calendar.getInstance().getTime());
                     df = new SimpleDateFormat("h:mm a");
