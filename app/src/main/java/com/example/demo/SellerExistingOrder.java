@@ -2,20 +2,21 @@ package com.example.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -73,7 +74,7 @@ public class SellerExistingOrder extends AppCompatActivity
                 recList.setHasFixedSize(true);
                 recList.setClickable(true);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
                 recList.setLayoutManager(linearLayoutManager);
 
                 SellerExistingOrderDataAdapter sellerExistingOrderDataAdapter = new SellerExistingOrderDataAdapter(orderDataList);

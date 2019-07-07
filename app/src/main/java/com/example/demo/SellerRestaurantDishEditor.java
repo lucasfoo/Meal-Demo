@@ -2,14 +2,15 @@ package com.example.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 public class SellerRestaurantDishEditor extends AppCompatActivity {
 
@@ -67,7 +70,7 @@ public class SellerRestaurantDishEditor extends AppCompatActivity {
 
 
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
                 editor_List.setLayoutManager(linearLayoutManager);
 
                 SellerRestaurantDishEditorDataAdapter editorDataAdapter = new SellerRestaurantDishEditorDataAdapter(items);

@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,13 +11,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,16 +19,21 @@ import android.widget.ImageView;
 import android.widget.StackView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreSettings;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -40,6 +41,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.UUID;
 
 public class InsertNewDish extends AppCompatActivity implements View.OnClickListener {
     private EditText dishName;
@@ -50,6 +52,7 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
     private ImageView imageCapture1;
     private ImageView imageCapture2;
     private ImageView imageCapture3;
+    private Uri imageUri;
     private Button upload;
 
     //TODO: ACKNOWLEDGEMENT: https://github.com/ArthurHub/Android-Image-Cropper/
@@ -59,10 +62,6 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_new_dish);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
-        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-                .setTimestampsInSnapshotsEnabled(true)
-                .build();
 
 
         dishName = (EditText) findViewById(R.id.enter_dish_name);
@@ -139,7 +138,7 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
                 try {
                     CropImage.ActivityResult result = CropImage.getActivityResult(data);
                     if (resultCode == RESULT_OK) {
-                        Uri imageUri = result.getUri();
+                        imageUri = result.getUri();
                         // get the cropped bitmap
                         Bitmap thePic = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
                         imageCapture1.setImageBitmap(thePic);
@@ -211,11 +210,37 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
         String preparationDuration = dishPreparationDuration.getText().toString().trim();
 
         if (!validateInputs(name, price, desc,preparationDuration)) {
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+            String imageRef = "dish_images/" + UUID.randomUUID().toString();
+           StorageReference imageStorageReference = FirebaseStorage.getInstance().getReference(imageRef);
+           imageStorageReference.putFile(imageUri).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+               @Override
+               public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                   double progress = (99.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                           .getTotalByteCount());
+                   progressDialog.setMessage("Uploaded "+(int)progress+"%");
+               }
+           });
            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
            String userID = user.getUid();
            DatabaseReference DishRef = mDatabase.child("sellers").child(userID).child("Dishes").push();
-            Dish dish = new Dish(name,desc,price, DishRef.getKey());
-           DishRef.setValue(dish);
+            Dish dish = new Dish(name,desc,price, DishRef.getKey(), imageRef);
+           DishRef.setValue(dish).addOnSuccessListener(new OnSuccessListener<Void>() {
+               @Override
+               public void onSuccess(Void aVoid) {
+                   progressDialog.dismiss();
+                   Toast.makeText(InsertNewDish.this, "Uploaded", Toast.LENGTH_SHORT).show();
+               }
+           }).addOnFailureListener(new OnFailureListener() {
+               @Override
+               public void onFailure(@NonNull Exception e) {
+                   progressDialog.dismiss();
+                   Toast.makeText(InsertNewDish.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+               }
+           });
+
            finish();
 //            FSdish.add(dish)
 //                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

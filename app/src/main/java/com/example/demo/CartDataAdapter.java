@@ -4,8 +4,7 @@ import android.app.TimePickerDialog;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +14,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

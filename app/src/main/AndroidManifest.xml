@@ -55,9 +55,6 @@
             android:label="@string/title_activity_insert_new_dish"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".FirebaseUIActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".SellerRestaurantDishEditor"
             android:label="@string/title_activity_restuarant_dish_editor"
             android:theme="@style/AppTheme.NoActionBar" />

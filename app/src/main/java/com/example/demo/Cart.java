@@ -2,13 +2,15 @@ package com.example.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+
 import android.view.View;
 import android.widget.Button;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,6 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 public class Cart extends AppCompatActivity {
     private List<CartItem> cartItemList = new ArrayList<>();
@@ -54,7 +58,7 @@ public class Cart extends AppCompatActivity {
 
 
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
                 cart_List.setLayoutManager(linearLayoutManager);
 
                 CartDataAdapter editorDataAdapter = new CartDataAdapter(cartItemList);

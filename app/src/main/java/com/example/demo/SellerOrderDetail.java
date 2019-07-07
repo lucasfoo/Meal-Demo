@@ -1,9 +1,10 @@
 package com.example.demo;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -47,7 +48,7 @@ public class SellerOrderDetail extends AppCompatActivity {
 
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         orderDetail_List.setLayoutManager(linearLayoutManager);
 
         SellerOrderDetailDataAdapter OrderDetailDataAdapter = new SellerOrderDetailDataAdapter(createList(10));
