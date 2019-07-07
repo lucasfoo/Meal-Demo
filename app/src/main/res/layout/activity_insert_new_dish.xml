@@ -28,6 +28,14 @@
                 android:scaleType="fitCenter"
                 android:visibility="visible"
                 tools:visibility="visible" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/ImagePrompt"
+                android:layout_below="@id/photo1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:text="Tap to add a photo"/>
 
             <TextView
                 android:layout_marginTop="10dp"
@@ -124,10 +132,7 @@
                 android:textSize="22sp"
                 android:layout_below="@id/chooseFile"
                 android:id="@+id/Post"
-
                 />
-
-
 
 
 

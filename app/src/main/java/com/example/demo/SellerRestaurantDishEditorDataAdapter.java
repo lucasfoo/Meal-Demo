@@ -43,6 +43,7 @@ public class SellerRestaurantDishEditorDataAdapter extends RecyclerView.Adapter<
                 intent.putExtra("dishID", dish.DishID);
                 view.getContext().startActivity(intent);
 
+
             }
         });
     }

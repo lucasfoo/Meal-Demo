@@ -2,12 +2,9 @@ package com.example.demo;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -15,18 +12,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -40,14 +42,15 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
     private EditText dishPrice;
     private EditText dishDescription;
     private EditText dishPreparationDuration;
+    private TextView imagePrompt;
     private DatabaseReference mDatabase;
     private ImageView imageCapture1;
-    private ImageView imageCapture2;
-    private ImageView imageCapture3;
     private Uri imageUri;
+    private Uri uploadedImageUri;
     private Button upload;
 
     //TODO: ACKNOWLEDGEMENT: https://github.com/ArthurHub/Android-Image-Cropper/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +60,7 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
-
+        imagePrompt = findViewById(R.id.ImagePrompt);
         dishName = (EditText) findViewById(R.id.enter_dish_name);
         dishPrice = (EditText) findViewById((R.id.enter_price));
         dishDescription = (EditText) findViewById(R.id.enter_description) ;
@@ -66,7 +69,32 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
         setSupportActionBar(toolbar);
 
         imageCapture1 = (ImageView) findViewById(R.id.photo1);
+        if(extras != null){
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String dishID = extras.getString("dishID");
+            DatabaseReference dishRef = FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid()).child("Dishes").child(dishID);
+            dishRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Dish dish = dataSnapshot.getValue(Dish.class);
+                    dishName.setText(dish.DishName);
+                    dishDescription.setText(dish.DishDescription);
+                    dishPrice.setText(dish.DishPrice);
+                    dishPreparationDuration.setText(dish.PrepDuration);
+                    StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(dish.imageUri);
+                    GlideApp.with(getApplicationContext() /* context */)
+                            .load(storageRef)
+                            .into(imageCapture1);
 
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
         FloatingActionButton takePhoto = findViewById(R.id.take_photo);
         takePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +123,6 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
                                 public void onClick(DialogInterface dialog, int which) {
                                     imageCapture1.setImageDrawable(null);
                                     Toast.makeText(InsertNewDish.this, "Photo Deleted", Toast.LENGTH_SHORT).show();
-                                    Reorder(imageCapture1,imageCapture2,imageCapture3);
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -218,7 +245,7 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
            String userID = user.getUid();
            DatabaseReference DishRef = mDatabase.child("sellers").child(userID).child("Dishes").push();
-            Dish dish = new Dish(name,desc,price, DishRef.getKey(), imageRef);
+            Dish dish = new Dish(name,desc,price, DishRef.getKey(), imageRef, preparationDuration);
            DishRef.setValue(dish).addOnSuccessListener(new OnSuccessListener<Void>() {
                @Override
                public void onSuccess(Void aVoid) {

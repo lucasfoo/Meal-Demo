@@ -22,8 +22,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
-
 public class SellerRestaurantDishEditor extends AppCompatActivity {
 
     @Override
