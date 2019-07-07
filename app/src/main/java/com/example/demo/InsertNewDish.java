@@ -11,14 +11,11 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.StackView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -36,11 +33,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
-
-import java.io.File;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
 import java.util.UUID;
 
 public class InsertNewDish extends AppCompatActivity implements View.OnClickListener {
@@ -62,6 +54,8 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_new_dish);
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
 
 
         dishName = (EditText) findViewById(R.id.enter_dish_name);
@@ -72,8 +66,6 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
         setSupportActionBar(toolbar);
 
         imageCapture1 = (ImageView) findViewById(R.id.photo1);
-        imageCapture2 = (ImageView) findViewById(R.id.photo2);
-        imageCapture3 = (ImageView) findViewById(R.id.photo3);
 
         FloatingActionButton takePhoto = findViewById(R.id.take_photo);
         takePhoto.setOnClickListener(new View.OnClickListener() {

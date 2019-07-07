@@ -47,10 +47,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".EditDish"
-            android:label="@string/title_activity_edit_dish"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".InsertNewDish"
             android:label="@string/title_activity_insert_new_dish"
             android:theme="@style/AppTheme.NoActionBar" />

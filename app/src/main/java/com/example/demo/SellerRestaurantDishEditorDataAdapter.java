@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class SellerRestaurantDishEditorDataAdapter extends RecyclerView.Adapter<SellerRestaurantDishEditorDataAdapter.EditorViewHolder>{
-    private List<SellerRestaurantDishEditorData> dishList;
+    private List<Dish> dishList;
 
-    public SellerRestaurantDishEditorDataAdapter(List<SellerRestaurantDishEditorData> dishList){
+    public SellerRestaurantDishEditorDataAdapter(List<Dish> dishList){
         this.dishList = dishList;
     }
 
@@ -32,17 +32,15 @@ public class SellerRestaurantDishEditorDataAdapter extends RecyclerView.Adapter<
 
     @Override
     public void onBindViewHolder(EditorViewHolder restaurantViewHolder, int i){
-        SellerRestaurantDishEditorData dish = dishList.get(i);
-        EditorViewHolder.mName.setText(dish.dish_name);
-        EditorViewHolder.mPrice.setText(dish.cost);
+        final Dish dish = dishList.get(i);
+        EditorViewHolder.mName.setText(dish.DishName);
+        EditorViewHolder.mPrice.setText(dish.DishPrice);
 
         SellerRestaurantDishEditorDataAdapter.EditorViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent = new Intent(view.getContext(), EditDish.class);
-                intent.putExtra("rname", EditorViewHolder.mName.getText().toString());
-                intent.putExtra("raddress", EditorViewHolder.mPrice.getText().toString());
+                Intent intent = new Intent(view.getContext(), InsertNewDish.class);
+                intent.putExtra("dishID", dish.DishID);
                 view.getContext().startActivity(intent);
 
             }

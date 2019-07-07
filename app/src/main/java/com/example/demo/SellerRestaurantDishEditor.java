@@ -51,17 +51,14 @@ public class SellerRestaurantDishEditor extends AppCompatActivity {
         DatabaseReference dishRef = FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid())
                 .child("Dishes");
         dishRef.addValueEventListener(new ValueEventListener() {
-            List<SellerRestaurantDishEditorData> items = new ArrayList<>();
+            List<Dish> items = new ArrayList<>();
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 items.clear();
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     Dish dish = dataSnapshot1.getValue(Dish.class);
-                    SellerRestaurantDishEditorData sellerRestaurantDishEditorData = new SellerRestaurantDishEditorData();
-                    sellerRestaurantDishEditorData.cost = dish.DishPrice;
-                    sellerRestaurantDishEditorData.dish_name = dish.DishName;
-                    items.add(sellerRestaurantDishEditorData);
+                    items.add(dish);
                 }
 
                 RecyclerView editor_List = findViewById(R.id.restaurant_editor_list);
