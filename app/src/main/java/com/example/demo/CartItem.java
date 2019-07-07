@@ -9,8 +9,8 @@ public class CartItem {
     public String price;
     public String itemName;
     public String cartItemID; // this should hold the unique reference to the item in the buyer's cart int Firebase
-
-    public Time collectionTime;
+    public int collectionTimeHour;
+    public int collectionTimeMinute;
 
     public CartItem(){};
 

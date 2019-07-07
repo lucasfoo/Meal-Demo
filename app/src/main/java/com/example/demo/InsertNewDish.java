@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -32,7 +33,10 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -47,8 +51,8 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
     private ImageView imageCapture2;
     private ImageView imageCapture3;
     private Button upload;
-    String imgDecodableString;
 
+    //TODO: ACKNOWLEDGEMENT: https://github.com/ArthurHub/Android-Image-Cropper/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +80,14 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
         takePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cameraIntent = new Intent("android.media.action.IMAGE_CAPTURE");
-                startActivityForResult(cameraIntent,0);
+                CropImage.activity()
+                        .setFixAspectRatio(true)
+                        .setAspectRatio(1,1)
+                        .setMinCropResultSize(128,128)
+                        .setInitialCropWindowPaddingRatio(0)
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        .setCropMenuCropButtonTitle("Submit")
+                        .start(InsertNewDish.this);
             }
         });
 
@@ -111,75 +121,6 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        imageCapture2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (imageCapture2.getDrawable() != null) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(InsertNewDish.this);
-                    builder.setTitle("Alert")
-                            .setMessage("Do you want to delete the photo?")
-                            .setCancelable(false)
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    imageCapture2.setImageDrawable(null);
-                                    Toast.makeText(InsertNewDish.this, "Photo Deleted", Toast.LENGTH_SHORT).show();
-                                    Reorder(imageCapture1,imageCapture2,imageCapture3);
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    //meant to be empty
-                                }
-                            });
-                    //Creating dialog box
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-
-                }
-            }
-        });
-
-        imageCapture3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (imageCapture3.getDrawable() != null) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(InsertNewDish.this);
-                    builder.setTitle("Alert")
-                            .setMessage("Do you want to delete the photo?")
-                            .setCancelable(false)
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    imageCapture3.setImageDrawable(null);
-                                    Toast.makeText(InsertNewDish.this, "Photo Deleted", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    //meant to be empty
-                                }
-                            });
-                    //Creating dialog box
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-
-                }
-            }
-        });
-
-        upload = findViewById(R.id.chooseFile);
-        upload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1);
-            }
-        });
 
 
 
@@ -194,62 +135,24 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode){
-            case 0:
-                if (requestCode == 0) {
-                    if (resultCode == RESULT_OK) {
-                        Bitmap bp = (Bitmap) data.getExtras().get("data");
-                        if(imageCapture1.getDrawable() == null){
-                            imageCapture1.setImageBitmap(bp);
-                        }else if(imageCapture2.getDrawable() == null) {
-                            imageCapture2.setImageBitmap(bp);
-                        } else if(imageCapture3.getDrawable() == null){
-                            imageCapture3.setImageBitmap(bp);
-                        }else{
-                            Toast.makeText(this, "Only 3 photo are allowed", Toast.LENGTH_LONG).show();
-                        }
-                    } else if (resultCode == RESULT_CANCELED) {
-                        Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-                    }
-                }
-            break;
-            case 1:
+            case CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE:
                 try {
-                    // When an Image is picked
-                    if (requestCode == 1 && resultCode == RESULT_OK
-                            && data != null) {
-
-
-                        Uri selectedImage = data.getData();
-                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),selectedImage);
-//
-
-                        if(imageCapture1.getDrawable() == null){
-                            imageCapture1.setImageBitmap(bitmap);
-                            imageCapture1.setVisibility(View.VISIBLE);
-
-                        }else if(imageCapture2.getDrawable() == null) {
-
-                            imageCapture2.setImageBitmap(bitmap);
-                            imageCapture2.setVisibility(View.VISIBLE);
-                        }else if(imageCapture3.getDrawable() == null){
-
-                            imageCapture3.setImageBitmap(bitmap);
-                            imageCapture3.setVisibility(View.VISIBLE);
-                        }else {
-                            Toast.makeText(this, "At most 3 pictures",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    } else {
-                        Toast.makeText(this, "You haven't picked Image",
-                                Toast.LENGTH_LONG).show();
+                    CropImage.ActivityResult result = CropImage.getActivityResult(data);
+                    if (resultCode == RESULT_OK) {
+                        Uri imageUri = result.getUri();
+                        // get the cropped bitmap
+                        Bitmap thePic = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                        imageCapture1.setImageBitmap(thePic);
                     }
-                } catch (Exception e) {
+                }catch (Exception e) {
                     Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG)
                             .show();
                 }
+
         }
 
     }
+
 
 
     private void Reorder(ImageView a, ImageView b, ImageView c){
