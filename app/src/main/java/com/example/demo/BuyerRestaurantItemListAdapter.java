@@ -10,12 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.List;
 
 public class BuyerRestaurantItemListAdapter extends RecyclerView.Adapter<BuyerRestaurantItemListAdapter.ItemListViewHolder>{
-    private List<BuyerRestaurantItemData> ItemList;
+    private List<Dish> ItemList;
 
-    public BuyerRestaurantItemListAdapter(List<BuyerRestaurantItemData> ItemList){
+    public BuyerRestaurantItemListAdapter(List<Dish> ItemList){
         this.ItemList = ItemList;
     }
 
@@ -33,19 +36,23 @@ public class BuyerRestaurantItemListAdapter extends RecyclerView.Adapter<BuyerRe
 
     @Override
     public void onBindViewHolder( ItemListViewHolder itemListViewHolder, int i) {
-        final BuyerRestaurantItemData buyerRestaurantItemData = ItemList.get(i);
-        ItemListViewHolder.mName.setText(buyerRestaurantItemData.ItemName);
-        String price = "$" + buyerRestaurantItemData.Price;
+        final Dish dish = ItemList.get(i);
+        ItemListViewHolder.mName.setText(dish.DishName);
+        String price = "$" + dish.DishPrice;
         ItemListViewHolder.mPrice.setText(price);
-        ItemListViewHolder.mDishID = buyerRestaurantItemData.ItemID;
-        ItemListViewHolder.mRestaurantID = buyerRestaurantItemData.RestaurantID;
+        ItemListViewHolder.mDishID = dish.DishID;
+        ItemListViewHolder.mRestaurantID = dish.restaurantID;
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(dish.imageUri);
+        GlideApp.with(ItemListViewHolder.dishPhoto.getContext() /* context */)
+                .load(storageRef)
+                .into(ItemListViewHolder.dishPhoto);
 
         BuyerRestaurantItemListAdapter.ItemListViewHolder.cardView.setOnClickListener(new View.OnClickListener()  {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), BuyerDishDetail.class);
-                intent.putExtra("DishID", buyerRestaurantItemData.ItemID);
-                intent.putExtra("RestaurantID", buyerRestaurantItemData.RestaurantID);
+                intent.putExtra("DishID",dish.DishID);
+                intent.putExtra("RestaurantID", dish.restaurantID);
                 view.getContext().startActivity(intent);
             }
         });
@@ -66,7 +73,6 @@ public class BuyerRestaurantItemListAdapter extends RecyclerView.Adapter<BuyerRe
             mName = view.findViewById(R.id.item_name);
             mPrice = view.findViewById(R.id.item_price);
             dishPhoto = view.findViewById(R.id.item_photo);
-
       
         }
     }

@@ -1,4 +1,4 @@
-<android.support.design.card.MaterialCardView
+<androidx.cardview.widget.CardView
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main_menu_item"
@@ -29,4 +29,4 @@
             />
 
     </RelativeLayout>
-</android.support.design.card.MaterialCardView>
+</androidx.cardview.widget.CardView>

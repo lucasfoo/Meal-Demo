@@ -69,18 +69,15 @@ public class BuyerRestaurantItem extends AppCompatActivity implements Navigation
         String userID = user.getUid();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("sellers").child(restaurantID).child("Dishes");
         mDatabase.addValueEventListener(new ValueEventListener() {
-            List<BuyerRestaurantItemData> buyerRestaurantItemDataList = new ArrayList<>();
+            List<Dish> buyerRestaurantItemDataList = new ArrayList<>();
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     BuyerRestaurantItemData buyerRestaurantItemData = new BuyerRestaurantItemData();
                     Dish dish = dataSnapshot1.getValue(Dish.class);
-                    buyerRestaurantItemData.RestaurantID = restaurantID;
-                    buyerRestaurantItemData.ItemName = dish.DishName;
-                    buyerRestaurantItemData.Price = dish.DishPrice;
-                    buyerRestaurantItemData.ItemID = dataSnapshot1.getKey();
-                    buyerRestaurantItemDataList.add(buyerRestaurantItemData);
+                    dish.restaurantID = restaurantID;
+                    buyerRestaurantItemDataList.add(dish);
                 }
                 RecyclerView ItemList = findViewById(R.id.ItemRecyclerView);
                 ItemList.setHasFixedSize(true);

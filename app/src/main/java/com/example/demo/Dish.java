@@ -10,6 +10,7 @@ public class Dish {
     public String DishID;
     public String imageUri;
     public String PrepDuration;
+    public String restaurantID;
     public Dish(){}
 
 
