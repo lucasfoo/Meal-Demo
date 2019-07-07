@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -86,6 +87,7 @@ public class SellerExistingOrderDataAdapter extends RecyclerView.Adapter<SellerE
         protected static TextView Collection_time;
         protected static Button Collect;
         public static View cardView;
+        protected static ImageView DishPhoto;
         public OrderViewHolder(View view) {
             super(view);
             buyersName = view.findViewById(R.id.buyers_name);
@@ -94,6 +96,7 @@ public class SellerExistingOrderDataAdapter extends RecyclerView.Adapter<SellerE
             Order_num = view.findViewById(R.id.dish_num);
             Collection_time = view.findViewById(R.id.collection_time);
             Collect = view.findViewById(R.id.collectButton);
+            DishPhoto = view.findViewById(R.id.exisiting_order_dish_photo);
 
         }
     }

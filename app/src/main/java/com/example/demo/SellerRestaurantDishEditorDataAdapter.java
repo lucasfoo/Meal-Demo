@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,6 +37,8 @@ public class SellerRestaurantDishEditorDataAdapter extends RecyclerView.Adapter<
         EditorViewHolder.mName.setText(dish.DishName);
         EditorViewHolder.mPrice.setText(dish.DishPrice);
 
+//        EditorViewHolder.mDishPhoto=
+
         SellerRestaurantDishEditorDataAdapter.EditorViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,13 +55,14 @@ public class SellerRestaurantDishEditorDataAdapter extends RecyclerView.Adapter<
         protected static TextView mName;
         protected static TextView mPrice;
         public static View cardView;
+        protected static ImageView mDishPhoto;
 
         public EditorViewHolder(View view){
             super(view);
             cardView = view.findViewById(R.id.editor_container);
             mName = view.findViewById(R.id.editor_dish_name);
             mPrice = view.findViewById(R.id.editor_price);
-
+            mDishPhoto = view.findViewById(R.id.editor_dish_photo);
         }
     }
 

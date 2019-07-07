@@ -11,20 +11,28 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:id="@+id/editor_container">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/editor_dish_photo"/>
+
+
         <TextView
             android:id="@+id/editor_dish_name"
             android:layout_above="@id/editor_price"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:text="editor_dish_name"
             android:textSize="24sp"
             />
 
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/editor_price"
+            android:layout_alignParentEnd="true"
             android:text="price"
             android:textSize="18sp"
             android:layout_alignParentBottom="true"

@@ -10,18 +10,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/main_menu_container">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/restaurant_photo"/>
         <TextView
             android:id="@+id/restaurant_name"
             android:layout_above="@id/restaurant_address"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:text="restaurant_name"
             android:textSize="24sp"
             />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:id="@+id/restaurant_address"
             android:text="address"
             android:textSize="18sp"

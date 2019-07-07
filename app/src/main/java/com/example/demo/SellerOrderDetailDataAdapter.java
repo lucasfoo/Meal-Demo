@@ -1,8 +1,10 @@
 package com.example.demo;
 
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,15 +46,17 @@ public class SellerOrderDetailDataAdapter extends RecyclerView.Adapter<SellerOrd
         protected static TextView itemName;
         protected static TextView itemPrice;
         protected static TextView collectionTime;
+        protected static ImageView dishPhoto;
 
         public SellerOrderViewHolder(View view){
             super(view);
+
             cardView = view.findViewById(R.id.seller_order_detail_view);
             collector = view.findViewById(R.id.seller_order_collector);
             itemName = view.findViewById(R.id.seller_order_detail_dish_name);
             itemPrice = view.findViewById(R.id.seller_order_detail_price);
             collectionTime = view.findViewById(R.id.seller_order_collection_time);
-
+            dishPhoto = view.findViewById(R.id.seller_order_detail_dish_photo);
 
         }
     }

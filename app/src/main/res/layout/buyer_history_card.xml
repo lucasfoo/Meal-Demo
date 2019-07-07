@@ -12,34 +12,44 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:id="@+id/buyer_history_container">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/history_photo"
+            />
+
+
+
         <TextView
             android:id="@+id/buyer_history_dish_name"
             android:layout_above="@id/buyer_history_price"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:text="dish_name"
             android:textSize="24sp"
             />
 
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/buyer_history_price"
+            android:layout_above="@id/buyer_history_time"
             android:text="price"
             android:textSize="18sp"
-            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/buyer_history_restaurant"
             android:text="Restaurant name"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
+            android:layout_above="@id/buyer_history_dish_name"
             android:textSize="18sp"
-            android:layout_alignParentBottom="true"
-            />
+            android:layout_alignParentEnd="true"
+        />
         <ImageButton
             android:id="@+id/add_review"
             android:layout_width="wrap_content"

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -68,6 +69,7 @@ public class BuyerHistoryDataAdapter extends RecyclerView.Adapter<BuyerHistoryDa
         protected static TextView dishName;
         protected static TextView price;
         protected static ImageButton addReview;
+        protected static ImageView historyPhoto;
 
         public BuyerHistoryViewHolder(View view){
             super(view);
@@ -77,6 +79,7 @@ public class BuyerHistoryDataAdapter extends RecyclerView.Adapter<BuyerHistoryDa
             collectionTime = view.findViewById(R.id.buyer_history_time);
             dishName = view.findViewById(R.id.buyer_history_dish_name);
             addReview = view.findViewById(R.id.add_review);
+            historyPhoto = view.findViewById(R.id.history_photo);
         }
     }
 }

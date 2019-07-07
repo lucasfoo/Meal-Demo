@@ -11,6 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/single_order_container">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/exisiting_order_dish_photo"/>
+
+
+
+
+
         <Button
             android:id="@+id/collectButton"
             android:layout_width="wrap_content"
@@ -23,35 +34,39 @@
         <TextView
             android:id="@+id/buyers_name"
             android:layout_above="@id/dish_name"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="buyer name"
             android:textSize="22sp"
+            android:layout_alignParentEnd="true"
             />
         <TextView
             android:id="@+id/dish_name"
             android:layout_above="@id/dish_num"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="dish name"
             android:textSize="24sp"
+            android:layout_alignParentEnd="true"
             />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/dish_num"
             android:layout_above="@id/collection_time"
             android:text="number of dish ordered"
             android:textSize="18sp"
+            android:layout_alignParentEnd="true"
             />
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/collection_time"
             android:text="time of collection"
             android:textSize="18sp"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
             />
 
 

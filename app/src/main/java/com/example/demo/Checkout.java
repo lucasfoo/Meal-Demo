@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,6 +39,8 @@ public class Checkout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
         Button pay = findViewById(R.id.pay);
+        ImageView dish_image = findViewById(R.id.item_photo);
+
 
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 

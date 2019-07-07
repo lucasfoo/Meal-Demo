@@ -12,29 +12,49 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:id="@+id/editor_container">
-        <TextView
-            android:id="@+id/seller_order_detail_dish_name"
-            android:layout_above="@id/seller_order_detail_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dish name"
-            android:textSize="24sp"
-            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/seller_order_detail_dish_photo"/>
         <TextView
             android:id="@+id/seller_order_buyer_name"
-            android:layout_above="@id/seller_order_detail_dish_name"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:text="Buyer's name"
             android:textSize="20sp"
             />
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/seller_order_detail_collection_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="Collection Time"
+            android:layout_below="@id/seller_order_buyer_name"
+            android:textSize="20sp"
+            />
+
+        <TextView
+            android:id="@+id/seller_order_detail_dish_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_above = "@id/seller_order_detail_price"
+            android:text="Dish name"
+            android:textSize="24sp"
+            />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/seller_order_detail_price"
             android:text="price"
             android:textSize="18sp"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             />
 

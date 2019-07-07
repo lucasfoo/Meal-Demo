@@ -11,34 +11,45 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:id="@+id/buyer_tracking_current_order_container">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/buyer_tracking_current_order_photo"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/buyer_tracking_current_order_dish_name"
+            android:id="@+id/buyer_tracking_current_order_restaurant"
+            android:text="Restaurant name"
+            android:textSize="18sp"
+            android:layout_alignParentEnd="true"
+            />
+
+
         <TextView
             android:id="@+id/buyer_tracking_current_order_dish_name"
             android:layout_above="@id/buyer_tracking_current_order_price"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:text="dish_name"
             android:textSize="24sp"
             />
 
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/buyer_tracking_current_order_price"
             android:text="price"
             android:textSize="18sp"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buyer_tracking_current_order_restaurant"
-            android:text="Restaurant name"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:textSize="18sp"
-            android:layout_alignParentBottom="true"
-            />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,8 +57,8 @@
             android:text="Collection Time"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
+
             android:textSize="18sp"
-            android:layout_alignParentBottom="true"
             />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

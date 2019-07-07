@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,6 +41,10 @@ public class BuyerViewRestaurantDataAdapter extends RecyclerView.Adapter<BuyerVi
         RestaurantViewHolder.mName.setText(seller.name);
         RestaurantViewHolder.mAddress.setText(seller.address + ' ' + seller.apt + ' ' + seller.postalCode );
         RestaurantViewHolder.mRestaurantID = seller.sellerID;
+
+//        RestaurantViewHolder.mRestaurantPhoto =
+
+
         RestaurantViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,12 +62,14 @@ public class BuyerViewRestaurantDataAdapter extends RecyclerView.Adapter<BuyerVi
         protected static TextView mName;
         protected static TextView mAddress;
         protected static String mRestaurantID;
+        protected static ImageView mRestaurantPhoto;
 
         public RestaurantViewHolder(View view){
             super(view);
             cardView = view.findViewById(R.id.main_menu_item);
             mName = view.findViewById(R.id.restaurant_name);
             mAddress = view.findViewById(R.id.restaurant_address);
+            mRestaurantPhoto = view.findViewById(R.id.restaurant_photo);
         }
     }
 
