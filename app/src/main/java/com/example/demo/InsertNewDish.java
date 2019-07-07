@@ -35,6 +35,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
+
+import org.w3c.dom.Text;
+
 import java.util.UUID;
 
 public class InsertNewDish extends AppCompatActivity implements View.OnClickListener {
@@ -47,7 +50,7 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
     private ImageView imageCapture1;
     private Uri imageUri;
     private Uri uploadedImageUri;
-    private Button upload;
+
 
     //TODO: ACKNOWLEDGEMENT: https://github.com/ArthurHub/Android-Image-Cropper/
 
@@ -69,6 +72,7 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
         setSupportActionBar(toolbar);
 
         imageCapture1 = (ImageView) findViewById(R.id.photo1);
+
         if(extras != null){
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String dishID = extras.getString("dishID");
@@ -95,20 +99,20 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
                 }
             });
         }
-        FloatingActionButton takePhoto = findViewById(R.id.take_photo);
-        takePhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CropImage.activity()
-                        .setFixAspectRatio(true)
-                        .setAspectRatio(1,1)
-                        .setMinCropResultSize(128,128)
-                        .setInitialCropWindowPaddingRatio(0)
-                        .setGuidelines(CropImageView.Guidelines.ON)
-                        .setCropMenuCropButtonTitle("Submit")
-                        .start(InsertNewDish.this);
-            }
-        });
+//        FloatingActionButton takePhoto = findViewById(R.id.take_photo);
+//        takePhoto.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                CropImage.activity()
+//                        .setFixAspectRatio(true)
+//                        .setAspectRatio(1,1)
+//                        .setMinCropResultSize(128,128)
+//                        .setInitialCropWindowPaddingRatio(0)
+//                        .setGuidelines(CropImageView.Guidelines.ON)
+//                        .setCropMenuCropButtonTitle("Submit")
+//                        .start(InsertNewDish.this);
+//            }
+//        });
 
         imageCapture1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +127,8 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
                                 public void onClick(DialogInterface dialog, int which) {
                                     imageCapture1.setImageDrawable(null);
                                     Toast.makeText(InsertNewDish.this, "Photo Deleted", Toast.LENGTH_SHORT).show();
+                                    imagePrompt.setText("Tap to delete");
+
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -134,6 +140,16 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
                     //Creating dialog box
                     AlertDialog dialog = builder.create();
                     dialog.show();
+
+                }else{
+                    CropImage.activity()
+                        .setFixAspectRatio(true)
+                        .setAspectRatio(1,1)
+                        .setMinCropResultSize(128,128)
+                        .setInitialCropWindowPaddingRatio(0)
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        .setCropMenuCropButtonTitle("Submit")
+                        .start(InsertNewDish.this);
 
                 }
             }
@@ -161,6 +177,7 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
                         // get the cropped bitmap
                         Bitmap thePic = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
                         imageCapture1.setImageBitmap(thePic);
+                        imagePrompt.setText("Tap to delete");
                     }
                 }catch (Exception e) {
                     Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG)

@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,10 +25,12 @@ import com.google.firebase.auth.FirebaseUser;
 public class Login extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button register;
+    private ImageView Logo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
+
         if(user != null) {
             Intent intent = new Intent(Login.this, BuyerViewRestaurant.class);
             startActivity(intent);
@@ -38,6 +41,7 @@ public class Login extends AppCompatActivity {
         setSupportActionBar(toolbar);
         FloatingActionButton SignIn = findViewById(R.id.SignIn);
 
+        Logo = findViewById(R.id.app_logo);
 
 
         SignIn.setOnClickListener(new View.OnClickListener() {

@@ -21,7 +21,9 @@
             <ImageView
                 android:id="@+id/photo1"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
+                android:clickable="true"
+                android:background="@drawable/add_image_sign"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:imeOptions="actionDone"
@@ -32,14 +34,15 @@
                 android:layout_marginTop="10dp"
                 android:id="@+id/ImagePrompt"
                 android:layout_below="@id/photo1"
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
                 android:text="Tap to add a photo"/>
 
             <TextView
-                android:layout_marginTop="10dp"
-                android:layout_below="@id/pp"
+
+                android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
@@ -102,27 +105,9 @@
                 android:textSize="22sp"
                 android:hint="Enter your price"
                 android:imeOptions="actionDone"/>
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_below="@id/price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:id="@+id/enter_photo"
-                android:text="Dish photo"/>
 
 
 
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text = "choose photo"
-                android:textSize="22sp"
-                android:layout_below="@id/enter_photo"
-                android:id="@+id/chooseFile"
-
-                />
 
             <Button
                 android:layout_width="wrap_content"
@@ -130,7 +115,7 @@
                 android:layout_marginTop="20dp"
                 android:text = "Post dish"
                 android:textSize="22sp"
-                android:layout_below="@id/chooseFile"
+                android:layout_below="@id/enter_price"
                 android:id="@+id/Post"
                 />
 
@@ -139,14 +124,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/take_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="20dp"
-        android:clickable="true"
-        app:srcCompat="@drawable/ic_menu_camera" />
 
 
 
