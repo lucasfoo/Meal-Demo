@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -63,6 +64,7 @@ public class BuyerViewRestaurantDataAdapter extends RecyclerView.Adapter<BuyerVi
         protected static TextView mAddress;
         protected static String mRestaurantID;
         protected static ImageView mRestaurantPhoto;
+        protected  static RatingBar mRestaurantRating;
 
         public RestaurantViewHolder(View view){
             super(view);
@@ -70,6 +72,7 @@ public class BuyerViewRestaurantDataAdapter extends RecyclerView.Adapter<BuyerVi
             mName = view.findViewById(R.id.restaurant_name);
             mAddress = view.findViewById(R.id.restaurant_address);
             mRestaurantPhoto = view.findViewById(R.id.restaurant_photo);
+            mRestaurantRating = view.findViewById(R.id.restaurant_rating);
         }
     }
 
