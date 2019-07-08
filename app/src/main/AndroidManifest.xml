@@ -22,7 +22,7 @@
         <activity android:name=".AddReview" />
         <activity android:name=".BuyerSearchFunction" />
         <activity android:name=".SellerRestaurantProfileEditor" />
-        <activity android:name=".BuyerProfileEditor" />
+        <activity android:name=".ProfileEditor" />
         <activity android:name=".BuyerHistory" />
         <activity android:name=".SellerHistory" />
         <activity android:name=".SellerOrderDetail" />

@@ -88,6 +88,7 @@ public class SellerExistingOrderDataAdapter extends RecyclerView.Adapter<SellerE
         protected static Button Collect;
         public static View cardView;
         protected static ImageView DishPhoto;
+
         public OrderViewHolder(View view) {
             super(view);
             buyersName = view.findViewById(R.id.buyers_name);

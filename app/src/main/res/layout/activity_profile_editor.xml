@@ -17,7 +17,31 @@
             android:paddingLeft="24dp"
             android:paddingRight="24dp">
 
+            <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="fill_parent"
+                android:layout_height="300dp"
+                android:clickable="true"
+                android:background="@drawable/ic_face_grey_24dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:imeOptions="actionDone"
+                android:scaleType="fitCenter"
+                android:visibility="visible"
+                />
+
             <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/profile_ImagePrompt"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:text="Tap to add a photo"/>
+
+
+            <TextView
+                android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id = "@+id/buyer_profile_editor_first_name"

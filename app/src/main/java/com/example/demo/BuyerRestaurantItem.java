@@ -140,7 +140,7 @@ public class BuyerRestaurantItem extends AppCompatActivity implements Navigation
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if(id == R.id.nav_profile){
-            Intent intent = new Intent(BuyerRestaurantItem.this, BuyerProfileEditor.class);
+            Intent intent = new Intent(BuyerRestaurantItem.this, ProfileEditor.class);
             startActivity(intent);
         }
         if (id == R.id.nav_home) {

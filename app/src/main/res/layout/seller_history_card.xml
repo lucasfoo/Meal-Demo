@@ -11,34 +11,45 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:id="@+id/seller_history_container">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/seller_history_photo"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/seller_history_collector"
+            android:text="Name of collector"
+            android:layout_above="@id/seller_history_dish_name"
+            android:layout_alignParentEnd="true"
+            android:textSize="18sp"
+
+            />
+
         <TextView
             android:id="@+id/seller_history_dish_name"
             android:layout_above="@id/seller_history_price"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:text="dish_name"
             android:textSize="24sp"
             />
 
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/seller_history_price"
             android:text="price"
             android:textSize="18sp"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/seller_history_collector"
-            android:text="Name of collector"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:textSize="18sp"
-            android:layout_alignParentBottom="true"
-            />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +58,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:textSize="18sp"
-            android:layout_alignParentBottom="true"
             />
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

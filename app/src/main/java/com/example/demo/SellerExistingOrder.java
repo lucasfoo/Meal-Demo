@@ -125,6 +125,9 @@ public class SellerExistingOrder extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
+            Intent intent = new Intent(SellerExistingOrder.this, ProfileEditor.class);
+
+            startActivity(intent);
 
         } else if (id == R.id.nav_restaurant_profile) {
             Intent intent = new Intent(SellerExistingOrder.this, SellerRestaurantProfileEditor.class);
