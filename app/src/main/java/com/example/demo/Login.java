@@ -52,20 +52,24 @@ public class Login extends AppCompatActivity {
                EditText passwordEditText = findViewById(R.id.ev_password);
                String email = emailEditText.getText().toString();
                String password = passwordEditText.getText().toString();
-
-               mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
-                   @Override
-                   public void onComplete(@NonNull Task<AuthResult> task) {
-                       if(task.isSuccessful()){
-                           Intent intent = new Intent(Login.this, InitialActivity.class);
-                           finish();
-                           startActivity(intent);
-                       }else{
-                           Toast.makeText(Login.this, "Authentication failed.",
-                                   Toast.LENGTH_SHORT).show();
+               if(!email.matches("") && ! password.matches("")) {
+                   mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+                       @Override
+                       public void onComplete(@NonNull Task<AuthResult> task) {
+                           if (task.isSuccessful()) {
+                               Intent intent = new Intent(Login.this, InitialActivity.class);
+                               finish();
+                               startActivity(intent);
+                           } else {
+                               Toast.makeText(Login.this, "Authentication failed.",
+                                       Toast.LENGTH_SHORT).show();
+                           }
                        }
-                   }
-               });
+                   });
+               }else{
+                   Toast.makeText(Login.this, "Invalid Email or Password",
+                           Toast.LENGTH_SHORT).show();
+               }
             }
         });
 
