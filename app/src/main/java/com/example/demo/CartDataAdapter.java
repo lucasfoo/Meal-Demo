@@ -108,13 +108,7 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
                             new TimePickerDialog.OnTimeSetListener() {
                                 @Override
                                 public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
-                                    String AM_PM;
-                                    if (sHour < 12) {
-                                        AM_PM = "AM";
-                                    } else {
-                                        AM_PM = "PM";
-                                    }
-                                    collection_time.setText("Collection time: " + sHour + ":" + sMinute + ' ' + AM_PM);
+                                    collection_time.setText("Collection time: " + String.format("%02d",sHour) + ":" + String.format("%02d",sMinute));
                                     collection_time.setTextColor(Color.argb(255, 0, 0, 0));
                                 }
 
