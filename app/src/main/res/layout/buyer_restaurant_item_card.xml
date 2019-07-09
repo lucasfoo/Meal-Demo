@@ -12,7 +12,6 @@
         android:id="@+id/item_container">
 
         <ImageView
-            android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:id="@+id/item_photo"/>
