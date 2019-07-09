@@ -11,6 +11,8 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -38,6 +40,8 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.UUID;
 
+import io.opencensus.common.ServerStatsFieldEnums;
+
 public class InsertNewDish extends AppCompatActivity implements View.OnClickListener {
     private EditText dishName;
     private EditText dishPrice;
@@ -47,6 +51,7 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
     private DatabaseReference mDatabase;
     private ImageView imageCapture1;
     private Uri imageUri;
+    private ProgressBar progressBar;
     private Uri uploadedImageUri;
 
 
@@ -244,19 +249,9 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
         String preparationDuration = dishPreparationDuration.getText().toString().trim();
 
         if (!validateInputs(name, price, desc,preparationDuration)) {
-            final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setTitle("Uploading...");
-            progressDialog.show();
             String imageRef = "dish_images/" + UUID.randomUUID().toString();
            StorageReference imageStorageReference = FirebaseStorage.getInstance().getReference(imageRef);
-           imageStorageReference.putFile(imageUri).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-               @Override
-               public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                   double progress = (99.0*taskSnapshot.getBytesTransferred()/taskSnapshot
-                           .getTotalByteCount());
-                   progressDialog.setMessage("Uploaded "+(int)progress+"%");
-               }
-           });
+           imageStorageReference.putFile(imageUri);
            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
            String userID = user.getUid();
            DatabaseReference DishRef = mDatabase.child("sellers").child(userID).child("Dishes").push();
@@ -264,13 +259,11 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
            DishRef.setValue(dish).addOnSuccessListener(new OnSuccessListener<Void>() {
                @Override
                public void onSuccess(Void aVoid) {
-                   progressDialog.dismiss();
                    Toast.makeText(InsertNewDish.this, "Uploaded", Toast.LENGTH_SHORT).show();
                }
            }).addOnFailureListener(new OnFailureListener() {
                @Override
                public void onFailure(@NonNull Exception e) {
-                   progressDialog.dismiss();
                    Toast.makeText(InsertNewDish.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
                }
            });
