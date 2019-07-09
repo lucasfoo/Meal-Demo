@@ -73,7 +73,7 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
         String formattedTime = dateFormat.format(date);
         int timeNow = Integer.parseInt(formattedTime);
         final int minOrderTime = timeNow > restaurantOpening ? addTime(timeNow ,dishPrepTime) : addTime(restaurantOpening, dishPrepTime);
-        String orderTime = minOrderTime < restaurantClosing ?  "Collection Time: " +  minOrderTime / 100 + ':' + String.format("%02d",minOrderTime % 100) + " to " + restaurantClosing / 100 + ':' + String.format("%02d", restaurantClosing % 100)
+        String orderTime = minOrderTime < restaurantClosing ?  "Collection Time: " +  String.format("%02d",minOrderTime / 100) + ':' + String.format("%02d",minOrderTime % 100) + " to " +  String.format("%02d", restaurantClosing / 100) + ':' + String.format("%02d", restaurantClosing % 100)
                 : "Item Unavailable";
 //        String orderTime = "Collection Time: " +  minOrderTime / 100 + ':' + String.format("%02d",minOrderTime % 100) + " to " + restaurantClosing / 100 + ':' + String.format("%02d", restaurantClosing % 100);
         EditorViewHolder.eText.setText(orderTime);
