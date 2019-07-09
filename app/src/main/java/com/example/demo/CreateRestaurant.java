@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -41,7 +42,7 @@ public class CreateRestaurant extends AppCompatActivity {
                 int minutes = cldr.get(Calendar.MINUTE);
                 // time picker dialog
 
-                picker = new RangeTimePickerDialog(v.getContext(),
+                picker = new RangeTimePickerDialog(v.getContext(), AlertDialog.THEME_DEVICE_DEFAULT_LIGHT,
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
@@ -70,7 +71,7 @@ public class CreateRestaurant extends AppCompatActivity {
                 int minutes = cldr.get(Calendar.MINUTE);
                 // time picker dialog
 
-                picker = new RangeTimePickerDialog(v.getContext(),
+                picker = new RangeTimePickerDialog(v.getContext(),AlertDialog.THEME_DEVICE_DEFAULT_LIGHT,
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker tp, int sHour, int sMinute) {

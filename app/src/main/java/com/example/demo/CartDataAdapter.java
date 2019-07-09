@@ -23,13 +23,27 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.EditorViewHolder> {
     private List<CartItem> CartList;
 
 
+    public int addTime(int a, int b){
+        int total = a + b;
+        int hour = total / 100;
+        int minutes = total % 100;
+        if(minutes >= 60){
+            ++hour;
+            minutes -= 60;
+        }
+        return hour * 100 + minutes;
+    }
 
     public  CartDataAdapter(List<CartItem> CartList){
         this.CartList = CartList;
@@ -50,6 +64,19 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
     @Override
     public void onBindViewHolder(final CartDataAdapter.EditorViewHolder cartViewHolder, final int i){
         final CartItem item = CartList.get(i);
+
+        int restaurantOpening =  Integer.parseInt(item.restaurantOpening);
+        final int restaurantClosing = Integer.parseInt(item.restaurantClosing);
+        int dishPrepTime = Integer.parseInt(item.prepTime);
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("HHmm");
+        String formattedTime = dateFormat.format(date);
+        int timeNow = Integer.parseInt(formattedTime);
+        final int minOrderTime = timeNow > restaurantOpening ? addTime(timeNow ,dishPrepTime) : addTime(restaurantOpening, dishPrepTime);
+        String orderTime = minOrderTime < restaurantClosing ?  "Collection Time: " +  minOrderTime / 100 + ':' + String.format("%02d",minOrderTime % 100) + " to " + restaurantClosing / 100 + ':' + String.format("%02d", restaurantClosing % 100)
+                : "Item Unavailable";
+//        String orderTime = "Collection Time: " +  minOrderTime / 100 + ':' + String.format("%02d",minOrderTime % 100) + " to " + restaurantClosing / 100 + ':' + String.format("%02d", restaurantClosing % 100);
+        EditorViewHolder.eText.setText(orderTime);
         CartDataAdapter.EditorViewHolder.rName.setText(item.restaurantName);
         CartDataAdapter.EditorViewHolder.mName.setText(item.itemName);
         CartDataAdapter.EditorViewHolder.mPrice.setText(item.price);
@@ -68,36 +95,38 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
         });
 
         final TextView collection_time = CartDataAdapter.EditorViewHolder.eText;
-        collection_time.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar cldr = Calendar.getInstance();
-                int hour = cldr.get(Calendar.HOUR_OF_DAY);
-                int minutes = cldr.get(Calendar.MINUTE);
-                // time picker dialog
+        if(true/*orderTime != "Item Unavailable"*/) {
+            collection_time.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final Calendar cldr = Calendar.getInstance();
+                    int hour = cldr.get(Calendar.HOUR_OF_DAY);
+                    int minutes = cldr.get(Calendar.MINUTE);
+                    // time picker dialog
 
-                CartDataAdapter.EditorViewHolder.picker = new RangeTimePickerDialog(v.getContext(),
-                new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
-                        String AM_PM ;
-                        if(sHour < 12) {
-                            AM_PM = "AM";
-                        } else {
-                            AM_PM = "PM";
-                        }
-                        collection_time.setText("Collection time: "+sHour + ":" + sMinute + ' ' + AM_PM );
-                        collection_time.setTextColor(Color.argb(255, 0, 0, 0));
-                    }
+                    CartDataAdapter.EditorViewHolder.picker = new RangeTimePickerDialog(v.getContext(), R.style.Theme_AppCompat_Dialog_Alert,
+                            new TimePickerDialog.OnTimeSetListener() {
+                                @Override
+                                public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+                                    String AM_PM;
+                                    if (sHour < 12) {
+                                        AM_PM = "AM";
+                                    } else {
+                                        AM_PM = "PM";
+                                    }
+                                    collection_time.setText("Collection time: " + sHour + ":" + sMinute + ' ' + AM_PM);
+                                    collection_time.setTextColor(Color.argb(255, 0, 0, 0));
+                                }
 
-                }, hour, minutes, false);
-                ((RangeTimePickerDialog) CartDataAdapter.EditorViewHolder.picker).setMax(8,30);
-                ((RangeTimePickerDialog) CartDataAdapter.EditorViewHolder.picker).setMax(22,30);
-
-                CartDataAdapter.EditorViewHolder.picker.show();
+                            }, hour, minutes, true);
+                    CartDataAdapter.EditorViewHolder.picker.setMin(minOrderTime/100, minOrderTime % 100);
+                    CartDataAdapter.EditorViewHolder.picker.setMax(restaurantClosing / 100, restaurantClosing % 100);
+                    EditorViewHolder.picker.updateTime(minOrderTime/100 , minOrderTime % 100);
+                    CartDataAdapter.EditorViewHolder.picker.show();
 //                EditorViewHolder.eText.setText("Selected Time: "+ .getText());
-            }
-        });
+                }
+            });
+        }
 
 
 

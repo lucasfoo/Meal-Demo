@@ -59,7 +59,7 @@ public class SellerRestaurantProfileEditor extends AppCompatActivity {
                 int minutes = cldr.get(Calendar.MINUTE);
                 // time picker dialog
 
-                picker = new RangeTimePickerDialog(v.getContext(),
+                picker = new RangeTimePickerDialog(v.getContext(), R.style.Theme_AppCompat_Light_Dialog_Alert,
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
@@ -88,7 +88,7 @@ public class SellerRestaurantProfileEditor extends AppCompatActivity {
                 int minutes = cldr.get(Calendar.MINUTE);
                 // time picker dialog
 
-                picker = new RangeTimePickerDialog(v.getContext(),
+                picker = new RangeTimePickerDialog(v.getContext(), R.style.Theme_AppCompat_Light_Dialog_Alert,
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker tp, int sHour, int sMinute) {

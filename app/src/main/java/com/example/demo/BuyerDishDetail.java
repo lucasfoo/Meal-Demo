@@ -21,6 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 public class BuyerDishDetail extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private String restaurantName;
+    private Dish dish;
+    private Seller seller;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,11 +39,12 @@ public class BuyerDishDetail extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         final String dishID = extras.getString("DishID");
         final String restaurantID = extras.getString("RestaurantID");
-        DatabaseReference restaurantRef = FirebaseDatabase.getInstance().getReference("sellers").child(restaurantID).child("name");
+        DatabaseReference restaurantRef = FirebaseDatabase.getInstance().getReference("sellers").child(restaurantID);
         restaurantRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                restaurantName = dataSnapshot.getValue().toString();
+                seller = dataSnapshot.getValue(Seller.class);
+                restaurantName = seller.name;
             }
 
             @Override
@@ -55,11 +58,10 @@ public class BuyerDishDetail extends AppCompatActivity {
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Dish dish = dataSnapshot.getValue(Dish.class);
+                dish = dataSnapshot.getValue(Dish.class);
                 mDishName.setText(dish.DishName);
                 mDishPrice.setText(dish.DishPrice);
                 mDishDesc.setText(dish.DishDescription);
-
             }
 
             @Override
@@ -73,9 +75,8 @@ public class BuyerDishDetail extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference().child("buyers").child(user.getUid()).child("cart");
-
                 cartRef = cartRef.push();
-                CartItem cart_item = new CartItem(restaurantID,restaurantName ,dishID, mDishPrice.getText().toString(), mDishName.getText().toString(), cartRef.getKey());
+                CartItem cart_item = new CartItem(restaurantID, restaurantName ,dishID, dish.DishPrice, dish.DishName, cartRef.getKey(), seller.openingTime, seller.closingTime, dish.imageUri, dish.PrepDuration);
                 cartRef.setValue(cart_item);
                 finish();
             }
