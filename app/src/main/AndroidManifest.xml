@@ -32,11 +32,8 @@
             android:name=".BuyerDishDetail"
             android:label="@string/title_activity_buyer_dish_detail"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Checkout" />
-        <activity
-            android:name=".Cart"
-            android:label="@string/title_activity_cart"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Checkout"
+            android:label="@string/title_activity_checkout"/>
         <activity
             android:name=".InitialActivity"
             android:noHistory="true">

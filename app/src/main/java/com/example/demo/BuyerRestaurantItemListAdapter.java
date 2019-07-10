@@ -42,7 +42,7 @@ public class BuyerRestaurantItemListAdapter extends RecyclerView.Adapter<BuyerRe
         ItemListViewHolder.mPrice.setText(price);
         ItemListViewHolder.mDishID = dish.DishID;
         ItemListViewHolder.mRestaurantID = dish.restaurantID;
-        String prepTime = dish.PrepDuration.equalsIgnoreCase("0") ? "Available to collect immediately!" : Integer.parseInt(dish.PrepDuration )/ 100 + " hour" + String.format("%02d", Integer.parseInt(dish.PrepDuration ) % 100) +  " minutes";
+        String prepTime = dish.PrepDuration.equalsIgnoreCase("0") ? "Available to collect immediately!" : ((Integer.parseInt(dish.PrepDuration )/ 100 != 0 ? Integer.parseInt(dish.PrepDuration )/ 100  + " hour " : ""))+ String.format("%02d", Integer.parseInt(dish.PrepDuration ) % 100) +  " minutes";
         ItemListViewHolder.mPreparationTime.setText(prepTime);
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(dish.imageUri);
         GlideApp.with(ItemListViewHolder.dishPhoto.getContext() /* context */)

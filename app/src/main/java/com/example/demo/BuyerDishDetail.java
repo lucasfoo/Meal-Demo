@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class BuyerDishDetail extends AppCompatActivity {
     private DatabaseReference mDatabase;
@@ -35,6 +38,7 @@ public class BuyerDishDetail extends AppCompatActivity {
         final TextView mDishPrice = findViewById(R.id.view_price);
         final TextView mDishDesc = findViewById(R.id.tv_alldescription);
         final Button AddToCart = findViewById(R.id.add_to_cart);
+        final ImageView mDishImage = findViewById(R.id.view_photo);
 
         Bundle extras = getIntent().getExtras();
         final String dishID = extras.getString("DishID");
@@ -59,9 +63,18 @@ public class BuyerDishDetail extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 dish = dataSnapshot.getValue(Dish.class);
+                String prepTime = dish.PrepDuration.equalsIgnoreCase("0") ? "Available to collect immediately!" : ((Integer.parseInt(dish.PrepDuration )/ 100 != 0 ? Integer.parseInt(dish.PrepDuration )/ 100  + " hour " : ""))+ String.format("%02d", Integer.parseInt(dish.PrepDuration ) % 100) +  " minutes";
                 mDishName.setText(dish.DishName);
-                mDishPrice.setText(dish.DishPrice);
+                mDishPrice.setText("$" +  dish.DishPrice);
                 mDishDesc.setText(dish.DishDescription);
+                mPreparationTime.setText(prepTime);
+                StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(dish.imageUri);
+                if(dish.imageUri != null) {
+                    GlideApp.with(BuyerDishDetail.this.getApplicationContext() /* context */)
+                            .load(storageRef)
+                            .into(mDishImage);
+                }
+
             }
 
             @Override
@@ -69,6 +82,7 @@ public class BuyerDishDetail extends AppCompatActivity {
 
             }
         });
+
 
         AddToCart.setOnClickListener(new View.OnClickListener() {
             @Override

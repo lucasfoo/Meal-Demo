@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -22,6 +23,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.sql.Time;
 import java.text.DateFormat;
@@ -73,13 +76,17 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
         String formattedTime = dateFormat.format(date);
         int timeNow = Integer.parseInt(formattedTime);
         final int minOrderTime = timeNow > restaurantOpening ? addTime(timeNow ,dishPrepTime) : addTime(restaurantOpening, dishPrepTime);
-        String orderTime = minOrderTime < restaurantClosing ?  "Collection Time: " +  String.format("%02d",minOrderTime / 100) + ':' + String.format("%02d",minOrderTime % 100) + " to " +  String.format("%02d", restaurantClosing / 100) + ':' + String.format("%02d", restaurantClosing % 100)
+        String orderTime = minOrderTime < restaurantClosing ?  "Click to select collection time: " +  String.format("%02d",minOrderTime / 100) + ':' + String.format("%02d",minOrderTime % 100) + " to " +  String.format("%02d", restaurantClosing / 100) + ':' + String.format("%02d", restaurantClosing % 100)
                 : "Item Unavailable";
 //        String orderTime = "Collection Time: " +  minOrderTime / 100 + ':' + String.format("%02d",minOrderTime % 100) + " to " + restaurantClosing / 100 + ':' + String.format("%02d", restaurantClosing % 100);
         EditorViewHolder.eText.setText(orderTime);
         CartDataAdapter.EditorViewHolder.rName.setText(item.restaurantName);
         CartDataAdapter.EditorViewHolder.mName.setText(item.itemName);
-        CartDataAdapter.EditorViewHolder.mPrice.setText(item.price);
+        CartDataAdapter.EditorViewHolder.mPrice.setText("$" + item.price);
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(item.imageRef);
+        GlideApp.with(EditorViewHolder.dishImage.getContext()/* context */)
+                .load(storageRef)
+                .into(EditorViewHolder.dishImage);
         CartDataAdapter.EditorViewHolder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,6 +142,7 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
         protected static ImageButton delete;
         protected static RangeTimePickerDialog picker;
         protected static TextView eText;
+        protected static ImageView dishImage;
 
         public EditorViewHolder(View view){
             super(view);
@@ -143,7 +151,7 @@ public class CartDataAdapter extends RecyclerView.Adapter<CartDataAdapter.Editor
             mPrice = view.findViewById(R.id.item_price);
             cardView = view.findViewById((R.id.cart_view));
             delete = view.findViewById(R.id.delete_from_cart);
-
+            dishImage = view.findViewById(R.id.dish_image);
             eText= view.findViewById(R.id.item_collection_time);
             eText.setTextColor(Color.argb(100, 0, 0, 0));
             eText.setPaintFlags(eText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
