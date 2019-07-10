@@ -83,8 +83,9 @@ public class BuyerViewRestaurant extends AppCompatActivity
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                res.clear();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+
                     Seller seller = dataSnapshot1.getValue(Seller.class);
                     seller.sellerID = dataSnapshot1.getKey();
                     res.add(seller);

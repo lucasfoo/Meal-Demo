@@ -42,6 +42,8 @@ public class BuyerRestaurantItemListAdapter extends RecyclerView.Adapter<BuyerRe
         ItemListViewHolder.mPrice.setText(price);
         ItemListViewHolder.mDishID = dish.DishID;
         ItemListViewHolder.mRestaurantID = dish.restaurantID;
+        String prepTime = dish.PrepDuration.equalsIgnoreCase("0") ? "Available to collect immediately!" : Integer.parseInt(dish.PrepDuration )/ 100 + " hour" + String.format("%02d", Integer.parseInt(dish.PrepDuration ) % 100) +  " minutes";
+        ItemListViewHolder.mPreparationTime.setText(prepTime);
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(dish.imageUri);
         GlideApp.with(ItemListViewHolder.dishPhoto.getContext() /* context */)
                 .load(storageRef)
@@ -62,18 +64,18 @@ public class BuyerRestaurantItemListAdapter extends RecyclerView.Adapter<BuyerRe
         public static View cardView;
         protected static TextView mName;
         protected static TextView mPrice;
+        protected static TextView mPreparationTime;
         protected static ImageView dishPhoto;
         protected static String mDishID;
         protected static String mRestaurantID;
-        protected static String mPreparationDuration;
 
         public ItemListViewHolder(View view){
             super(view);
             cardView = view.findViewById(R.id.item_card);
-            mName = view.findViewById(R.id.item_name);
-            mPrice = view.findViewById(R.id.item_price);
-            dishPhoto = view.findViewById(R.id.item_photo);
-      
+            mName = cardView.findViewById(R.id.item_name);
+            mPrice = cardView.findViewById(R.id.item_price);
+            dishPhoto = cardView.findViewById(R.id.item_photo);
+            mPreparationTime = cardView.findViewById(R.id.item_prep_time);
         }
     }
 }
