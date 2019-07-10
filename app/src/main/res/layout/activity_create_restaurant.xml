@@ -30,18 +30,45 @@
             android:layout_height="fill_parent"
             android:orientation="vertical"
             android:padding="20dp" >
+
+            <ImageView
+                android:id="@+id/create_restaurant_photo"
+                android:layout_width="match_parent"
+                android:layout_height="256dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="@drawable/present_to_all"
+                android:clickable="true"
+                android:imeOptions="actionDone"
+                android:scaleType="fitCenter"
+                android:visibility="visible"
+                tools:visibility="visible" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/ImagePrompt"
+                android:layout_below="@id/create_restaurant_photo"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:text="Tap to add a photo"/>
+
+
+
+
+
             <TextView
                 android:layout_marginTop="45dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
-                android:layout_above = "@id/enter_restaurant_name"
+                android:layout_below = "@id/ImagePrompt"
                 android:text="Restaurant name"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/enter_restaurant_name"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:hint="Enter Restaurant Name"
                 android:imeOptions="actionDone"/>
             <TextView
@@ -53,11 +80,10 @@
                 android:layout_below = "@id/enter_restaurant_name"
                 android:text="Restaurant Address"/>
             <EditText
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="35dp"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/enter_address"
-                android:background="@drawable/edit_box"
                 android:textSize="22sp"
                 android:layout_below="@id/enter_restaurant_name"
                 android:imeOptions="actionDone"/>
@@ -70,11 +96,10 @@
                 android:text="Address"/>
 
             <EditText
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/enter_apt"
-                android:background="@drawable/edit_box"
                 android:textSize="22sp"
                 android:layout_below="@id/address"
                 android:imeOptions="actionDone"/>
@@ -88,11 +113,10 @@
                 android:text="Apartment"/>
 
             <EditText
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/enter_postcode"
-                android:background="@drawable/edit_box"
                 android:textSize="22sp"
                 android:layout_below="@id/apt"
                 android:imeOptions="actionDone"/>
@@ -109,46 +133,50 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/operation_hour"
                 android:text="Operation Hour"
-                android:layout_below = "@+id/postcode"
-                android:textSize="25dp"
-                android:layout_marginTop="20dp"/>
+                android:layout_below ="@+id/postcode"
+                android:textSize="30dp"
+                android:layout_marginTop="35dp"/>
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/edit_box"
-                android:imeOptions="actionDone"
-                android:clickable="true"
-                android:textSize="20sp"
-                android:hint=" Enter opening hour"
-                android:layout_marginTop="20dp"
-                android:id="@+id/enter_opening_hour"
-                android:layout_below="@+id/operation_hour"/>
-            <TextView
+                android:layout_marginTop="25dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Opening Hour"
                 android:textSize="25sp"
-                android:layout_below="@id/enter_opening_hour"
+                android:layout_below="@id/operation_hour"
                 android:id="@+id/opening_hour"/>
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/edit_box"
+                android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
+                android:background="?attr/editTextBackground"
                 android:clickable="true"
                 android:textSize="20sp"
-                android:hint="  Enter Closing hour"
-                android:layout_marginTop="20dp"
-                android:id="@+id/enter_closing_hour"
+                android:hint=" Enter opening hour"
+                android:layout_marginTop="10dp"
+                android:id="@+id/enter_opening_hour"
                 android:layout_below="@+id/opening_hour"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Closing Hour"
                 android:textSize="25sp"
-                android:layout_below="@id/enter_closing_hour"
+                android:layout_below="@id/enter_opening_hour"
                 android:id="@+id/closing_hour"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:background="?attr/editTextBackground"
+                android:clickable="true"
+                android:textSize="20sp"
+                android:hint="  Enter Closing hour"
+                android:layout_marginTop="10dp"
+                android:id="@+id/enter_closing_hour"
+                android:layout_below="@+id/closing_hour"/>
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
