@@ -1,0 +1,51 @@
+<androidx.cardview.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/review_page"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    card_view:cardCornerRadius="4dp"
+    android:layout_margin="5dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:id="@+id/review_container">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/review_name"
+            android:text="Name of Reviewer"
+            android:textSize="18sp"
+
+            />
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="30dp"
+            android:id="@+id/review_content"
+            android:textSize="18sp"
+            android:text="The review will be here"
+            android:layout_below="@id/review_name"
+            />
+
+        <RatingBar
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/review_ratingBar"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            style = "?android:attr/ratingBarStyleSmall"
+            android:rating="3.5"
+            />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

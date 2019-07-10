@@ -21,14 +21,6 @@ public class SellerOrderDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_order_detail);
 
-
-
-
-
-
-
-
-
         Bundle bundle = getIntent().getExtras();
         String orderID = bundle.getString("orderID");
 
