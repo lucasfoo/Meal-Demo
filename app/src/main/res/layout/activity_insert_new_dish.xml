@@ -83,14 +83,34 @@
                 android:id="@+id/preparation_duration"
                 android:text="Preparation Duration"/>
 
-            <EditText
-                android:id="@+id/enter_preparation_duration"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/preparation_duration"
-                android:hint="Enter Dish Preparation Duration"
-                android:imeOptions="actionDone"
-                android:textSize="22sp" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/enter_preparation_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/editTextBackground"
+                    android:clickable="true"
+                    android:layout_below="@id/preparation_duration"
+                    android:hint="Enter Dish Preparation Duration"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:textSize="22sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mins"
+                    android:textSize="30dp"
+                    android:textColor="@color/colorOrange"
+                    android:layout_alignEnd="@id/enter_preparation_duration"/>
+
+
+            </LinearLayout>
+
+
             <TextView
                 android:layout_marginTop="20dp"
                 android:layout_below="@id/enter_preparation_duration"
@@ -99,15 +119,25 @@
                 android:textSize="25sp"
                 android:id="@+id/price"
                 android:text="Price"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/price"
-                android:id="@+id/enter_price"
-                android:inputType="numberDecimal"
-                android:textSize="22sp"
-                android:hint="Enter your price"
-                android:imeOptions="actionDone"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" $ "
+                    android:textSize="22sp"
+                    android:layout_alignStart="@id/enter_price"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/price"
+                    android:id="@+id/enter_price"
+                    android:inputType="numberDecimal"
+                    android:textSize="22sp"
+                    android:hint="Enter your price"
+                    android:imeOptions="actionDone"/>
+            </LinearLayout>
 
 
 

@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -37,6 +38,7 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 
+import org.w3c.dom.Text;
 
 import java.util.UUID;
 
@@ -155,6 +157,16 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
                         .start(InsertNewDish.this);
 
                 }
+            }
+        });
+
+
+        dishPreparationDuration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NumberPicker Np = new NumberPicker(InsertNewDish.this);
+
+
             }
         });
 
@@ -287,5 +299,7 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
         }
 
     }
+
+
 
 }
