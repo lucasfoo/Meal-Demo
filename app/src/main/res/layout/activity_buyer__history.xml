@@ -31,5 +31,5 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main_menu"
-        app:menu="@menu/buyer_history_menu_nav" />
+        app:menu="@menu/activity_main_menu_drawer" />
 </androidx.drawerlayout.widget.DrawerLayout>

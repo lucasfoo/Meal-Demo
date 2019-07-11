@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -82,10 +83,33 @@ public class BuyerOngoingOrders extends AppCompatActivity implements NavigationV
         startActivity(intent);
     }
 
-
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+        if(id == R.id.nav_profile){
+            Intent intent = new Intent(BuyerOngoingOrders.this, ProfileEditor.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_history) {
+            Intent intent = new Intent(getApplicationContext(), BuyerHistory.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_seller) {
+            Intent intent = new Intent(BuyerOngoingOrders.this, CreateRestaurant.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_logout) {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(BuyerOngoingOrders.this, InitialActivity.class);
+            finish();
+            startActivity(intent);
+        }
+
+        DrawerLayout drawer = findViewById(R.id.buyer_history_drawer_layout);
+
+        if(drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
         return true;
+
     }
 
 }
