@@ -16,7 +16,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
     public Seller(){}
 
 
-    public Seller(String email, String restaurant_name, String address, String apt, String postalCode, String openingTime, String closingTime){
+    public Seller(String email, String restaurant_name, String address, String apt, String postalCode, String openingTime, String closingTime, String sellerID){
         this.email = email;
         this.name = restaurant_name;
         this.address = address;
@@ -24,6 +24,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
         this.postalCode = postalCode;
         this.openingTime = openingTime;
         this.closingTime = closingTime;
+        this.sellerID = sellerID;
     }
 
     public void editAddress(String address){

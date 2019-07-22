@@ -42,8 +42,6 @@ public class Login extends AppCompatActivity {
         setSupportActionBar(toolbar);
         FloatingActionButton SignIn = findViewById(R.id.SignIn);
 
-        Logo = findViewById(R.id.app_logo);
-
 
         SignIn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -6,30 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".CreateRestaurant">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
-            android:padding="20dp" >
+            android:padding="20dp">
 
             <ImageView
                 android:id="@+id/create_restaurant_photo"
@@ -43,149 +29,149 @@
                 android:scaleType="fitCenter"
                 android:visibility="visible"
                 tools:visibility="visible" />
+
             <TextView
-                android:layout_marginTop="10dp"
                 android:id="@+id/ImagePrompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/create_restaurant_photo"
                 android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:text="Tap to add a photo"/>
-
-
-
+                android:layout_marginTop="10dp"
+                android:text="Tap to add a photo"
+                android:textSize="25sp" />
 
 
             <TextView
-                android:layout_marginTop="45dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:layout_below = "@id/ImagePrompt"
-                android:text="Restaurant name"/>
+                android:layout_below="@id/ImagePrompt"
+                android:layout_marginTop="45dp"
+                android:text="Restaurant name"
+                android:textSize="25sp" />
+
             <EditText
+                android:id="@+id/enter_restaurant_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/enter_restaurant_name"
-                android:textSize="20sp"
                 android:hint="Enter Restaurant Name"
-                android:imeOptions="actionDone"/>
+                android:imeOptions="actionDone"
+                android:textSize="20sp" />
+
             <TextView
                 android:id="@+id/new_restaurant_address"
-                android:layout_marginTop="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:layout_below = "@id/enter_restaurant_name"
-                android:text="Restaurant Address"/>
-            <EditText
-                android:layout_marginTop="35dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/enter_address"
-                android:textSize="22sp"
                 android:layout_below="@id/enter_restaurant_name"
-                android:imeOptions="actionDone"/>
+                android:layout_marginTop="15dp"
+                android:text="Restaurant address"
+                android:textSize="25sp" />
+
             <TextView
                 android:id="@+id/address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:layout_below = "@id/enter_address"
-                android:text="Address"/>
+                android:layout_below="@id/new_restaurant_address"
+                android:layout_marginTop="22dp"
+                android:text="Address"
+                android:textSize="25sp" />
 
             <EditText
-                android:layout_marginTop="25dp"
+                android:id="@+id/enter_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/enter_apt"
-                android:textSize="22sp"
                 android:layout_below="@id/address"
-                android:imeOptions="actionDone"/>
+                android:imeOptions="actionDone"
+                android:textSize="22sp" />
 
             <TextView
                 android:id="@+id/apt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:layout_below = "@id/enter_apt"
-                android:text="Apartment"/>
+                android:layout_below="@id/enter_apt"
+                android:text="Apartment / Unit no."
+                android:textSize="25sp" />
 
             <EditText
-                android:layout_marginTop="25dp"
+                android:id="@+id/enter_apt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/enter_postcode"
-                android:textSize="22sp"
-                android:layout_below="@id/apt"
-                android:imeOptions="actionDone"/>
+                android:layout_below="@id/address"
+                android:imeOptions="actionDone"
+                android:textSize="22sp" />
+
             <TextView
                 android:id="@+id/postcode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:layout_below = "@id/enter_postcode"
-                android:text="Postcode"/>
+                android:layout_below="@id/enter_postcode"
+                android:text="Postcode"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/enter_postcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/apt"
+                android:imeOptions="actionDone"
+                android:textSize="22sp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/operation_hour"
-                android:text="Operation Hour"
-                android:layout_below ="@+id/postcode"
-                android:textSize="30dp"
-                android:layout_marginTop="35dp"/>
-
-            <TextView
-                android:layout_marginTop="25dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Opening Hour"
-                android:textSize="25sp"
+                android:layout_below="@+id/postcode"
+                android:text="Operating Time"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/opening_hour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/operation_hour"
-                android:id="@+id/opening_hour"/>
+                android:layout_marginTop="25dp"
+                android:text="Opening Time"
+                android:textSize="25sp" />
 
             <TextView
+                android:id="@+id/enter_opening_hour"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:imeOptions="actionDone"
+                android:layout_below="@+id/opening_hour"
+                android:layout_marginTop="10dp"
                 android:background="?attr/editTextBackground"
                 android:clickable="true"
-                android:textSize="20sp"
-                android:hint=" Enter opening hour"
-                android:layout_marginTop="10dp"
-                android:id="@+id/enter_opening_hour"
-                android:layout_below="@+id/opening_hour"/>
+                android:hint=" Enter opening time"
+                android:imeOptions="actionDone"
+                android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/closing_hour"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Closing Hour"
-                android:textSize="25sp"
                 android:layout_below="@id/enter_opening_hour"
-                android:id="@+id/closing_hour"/>
+                android:text="Closing Time"
+                android:textSize="25sp" />
+
             <TextView
+                android:id="@+id/enter_closing_hour"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:imeOptions="actionDone"
+                android:layout_below="@+id/closing_hour"
+                android:layout_marginTop="10dp"
                 android:background="?attr/editTextBackground"
                 android:clickable="true"
-                android:textSize="20sp"
-                android:hint="  Enter Closing hour"
-                android:layout_marginTop="10dp"
-                android:id="@+id/enter_closing_hour"
-                android:layout_below="@+id/closing_hour"/>
+                android:hint="  Enter closing time"
+                android:imeOptions="actionDone"
+                android:textSize="20sp" />
 
             <Button
+                android:id="@+id/Create_restaurant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text = "Create Restaurant"
                 android:layout_gravity="bottom|end"
-                android:layout_marginBottom="15dp"
                 android:layout_marginRight="10dp"
-                android:id="@+id/Create_restaurant"/>
-
+                android:layout_marginBottom="15dp"
+                android:text="Create Restaurant" />
 
 
         </LinearLayout>

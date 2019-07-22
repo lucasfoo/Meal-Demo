@@ -23,9 +23,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 public class CreateRestaurant extends AppCompatActivity {
@@ -36,6 +39,10 @@ public class CreateRestaurant extends AppCompatActivity {
     ImageView restaurantPhoto;
     TextView imagePrompt;
     private Uri imageUri;
+    String openingTime;
+    String closingTime;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +52,6 @@ public class CreateRestaurant extends AppCompatActivity {
         restaurantClosingHour = findViewById(R.id.enter_closing_hour);
         restaurantPhoto = findViewById(R.id.create_restaurant_photo);
         imagePrompt = findViewById(R.id.ImagePrompt);
-
 
 
         restaurantPhoto.setOnClickListener(new View.OnClickListener() {
@@ -97,21 +103,25 @@ public class CreateRestaurant extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final Calendar cldr = Calendar.getInstance();
-                int hour = cldr.get(Calendar.HOUR_OF_DAY);
-                int minutes = cldr.get(Calendar.MINUTE);
+                final int hour = cldr.get(Calendar.HOUR_OF_DAY);
+                final int minutes = cldr.get(Calendar.MINUTE);
                 // time picker dialog
 
                 picker = new RangeTimePickerDialog(v.getContext(), AlertDialog.THEME_DEVICE_DEFAULT_LIGHT,
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+                                openingTime = String.valueOf(sHour * 100 + sMinute);
                                 String AM_PM;
                                 if (sHour < 12) {
                                     AM_PM = "AM";
                                 } else {
                                     AM_PM = "PM";
+                                    sHour -= 12;
                                 }
-                                restaurantOpeningHour.setText(sHour + ":" + sMinute + ' ' + AM_PM);
+                                DecimalFormat formatter = new DecimalFormat("00");
+                                String formattedMinutes = formatter.format(sMinute);
+                                restaurantOpeningHour.setText(sHour + ":" + formattedMinutes + ' ' + AM_PM);
                                 restaurantOpeningHour.setTextColor(Color.argb(255, 0, 0, 0));
                             }
 
@@ -126,21 +136,25 @@ public class CreateRestaurant extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final Calendar cldr = Calendar.getInstance();
-                int hour = cldr.get(Calendar.HOUR_OF_DAY);
-                int minutes = cldr.get(Calendar.MINUTE);
+                final int hour = cldr.get(Calendar.HOUR_OF_DAY);
+                final int minutes = cldr.get(Calendar.MINUTE);
                 // time picker dialog
 
                 picker = new RangeTimePickerDialog(v.getContext(),AlertDialog.THEME_DEVICE_DEFAULT_LIGHT,
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+                                closingTime = String.valueOf(sHour * 100 + sMinute);
                                 String AM_PM;
                                 if (sHour < 12) {
                                     AM_PM = "AM";
                                 } else {
                                     AM_PM = "PM";
+                                    sHour -= 12;
                                 }
-                                restaurantClosingHour.setText(sHour + ":" + sMinute + ' ' + AM_PM);
+                                DecimalFormat formatter = new DecimalFormat("00");
+                                String formattedMinutes = formatter.format(sMinute);
+                                restaurantClosingHour.setText(sHour + ":" + formattedMinutes + ' ' + AM_PM);
                                 restaurantClosingHour.setTextColor(Color.argb(255, 0, 0, 0));
                             }
 
@@ -162,24 +176,22 @@ public class CreateRestaurant extends AppCompatActivity {
                 EditText restaurantApt = findViewById(R.id.enter_apt);
                 EditText restaurantPostcode= findViewById(R.id.enter_postcode);
 
-
-
-
                 String Name = restaurantName.getText().toString();
                 String Address = restaurantAddress.getText().toString();
                 String Apt = restaurantApt.getText().toString();
                 String Postcode = restaurantPostcode.getText().toString();
-                String OpeningHour = restaurantOpeningHour.getText().toString();
-                String ClosingHour = restaurantClosingHour.getText().toString();
-                if(Name.isEmpty() || Address.isEmpty() || Apt.isEmpty() || Postcode.isEmpty() || OpeningHour.isEmpty() || ClosingHour.isEmpty()){
-                    // do something here
+                if(Name.isEmpty() || Address.isEmpty() || Apt.isEmpty() || Postcode.isEmpty() || openingTime.isEmpty() || closingTime.isEmpty() || imageUri == null){
+                    Toast.makeText(CreateRestaurant.this, "Please enter all fields!", Toast.LENGTH_LONG).show();
                 }else{
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     String userID = user.getUid();
                     String name = restaurantName.getText().toString();
                     String email = user.getEmail();
-                    Seller seller = new Seller(email, name, Address, Apt, Postcode, OpeningHour, ClosingHour);
+                    Seller seller = new Seller(email, name, Address, Apt, Postcode, openingTime, closingTime, userID);
                     mDatabase.child("sellers").child(userID).setValue(seller);
+                    String imageRef = "restaurant_images/" + seller.sellerID;
+                    StorageReference imageStorageReference = FirebaseStorage.getInstance().getReference(imageRef);
+                    imageStorageReference.putFile(imageUri);
                     Intent intent = new Intent(CreateRestaurant.this, InitialActivity.class);
                     startActivity(intent);
                 }
@@ -200,7 +212,7 @@ public class CreateRestaurant extends AppCompatActivity {
                         Bitmap thePic = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
                         restaurantPhoto.setImageBitmap(thePic);
                         restaurantPhoto.setBackgroundResource(0);
-                        imagePrompt.setText("Tap to delete");
+                        imagePrompt.setText("Tap to change");
                     }
                 }catch (Exception e) {
                     Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG)

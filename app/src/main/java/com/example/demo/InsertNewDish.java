@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
@@ -55,6 +56,8 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
     private Uri imageUri;
     private ProgressBar progressBar;
     private Uri uploadedImageUri;
+    private String dishID;
+    private Dish dish;
 
 
     //TODO: ACKNOWLEDGEMENT: https://github.com/ArthurHub/Android-Image-Cropper/
@@ -80,12 +83,12 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
 
         if(extras != null){
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            String dishID = extras.getString("dishID");
+            dishID = extras.getString("dishID");
             DatabaseReference dishRef = FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid()).child("Dishes").child(dishID);
             dishRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    Dish dish = dataSnapshot.getValue(Dish.class);
+                    dish = dataSnapshot.getValue(Dish.class);
                     dishName.setText(dish.DishName);
                     dishDescription.setText(dish.DishDescription);
                     dishPrice.setText(dish.DishPrice);
@@ -94,8 +97,9 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
                     GlideApp.with(getApplicationContext() /* context */)
                             .load(storageRef)
                             .into(imageCapture1);
-
-
+                    imagePrompt.setText("Tap to change photo");
+                    Button button = findViewById(R.id.Post);
+                    button.setText("Update dish");
                 }
 
                 @Override
@@ -148,13 +152,13 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
 
                 }else{
                     CropImage.activity()
-                        .setFixAspectRatio(true)
-                        .setAspectRatio(1,1)
-                        .setMinCropResultSize(128,128)
-                        .setInitialCropWindowPaddingRatio(0)
-                        .setGuidelines(CropImageView.Guidelines.ON)
-                        .setCropMenuCropButtonTitle("Submit")
-                        .start(InsertNewDish.this);
+                            .setFixAspectRatio(true)
+                            .setAspectRatio(1,1)
+                            .setMinCropResultSize(128,128)
+                            .setInitialCropWindowPaddingRatio(0)
+                            .setGuidelines(CropImageView.Guidelines.ON)
+                            .setCropMenuCropButtonTitle("Submit")
+                            .start(InsertNewDish.this);
 
                 }
             }
@@ -169,14 +173,7 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
 
             }
         });
-
-
-
-
-
-
         findViewById(R.id.Post).setOnClickListener(this);
-
 
     }
 
@@ -259,28 +256,44 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
         String price = dishPrice.getText().toString().trim();
         String desc = dishDescription.getText().toString().trim();
         String preparationDuration = dishPreparationDuration.getText().toString().trim();
-
         if (!validateInputs(name, price, desc,preparationDuration)) {
-            String imageRef = "dish_images/" + UUID.randomUUID().toString();
-           StorageReference imageStorageReference = FirebaseStorage.getInstance().getReference(imageRef);
-           imageStorageReference.putFile(imageUri);
-           FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-           String userID = user.getUid();
-           DatabaseReference DishRef = mDatabase.child("sellers").child(userID).child("Dishes").push();
-            Dish dish = new Dish(name,desc,price, DishRef.getKey(), imageRef, preparationDuration);
-           DishRef.setValue(dish).addOnSuccessListener(new OnSuccessListener<Void>() {
-               @Override
-               public void onSuccess(Void aVoid) {
-                   Toast.makeText(InsertNewDish.this, "Uploaded", Toast.LENGTH_SHORT).show();
-               }
-           }).addOnFailureListener(new OnFailureListener() {
-               @Override
-               public void onFailure(@NonNull Exception e) {
-                   Toast.makeText(InsertNewDish.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
-               }
-           });
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String userID = user.getUid();
+            if(dish == null){
+                DatabaseReference DishRef = mDatabase.child("sellers").child(userID).child("Dishes").push();
+                String imageRef = "dish_images/" + UUID.randomUUID().toString();
+                StorageReference imageStorageReference = FirebaseStorage.getInstance().getReference(imageRef);
+                imageStorageReference.putFile(imageUri);
+                Dish dish = new Dish(name,desc,price, DishRef.getKey(), imageRef, preparationDuration);
+                DishRef.setValue(dish).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(InsertNewDish.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(InsertNewDish.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }else{
+                dish.DishName = name;
+                dish.DishPrice = price;
+                dish.DishDescription = desc;
+                dish.PrepDuration = preparationDuration;
+                if(imageUri != null){
+                    FirebaseStorage.getInstance().getReference().child(dish.imageUri).delete();
+                    String imageRef = "dish_images/" + UUID.randomUUID().toString();
+                    StorageReference imageStorageReference = FirebaseStorage.getInstance().getReference(imageRef);
+                    imageStorageReference.putFile(imageUri);
+                    dish.imageUri = imageRef;
+                }
+                DatabaseReference DishRef = mDatabase.child("sellers").child(userID).child("Dishes").child(dishID);
+                DishRef.setValue(dish);
+            }
 
-           finish();
+
+            finish();
 //            FSdish.add(dish)
 //                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
 //                        @Override

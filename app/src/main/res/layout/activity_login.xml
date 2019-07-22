@@ -29,27 +29,20 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_menu_send" />
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="top|center"
-        android:layout_marginTop="60dp"
-        android:id="@+id/app_logo"></ImageView>
     <!--android:src="@drawable/logo"t-->
 
     <EditText
+        android:id="@+id/ev_user_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ev_user_id"
-        android:padding="16dp"
-        android:textSize="22sp"
-        android:layout_marginTop="360dp"
+        android:layout_marginTop="44dp"
         android:hint="Email"
         android:imeOptions="actionNext"
-        android:maxLines="1"
         android:inputType="textEmailAddress"
+        android:maxLines="1"
         android:nextFocusDown="@id/ev_password"
-        />
+        android:padding="16dp"
+        android:textSize="22sp" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,7 +50,7 @@
         android:padding="16dp"
         android:textSize="22sp"
         android:maxLines="1"
-        android:layout_marginTop="404dp"
+        android:layout_marginTop="88dp"
         android:hint="Password"
         android:inputType="textPassword"
         android:imeOptions="actionDone"/>

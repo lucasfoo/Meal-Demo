@@ -78,17 +78,11 @@ public class SellerExistingOrder extends AppCompatActivity
                 SellerExistingOrderDataAdapter sellerExistingOrderDataAdapter = new SellerExistingOrderDataAdapter(orderDataList);
                 recList.setAdapter(sellerExistingOrderDataAdapter);
             }
-
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-
-
-
     }
     @Override
     public void onBackPressed() {
