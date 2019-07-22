@@ -45,7 +45,7 @@ public class BuyerViewRestaurantDataAdapter extends RecyclerView.Adapter<BuyerVi
         RestaurantViewHolder.mName.setText(seller.name);
         RestaurantViewHolder.mAddress.setText(seller.address + ' ' + seller.apt + ' ' + seller.postalCode );
         RestaurantViewHolder.mRestaurantID = seller.sellerID;
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference("restaurant_images/"+seller.sellerID);
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(seller.photoID);
         GlideApp.with(RestaurantViewHolder.mRestaurantPhoto.getContext() /* context */)
                 .load(storageRef)
                 .into(RestaurantViewHolder.mRestaurantPhoto);

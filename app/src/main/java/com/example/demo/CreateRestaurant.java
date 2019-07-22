@@ -192,7 +192,7 @@ public class CreateRestaurant extends AppCompatActivity {
                     String imageRef = "restaurant_images/" + UUID.randomUUID().toString();
                     StorageReference imageStorageReference = FirebaseStorage.getInstance().getReference().child(imageRef);
                     imageStorageReference.putFile(imageUri);
-                    seller.photoID = imageStorageReference.toString();
+                    seller.photoID = imageRef;
                     mDatabase.child("sellers").child(userID).setValue(seller);
                     Intent intent = new Intent(CreateRestaurant.this, InitialActivity.class);
                     startActivity(intent);
