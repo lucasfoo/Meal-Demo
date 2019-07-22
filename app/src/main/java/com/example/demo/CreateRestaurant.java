@@ -30,6 +30,7 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.UUID;
 
 public class CreateRestaurant extends AppCompatActivity {
     private DatabaseReference mDatabase;
@@ -188,10 +189,11 @@ public class CreateRestaurant extends AppCompatActivity {
                     String name = restaurantName.getText().toString();
                     String email = user.getEmail();
                     Seller seller = new Seller(email, name, Address, Apt, Postcode, openingTime, closingTime, userID);
-                    mDatabase.child("sellers").child(userID).setValue(seller);
-                    String imageRef = "restaurant_images/" + seller.sellerID;
-                    StorageReference imageStorageReference = FirebaseStorage.getInstance().getReference(imageRef);
+                    String imageRef = "restaurant_images/" + UUID.randomUUID().toString();
+                    StorageReference imageStorageReference = FirebaseStorage.getInstance().getReference().child(imageRef);
                     imageStorageReference.putFile(imageUri);
+                    seller.photoID = imageStorageReference.toString();
+                    mDatabase.child("sellers").child(userID).setValue(seller);
                     Intent intent = new Intent(CreateRestaurant.this, InitialActivity.class);
                     startActivity(intent);
                 }

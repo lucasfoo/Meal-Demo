@@ -32,6 +32,8 @@
             android:id="@+id/restaurant_address"
             android:text="address"
             android:textSize="18sp"
+            android:gravity="right"
+            android:layout_toRightOf="@id/restaurant_photo"
             android:layout_above="@id/restaurant_rating"
             />
         <RatingBar

@@ -200,27 +200,6 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
 
     }
 
-
-
-    private void Reorder(ImageView a, ImageView b, ImageView c){
-        if(a.getDrawable() == null){
-            if(b.getDrawable()!=null){
-                a.setImageDrawable(b.getDrawable());
-                if(c.getDrawable() != null){
-                    b.setImageDrawable(c.getDrawable());
-                    c.setImageDrawable(null);
-                }else{
-                    b.setImageDrawable(null);
-                }
-            }
-        }else if(b.getDrawable() == null){
-            if(c.getDrawable() != null){
-                b.setImageDrawable(c.getDrawable());
-                c.setImageDrawable(null);
-            }
-        }
-    }
-
     private boolean validateInputs(String name, String price, String desc,String preparationDuration) {
         if (name.isEmpty()) {
             dishName.setError("Name required");
@@ -282,7 +261,7 @@ public class InsertNewDish extends AppCompatActivity implements View.OnClickList
                 dish.DishDescription = desc;
                 dish.PrepDuration = preparationDuration;
                 if(imageUri != null){
-                    FirebaseStorage.getInstance().getReference().child(dish.imageUri).delete();
+                    FirebaseStorage.getInstance().getReference().child("dish_images/" + dish.imageUri).delete();
                     String imageRef = "dish_images/" + UUID.randomUUID().toString();
                     StorageReference imageStorageReference = FirebaseStorage.getInstance().getReference(imageRef);
                     imageStorageReference.putFile(imageUri);

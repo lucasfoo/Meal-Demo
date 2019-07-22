@@ -12,6 +12,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
     public String openingTime;
     public String closingTime;
     public String sellerID;
+    public String photoID;
 
     public Seller(){}
 

@@ -13,6 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.List;
 
 public class BuyerViewRestaurantDataAdapter extends RecyclerView.Adapter<BuyerViewRestaurantDataAdapter.RestaurantViewHolder>{
@@ -42,6 +45,10 @@ public class BuyerViewRestaurantDataAdapter extends RecyclerView.Adapter<BuyerVi
         RestaurantViewHolder.mName.setText(seller.name);
         RestaurantViewHolder.mAddress.setText(seller.address + ' ' + seller.apt + ' ' + seller.postalCode );
         RestaurantViewHolder.mRestaurantID = seller.sellerID;
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference("restaurant_images/"+seller.sellerID);
+        GlideApp.with(RestaurantViewHolder.mRestaurantPhoto.getContext() /* context */)
+                .load(storageRef)
+                .into(RestaurantViewHolder.mRestaurantPhoto);
 
 //        RestaurantViewHolder.mRestaurantPhoto =
 

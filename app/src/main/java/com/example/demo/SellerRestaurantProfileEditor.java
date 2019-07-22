@@ -60,9 +60,55 @@ public class SellerRestaurantProfileEditor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_restaurant);
-
+        imageUri = null;
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final DatabaseReference sellerRef = FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid());
+        sellerRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                seller = dataSnapshot.getValue(Seller.class);
+                openingTime = seller.openingTime;
+                closingTime = seller.closingTime;
+                rName.setText(seller.name);
+                rAddress.setText(seller.address);
+                rApt.setText(seller.apt);
+                rPostCode.setText(seller.postalCode);
+                int openingMinutes = Integer.parseInt(openingTime) % 100;
+                int openingHour = Integer.parseInt(openingTime) / 100;
+                String openingAM_PM;
+                if (openingHour < 12) {
+                    openingAM_PM = "AM";
+                } else {
+                    openingAM_PM = "PM";
+                    openingHour -= 12;
+                }
+                DecimalFormat formatter = new DecimalFormat("00");
+                String formattedOpeningMinutes = formatter.format(openingMinutes);
+                int closingMinutes = Integer.parseInt(closingTime) % 100;
+                int closingHour = Integer.parseInt(closingTime) / 100;
+                String closingAM_PM;
+                if (openingHour < 12) {
+                    closingAM_PM = "AM";
+                } else {
+                    closingAM_PM = "PM";
+                    closingHour -= 12;
+                }
+                String formattedClosingMinutes = formatter.format(closingMinutes);
+                restaurantOpeningHour.setText(String.valueOf(openingHour) + ":" + formattedOpeningMinutes + ' ' + openingAM_PM);
+                restaurantClosingHour.setText(String.valueOf(closingHour) + ":" + formattedClosingMinutes + ' ' + closingAM_PM);
+                StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(seller.photoID);
+                GlideApp.with(getApplicationContext() /* context */)
+                        .load(storageRef)
+                        .into(restaurantPhoto);
+                restaurantPhoto.setBackgroundResource(0);
+                imagePrompt.setText("Tap to change");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         rName = (EditText) findViewById(R.id.enter_restaurant_name);
         rAddress = (EditText) findViewById(R.id.enter_address);
         rApt = (EditText) findViewById(R.id.enter_apt);
@@ -71,7 +117,6 @@ public class SellerRestaurantProfileEditor extends AppCompatActivity {
         restaurantClosingHour =  findViewById(R.id.enter_closing_hour);
         restaurantPhoto = findViewById(R.id.create_restaurant_photo);
         imagePrompt = findViewById(R.id.ImagePrompt);
-
 
         restaurantPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,8 +145,6 @@ public class SellerRestaurantProfileEditor extends AppCompatActivity {
                     //Creating dialog box
                     AlertDialog dialog = builder.create();
                     dialog.show();
-
-
                 }else{
                     CropImage.activity()
                             .setFixAspectRatio(true)
@@ -115,7 +158,6 @@ public class SellerRestaurantProfileEditor extends AppCompatActivity {
                 }
             }
         });
-
 
 
 
@@ -181,52 +223,6 @@ public class SellerRestaurantProfileEditor extends AppCompatActivity {
             }
         });
 
-        sellerRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                seller = dataSnapshot.getValue(Seller.class);
-                openingTime = seller.openingTime;
-                closingTime = seller.closingTime;
-                rName.setText(seller.name);
-                rAddress.setText(seller.address);
-                rApt.setText(seller.apt);
-                rPostCode.setText(seller.postalCode);
-                int openingMinutes = Integer.parseInt(openingTime) % 100;
-                int openingHour = Integer.parseInt(openingTime) / 100;
-                String openingAM_PM;
-                if (openingHour < 12) {
-                    openingAM_PM = "AM";
-                } else {
-                    openingAM_PM = "PM";
-                    openingHour -= 12;
-                }
-                DecimalFormat formatter = new DecimalFormat("00");
-                String formattedOpeningMinutes = formatter.format(openingMinutes);
-                int closingMinutes = Integer.parseInt(closingTime) % 100;
-                int closingHour = Integer.parseInt(closingTime) / 100;
-                String closingAM_PM;
-                if (openingHour < 12) {
-                    closingAM_PM = "AM";
-                } else {
-                    closingAM_PM = "PM";
-                    closingHour -= 12;
-                }
-                String formattedClosingMinutes = formatter.format(closingMinutes);
-                restaurantOpeningHour.setText(String.valueOf(openingHour) + ":" + formattedOpeningMinutes + ' ' + openingAM_PM);
-                restaurantClosingHour.setText(String.valueOf(closingHour) + ":" + formattedClosingMinutes + ' ' + closingAM_PM);
-                StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("restaurant_images/" + seller.sellerID);
-                GlideApp.with(getApplicationContext() /* context */)
-                        .load(storageRef)
-                        .into(restaurantPhoto);
-                restaurantPhoto.setBackgroundResource(0);
-                imagePrompt.setText("Tap to change");
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
         Save = (Button) findViewById((R.id.Create_restaurant));
         Save.setText("Save");
@@ -244,20 +240,23 @@ public class SellerRestaurantProfileEditor extends AppCompatActivity {
                     Toast.makeText(SellerRestaurantProfileEditor.this, "Please enter all fields!", Toast.LENGTH_LONG).show();
                 }else{
                     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                    String imageRef = seller.photoID;
                     if(imageUri != null) {
-                        String imageRef = "restaurant_images/" + seller.sellerID;
-                        StorageReference imageStorageReference = FirebaseStorage.getInstance().getReference(imageRef);
+                        imageRef = "restaurant_images/" + UUID.randomUUID().toString();
+                        StorageReference imageStorageReference = FirebaseStorage.getInstance().getReference().child(seller.photoID);
                         imageStorageReference.delete();
+                        imageStorageReference = FirebaseStorage.getInstance().getReference().child(imageRef);
                         imageStorageReference.putFile(imageUri);
                     }
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    seller.name = rName.getText().toString();
-                    seller.address = rAddress.getText().toString();
-                    seller.apt = rApt.getText().toString();
-                    seller.postalCode = rApt.getText().toString();
-                    seller.openingTime = openingTime;
-                    seller.closingTime = closingTime;
-                    mDatabase.child("sellers").child(user.getUid()).setValue(seller);
+                    mDatabase = mDatabase.child("sellers").child(user.getUid());
+                    mDatabase.child("name").setValue(rName.getText().toString());
+                    mDatabase.child("address").setValue(rAddress.getText().toString());
+                    mDatabase.child("apt").setValue(rApt.getText().toString());
+                    mDatabase.child("postalCode").setValue(rPostCode.getText().toString());
+                    mDatabase.child("openingTine").setValue(openingTime);
+                    mDatabase.child("closingTime").setValue(closingTime);
+                    mDatabase.child("photoID").setValue(imageRef);
                     finish();
                 }
             }
@@ -274,7 +273,6 @@ public class SellerRestaurantProfileEditor extends AppCompatActivity {
                     CropImage.ActivityResult result = CropImage.getActivityResult(data);
                     if (resultCode == RESULT_OK) {
                         imageUri = result.getUri();
-
                         // get the cropped bitmap
                         Bitmap thePic = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
                         restaurantPhoto.setImageBitmap(thePic);
