@@ -14,7 +14,6 @@ public class OrderData {
     public String sellerID;
     public String restaurantName;
     public String status;
-    public String completedTime;
 
 
     public OrderData(){}

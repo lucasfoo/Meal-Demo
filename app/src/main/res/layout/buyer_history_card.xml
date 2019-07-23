@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/buyer_history_price"
-            android:layout_above="@id/buyer_history_time"
+            android:layout_above="@id/buyer_history_order_time"
             android:text="price"
             android:textSize="18sp"
             android:layout_alignParentEnd="true"
@@ -61,7 +61,25 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/buyer_history_time"
+            android:id="@+id/buyer_history_order_time"
+            android:text="DDMMYYYY"
+            android:layout_alignParentRight="true"
+            android:textSize="18sp"
+            android:layout_above="@id/buyer_history_collection_time"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buyer_history_collection_time"
+            android:text="DDMMYYYY"
+            android:layout_alignParentRight="true"
+            android:textSize="18sp"
+            android:layout_above="@id/buyer_history_order_date"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buyer_history_order_date"
             android:text="DDMMYYYY"
             android:layout_alignParentRight="true"
             android:textSize="18sp"

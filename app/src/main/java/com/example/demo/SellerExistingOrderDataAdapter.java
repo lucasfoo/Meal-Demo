@@ -16,6 +16,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class SellerExistingOrderDataAdapter extends RecyclerView.Adapter<SellerExistingOrderDataAdapter.OrderViewHolder> {
@@ -48,6 +52,9 @@ public class SellerExistingOrderDataAdapter extends RecyclerView.Adapter<SellerE
         SellerExistingOrderDataAdapter.OrderViewHolder.Collect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                DateFormat df = new SimpleDateFormat("h:mm a");
+                String date = df.format(Calendar.getInstance().getTime());
+                orderData.collectionTime = date;
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 DatabaseReference sellerOrderRef = FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid())
                         .child("orders").child(orderData.sellerOrderID);
@@ -64,10 +71,6 @@ public class SellerExistingOrderDataAdapter extends RecyclerView.Adapter<SellerE
                 sellerOrderRef.removeValue();
             }
         });
-
-
-
-
 
         SellerExistingOrderDataAdapter.OrderViewHolder.cardView.setOnClickListener(new View.OnClickListener()  {
             @Override
