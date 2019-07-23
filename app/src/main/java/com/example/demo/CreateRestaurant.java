@@ -193,6 +193,8 @@ public class CreateRestaurant extends AppCompatActivity {
                     StorageReference imageStorageReference = FirebaseStorage.getInstance().getReference().child(imageRef);
                     imageStorageReference.putFile(imageUri);
                     seller.photoID = imageRef;
+                    seller.total_score = 0;
+                    seller.review_count = 0;
                     mDatabase.child("sellers").child(userID).setValue(seller);
                     Intent intent = new Intent(CreateRestaurant.this, InitialActivity.class);
                     startActivity(intent);

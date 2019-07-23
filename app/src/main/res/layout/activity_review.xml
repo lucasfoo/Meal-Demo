@@ -9,15 +9,6 @@
     android:orientation="vertical">
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:id="@+id/review_content"
-        android:textSize="18sp"
-        android:text="The review will be here"
-        tools:ignore="MissingConstraints" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"

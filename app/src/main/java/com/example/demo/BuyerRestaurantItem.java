@@ -10,8 +10,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -41,9 +43,6 @@ public class BuyerRestaurantItem extends AppCompatActivity implements Navigation
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ratingBar = findViewById(R.id.restaurant_rating);
-        // change the star here
-        ratingBar.setRating((float) 4.5);
 
         DrawerLayout drawer = findViewById(R.id.buyer_restaurant_item_drawer_layout);
         NavigationView navigationView = findViewById(R.id.buyer_restaurant_item_nav_view);
@@ -60,6 +59,7 @@ public class BuyerRestaurantItem extends AppCompatActivity implements Navigation
         final String restaurantID = extras.getString("rID");
         String rname = extras.getString("rname");
         String raddress = extras.getString("raddress");
+        float score = extras.getFloat("score");
         TextView mName = findViewById(R.id.Restaurant_Name);
         TextView mAddress = findViewById(R.id.Restaurant_Address);
         mName.setText(rname);
@@ -102,8 +102,19 @@ public class BuyerRestaurantItem extends AppCompatActivity implements Navigation
                 startActivity(intent);
             }
         });
-
-
+        ratingBar = findViewById(R.id.restaurant_rating);
+        ratingBar.setRating(score);
+        ratingBar.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_UP){
+                    Intent intent = new Intent(BuyerRestaurantItem.this, Review.class);
+                    intent.putExtra("sellerID", restaurantID);
+                    startActivity(intent);
+                }
+                return true;
+            }
+        });
 
 
 

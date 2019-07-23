@@ -38,21 +38,6 @@
         android:layout_below="@id/review_for_restaurant"
         android:id="@+id/enter_review_for_restaurant"/>
 
-    <TextView
-        android:layout_below="@id/enter_review_for_restaurant"
-        android:layout_marginTop="50dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text = "Review for Home Chef"
-        android:textSize="23dp"
-        android:id="@+id/review_for_chef"/>
-    <EditText
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="How is yout overall experience with the seller?"
-        android:layout_below="@id/review_for_chef"
-        android:id="@+id/enter_review_for_chef"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

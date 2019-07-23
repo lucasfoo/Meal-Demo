@@ -36,7 +36,7 @@ public class BuyerHistoryDataAdapter extends RecyclerView.Adapter<BuyerHistoryDa
 
     @Override
     public void onBindViewHolder( BuyerHistoryViewHolder buyerHistoryViewHolder, int i) {
-        OrderData data = BuyerHistoryList.get(i);
+        final OrderData data = BuyerHistoryList.get(i);
         try {
             buyerHistoryViewHolder.restaurantName.setText(data.restaurantName);
             buyerHistoryViewHolder.orderTime.setText("Order Time: " + data.orderTime);
@@ -56,6 +56,7 @@ public class BuyerHistoryDataAdapter extends RecyclerView.Adapter<BuyerHistoryDa
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(view.getContext(), AddReview.class);
+                        intent.putExtra("sellerID", data.sellerID);
                         view.getContext().startActivity(intent);
                     }
                 });

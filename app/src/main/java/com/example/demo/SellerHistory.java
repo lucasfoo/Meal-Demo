@@ -56,7 +56,6 @@ public class SellerHistory extends AppCompatActivity implements NavigationView.O
                     orderDataList.add(orderData);
                 }
 
-
                 RecyclerView recList = findViewById(R.id.seller_history_view);
                 recList.setHasFixedSize(true);
                 recList.setClickable(true);

@@ -38,8 +38,10 @@ public class ReviewDataAdapter extends RecyclerView.Adapter<ReviewDataAdapter.Re
 
     @Override
     public void onBindViewHolder(ReviewViewHolder reviewViewHolder, int i){
-        // to be implemented
-
+        final ReviewData review = ReviewList.get(i);
+        ReviewViewHolder.mName.setText(review.username);
+        ReviewViewHolder.mRestaurantRating.setRating(review.reviewScore);
+        ReviewViewHolder.mReviewContent.setText("\"" + review.reviewContent + "\"");
 
     }
 

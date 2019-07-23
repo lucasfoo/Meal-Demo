@@ -46,6 +46,8 @@ public class BuyerViewRestaurantDataAdapter extends RecyclerView.Adapter<BuyerVi
         RestaurantViewHolder.mAddress.setText(seller.address + ' ' + seller.apt + ' ' + seller.postalCode );
         RestaurantViewHolder.mRestaurantID = seller.sellerID;
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(seller.photoID);
+        final float score = seller.total_score / seller.review_count;
+        RestaurantViewHolder.mRestaurantRating.setRating(score);
         GlideApp.with(RestaurantViewHolder.mRestaurantPhoto.getContext() /* context */)
                 .load(storageRef)
                 .into(RestaurantViewHolder.mRestaurantPhoto);
@@ -60,6 +62,7 @@ public class BuyerViewRestaurantDataAdapter extends RecyclerView.Adapter<BuyerVi
                 intent.putExtra("rname", seller.name );
                 intent.putExtra("raddress", seller.address);
                 intent.putExtra("rID", seller.sellerID);
+                intent.putExtra("score", score);
                 v.getContext().startActivity(intent);
             }
         });

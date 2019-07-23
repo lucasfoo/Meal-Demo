@@ -13,6 +13,8 @@ import com.google.firebase.database.IgnoreExtraProperties;
     public String closingTime;
     public String sellerID;
     public String photoID;
+    public float total_score;
+    public int review_count;
 
     public Seller(){}
 

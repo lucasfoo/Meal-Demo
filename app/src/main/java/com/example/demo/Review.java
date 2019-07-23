@@ -43,35 +43,37 @@ public class Review extends AppCompatActivity {
         setContentView(R.layout.activity_review);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        Bundle extras = getIntent().getExtras();
+        String restaurantID = extras.getString("sellerID");
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
+        DatabaseReference reviewRef = FirebaseDatabase.getInstance().getReference().child("sellers").child(restaurantID).child("reviews");
+        reviewRef.addValueEventListener(new ValueEventListener() {
+            List<ReviewData> reviewDataList = new ArrayList<>();
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    ReviewData reviewData = dataSnapshot1.getValue(ReviewData.class);
+                    reviewDataList.add(reviewData);
+                }
+                RecyclerView reviewList = findViewById(R.id.ReviewRecyclerView);
+                reviewList.setHasFixedSize(true);
+                reviewList.setClickable(true);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+                linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+                reviewList.setLayoutManager(linearLayoutManager);
+                ReviewDataAdapter reviewDataAdapter = new ReviewDataAdapter(reviewDataList);
+                reviewList.setAdapter(reviewDataAdapter);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-        RecyclerView review_List = findViewById(R.id.cart_view);
-        review_List.setHasFixedSize(true);
-        review_List.setClickable(true);
-
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        review_List.setLayoutManager(linearLayoutManager);
-
-        ReviewDataAdapter editorDataAdapter = new ReviewDataAdapter(createList(10));
-        review_List.setAdapter(editorDataAdapter);
-
-
+            }
+        });
     }
 
-    private List<ReviewData> createList(int size) {
-        List<ReviewData> items = new ArrayList<>();
-        for (int i = 1; i <= size; ++i) {
-            ReviewData data = new ReviewData();
-            items.add(data);
-        }
-        return  items;
-    }
 }

@@ -22,6 +22,15 @@
         style="?android:attr/ratingBarStyleIndicator"
         android:layout_alignEnd="@id/Restaurant_Name"
         android:numStars="5"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/restaurant_rating"
+        android:text="Click to see all reviews"
+        android:gravity="right"
+        android:layout_alignRight="@id/Restaurant_Address"
+        android:textColor="@color/colorGrey"
+        android:clickable="true"/>
 
     <TextView
         android:layout_marginTop="10dp"
@@ -41,13 +50,5 @@
         android:layout_below="@id/Restaurant_Address"
         android:id="@+id/ItemRecyclerView"
         >
-
     </androidx.recyclerview.widget.RecyclerView>
-    <TextView
-        android:layout_below="@id/ItemRecyclerView"
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Customer Review"
-        android:textSize="25dp"/>
 </RelativeLayout>
