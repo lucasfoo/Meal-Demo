@@ -33,13 +33,20 @@
             android:padding="20dp" >
 
             <ImageView
+                android:layout_marginTop="40dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/view_photo"
                 />
+            <TextView
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="27sp"
+                android:textColor="@color/colorOrange"
+                android:text="Dish name:"/>
 
             <TextView
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
@@ -48,7 +55,14 @@
 
 
             <TextView
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="27sp"
+                android:textColor="@color/colorOrange"
+                android:text="Dish Description:"/>
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_alldescription"
@@ -57,7 +71,15 @@
                 android:imeOptions="actionDone"/>
 
             <TextView
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="27sp"
+                android:textColor="@color/colorOrange"
+                android:text="Preparation Time Required:"/>
+
+
+            <TextView
                 android:layout_below="@id/enter_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,17 +88,23 @@
                 android:text="Preparation Duration"/>
 
             <TextView
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="27sp"
+                android:textColor="@color/colorOrange"
+                android:text="Price: "/>
+
+
+            <TextView
                 android:layout_marginTop="10dp"
                 android:layout_below="@id/tv_alldescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
                 android:id="@+id/view_price"
+                android:layout_marginBottom="50dp"
                 android:text="Price"/>
-
-
-
-
         </LinearLayout>
     </ScrollView>
         <Button
