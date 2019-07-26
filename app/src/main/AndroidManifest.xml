@@ -27,7 +27,8 @@
         <activity android:name=".ProfileEditor" />
         <activity android:name=".BuyerHistory"
             android:label="Past orders"/>
-        <activity android:name=".SellerHistory" />
+        <activity android:name=".SellerHistory"
+            android:label="Past Completed Orders"/>
         <activity android:name=".SellerOrderDetail" />
         <activity android:name=".CreateRestaurant" />
         <activity android:name=".BuyerOngoingOrders"
@@ -54,11 +55,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SellerRestaurantDishEditor"
-            android:label="@string/title_activity_restuarant_dish_editor"
+            android:label="Edit Menu"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SellerExistingOrder"
-            android:label="@string/title_activity_seller_p1"
+            android:label="Ongoing Orders"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BuyerRestaurantItem"

@@ -1,14 +1,18 @@
 package com.example.demo;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,7 +40,7 @@ public class SellerHistory extends AppCompatActivity implements NavigationView.O
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.seller_history_drawer_layout);
-        NavigationView navigationView = findViewById(R.id.seller_history_nav);
+        NavigationView navigationView = findViewById(R.id.seller_nav);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -44,6 +48,31 @@ public class SellerHistory extends AppCompatActivity implements NavigationView.O
         navigationView.setNavigationItemSelectedListener(this);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+
+        String email = user.getEmail();
+        View view = navigationView.getHeaderView(0);
+        TextView emailTextView = view.findViewById(R.id.tv_user_email);
+        final TextView nameTextView = view.findViewById(R.id.tv_user_id);
+
+
+        DatabaseReference nameRef = FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid()).child("name");
+        nameRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String name = dataSnapshot.getValue(String.class);
+                nameTextView.setText(name);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        emailTextView.setText(email);
+        int color = getResources().getColor(R.color.colorPrimary);;
+        view.setBackgroundColor(color);
         DatabaseReference orderRef = FirebaseDatabase.getInstance().getReference("sellers").child(user.getUid())
                 .child("completed");
 
@@ -78,27 +107,40 @@ public class SellerHistory extends AppCompatActivity implements NavigationView.O
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.seller_search_app_bar, menu);
-        return true;
-    }
 
+
+    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
         int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
-        return super.onOptionsItemSelected(item);
-    }
 
+        if (id == R.id.nav_restaurant_profile) {
+            Intent intent = new Intent(SellerHistory.this, SellerRestaurantProfileEditor.class);
 
+            startActivity(intent);
+        }else if (id == R.id.nav_seller_history) {
+            Intent intent = new Intent(SellerHistory.this, SellerHistory.class);
+            startActivity(intent);
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        } else if (id == R.id.nav_logout) {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(SellerHistory.this, InitialActivity.class);
+            finish();
+            startActivity(intent);
+        }else if(id == R.id.nav_seller_edit_menu){
+            Intent intent = new Intent(SellerHistory.this, SellerRestaurantDishEditor.class);
+            startActivity(intent);
+        }else if(id == R.id.nav_seller_home){
+            Intent intent = new Intent(SellerHistory.this, SellerExistingOrder.class);
+            startActivity(intent);
+        }
+
+        DrawerLayout drawer = findViewById(R.id.seller_history_drawer_layout);
+        if(drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
         return true;
     }
+
 }

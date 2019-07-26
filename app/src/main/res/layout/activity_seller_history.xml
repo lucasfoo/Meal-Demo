@@ -20,15 +20,13 @@
 
         <include layout="@layout/content_seller_history">
         </include>
-
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/seller_history_nav"
+        android:id="@+id/seller_nav"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main_menu"
-        app:menu="@menu/seller_history_menu_nav" />
+        app:menu="@menu/seller_existing_order_nav" />
 </androidx.drawerlayout.widget.DrawerLayout>

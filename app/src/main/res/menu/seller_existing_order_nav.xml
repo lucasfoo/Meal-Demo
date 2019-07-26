@@ -5,22 +5,32 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_seller_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Main Menu" />
+        <item
             android:id="@+id/nav_restaurant_profile"
             android:icon="@drawable/restaurant_icon"
             android:title="Restaurant Profile"/>
-
 
         <item
             android:id="@+id/nav_seller_history"
             android:icon="@drawable/ic_history_black_24dp"
             android:title="@string/menu_orders" />
+        <item
+            android:id="@+id/nav_seller_edit_menu"
+            android:icon="@drawable/ic_edit_black_24dp"
+            android:title="Edit menu" />
 
     </group>
-     <menu>
+
+    <item android:title="">
+        <menu>
 
             <item
                 android:id="@+id/nav_logout"
                 android:title="@string/menu_Logout" />
-     </menu>
+        </menu>
+    </item>
 
 </menu>

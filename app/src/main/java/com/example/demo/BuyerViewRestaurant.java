@@ -43,10 +43,8 @@ public class BuyerViewRestaurant extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        String name = user.getDisplayName();
-        String email = user.getEmail();
+
+
 
 
         super.onCreate(savedInstanceState);
@@ -61,12 +59,19 @@ public class BuyerViewRestaurant extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        String name = user.getDisplayName();
+        String email = user.getEmail();
         View view = navigationView.getHeaderView(0);
         TextView emailTextView = view.findViewById(R.id.tv_user_email);
         TextView nameTextView = view.findViewById(R.id.tv_user_id);
         emailTextView.setText(email);
         nameTextView.setText(name);
+
+        int color = getResources().getColor(R.color.colorPrimary);;
+        view.setBackgroundColor(color);
+
 
         //RecylcerView code below
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("sellers");
@@ -160,7 +165,8 @@ public class BuyerViewRestaurant extends AppCompatActivity
         if (id == R.id.nav_home) {
             Intent intent = new Intent(BuyerViewRestaurant.this, BuyerViewRestaurant.class);
             startActivity(intent);
-            finish();        } else if (id == R.id.nav_history) {
+            finish();
+        } else if (id == R.id.nav_history) {
             Intent intent = new Intent(getApplicationContext(), BuyerHistory.class);
             startActivity(intent);
         } else if (id == R.id.nav_seller) {

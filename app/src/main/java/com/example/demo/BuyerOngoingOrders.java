@@ -47,7 +47,18 @@ public class BuyerOngoingOrders extends AppCompatActivity implements NavigationV
         navigationView.setNavigationItemSelectedListener(this);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        String name = user.getDisplayName();
+        String email = user.getEmail();
+        View view = navigationView.getHeaderView(0);
+        TextView emailTextView = view.findViewById(R.id.tv_user_email);
+        TextView nameTextView = view.findViewById(R.id.tv_user_id);
+        emailTextView.setText(email);
+        nameTextView.setText(name);
         DatabaseReference buyerOrdersRef = FirebaseDatabase.getInstance().getReference("buyers").child(user.getUid()).child("orders");
+
+        int color = getResources().getColor(R.color.colorPrimary);
+        view.setBackgroundColor(color);
 
         buyerOrdersRef.addValueEventListener(new ValueEventListener() {
             @Override

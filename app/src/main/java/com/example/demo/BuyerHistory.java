@@ -4,6 +4,8 @@ package com.example.demo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -46,6 +48,19 @@ public class BuyerHistory extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        String name = user.getDisplayName();
+        String email = user.getEmail();
+        View view = navigationView.getHeaderView(0);
+        TextView emailTextView = view.findViewById(R.id.tv_user_email);
+        TextView nameTextView = view.findViewById(R.id.tv_user_id);
+        emailTextView.setText(email);
+        nameTextView.setText(name);
+
+        int color = getResources().getColor(R.color.colorPrimary);;
+        view.setBackgroundColor(color);
+
+
         DatabaseReference buyerOrdersRef = FirebaseDatabase.getInstance().getReference("buyers").child(user.getUid()).child("completed");
 
         buyerOrdersRef.addValueEventListener(new ValueEventListener() {
