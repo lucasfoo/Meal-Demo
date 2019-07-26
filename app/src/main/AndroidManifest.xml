@@ -25,11 +25,13 @@
         <activity android:name=".BuyerSearchFunction" />
         <activity android:name=".SellerRestaurantProfileEditor" />
         <activity android:name=".ProfileEditor" />
-        <activity android:name=".BuyerHistory" />
+        <activity android:name=".BuyerHistory"
+            android:label="Past orders"/>
         <activity android:name=".SellerHistory" />
         <activity android:name=".SellerOrderDetail" />
         <activity android:name=".CreateRestaurant" />
-        <activity android:name=".BuyerOngoingOrders" />
+        <activity android:name=".BuyerOngoingOrders"
+            android:label="Ongoing Orders"/>
         <activity
             android:name=".BuyerDishDetail"
             android:label="@string/title_activity_buyer_dish_detail"
@@ -71,12 +73,15 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Login"
-            android:label="@string/app_name"
+            android:label="@string/Login"
             android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
     </application>
 
 </manifest>

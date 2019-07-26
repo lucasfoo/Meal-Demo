@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.MenuItem;
 
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -51,14 +53,6 @@ public class BuyerViewRestaurant extends AppCompatActivity
         setContentView(R.layout.activity_buyer_view_restaurant);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -66,8 +60,6 @@ public class BuyerViewRestaurant extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
-
 
 
         View view = navigationView.getHeaderView(0);
@@ -129,6 +121,8 @@ public class BuyerViewRestaurant extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.buyer_tracking_cart_search_app_bar, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        item.setVisible(false);
         return true;
     }
 
@@ -163,27 +157,13 @@ public class BuyerViewRestaurant extends AppCompatActivity
 
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        if(id == R.id.nav_profile){
-            Intent intent = new Intent(BuyerViewRestaurant.this, ProfileEditor.class);
-            startActivity(intent);
-        }
-
         if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_history) {
+            Intent intent = new Intent(BuyerViewRestaurant.this, BuyerViewRestaurant.class);
+            startActivity(intent);
+            finish();        } else if (id == R.id.nav_history) {
             Intent intent = new Intent(getApplicationContext(), BuyerHistory.class);
             startActivity(intent);
-        } else if (id == R.id.nav_tools) {
-
         } else if (id == R.id.nav_seller) {
-//            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//            String userID = user.getUid();
-//            String name = user.getDisplayName();
-//            String email = user.getEmail();
-//            Seller seller = new Seller(email, name);
-//            mDatabase.child("sellers").child(userID).setValue(seller);
-//            Intent intent = new Intent(BuyerViewRestaurant.this, InitialActivity.class);
-//            startActivity(intent);
             Intent intent = new Intent(BuyerViewRestaurant.this, CreateRestaurant.class);
             startActivity(intent);
         } else if (id == R.id.nav_logout) {
@@ -191,7 +171,6 @@ public class BuyerViewRestaurant extends AppCompatActivity
             Intent intent = new Intent(BuyerViewRestaurant.this, InitialActivity.class);
             finish();
             startActivity(intent);
-
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

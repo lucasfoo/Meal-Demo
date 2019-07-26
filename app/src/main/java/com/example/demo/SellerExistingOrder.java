@@ -117,21 +117,11 @@ public class SellerExistingOrder extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_profile) {
-            Intent intent = new Intent(SellerExistingOrder.this, ProfileEditor.class);
-
-            startActivity(intent);
-
-        } else if (id == R.id.nav_restaurant_profile) {
-            Intent intent = new Intent(SellerExistingOrder.this, SellerRestaurantProfileEditor.class);
-
-            startActivity(intent);
-        } if (id == R.id.nav_seller_history) {
+        if (id == R.id.nav_seller_history) {
             Intent intent = new Intent(SellerExistingOrder.this, SellerHistory.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_tools) {
+        } else if (id == R.id.nav_home) {
 
 
         } else if (id == R.id.nav_logout) {

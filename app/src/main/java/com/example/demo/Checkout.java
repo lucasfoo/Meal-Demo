@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -95,6 +96,10 @@ public class Checkout extends AppCompatActivity {
             public void onClick(View v) {
                 DatabaseReference sellerRef = FirebaseDatabase.getInstance().getReference("sellers");
                 DatabaseReference buyerRef = FirebaseDatabase.getInstance().getReference("buyers").child(user.getUid());
+                if(cartDataList.isEmpty()){
+                    Toast.makeText(getApplicationContext(),"No items in cart, add in at least 1 item!",Toast.LENGTH_LONG).show();
+                    return;
+                }
                 for(CartItem cartItem : cartDataList){
                     String restaurantID = cartItem.restaurantID;
                     String itemID = cartItem.itemID;
@@ -119,12 +124,12 @@ public class Checkout extends AppCompatActivity {
                 }
                 Intent intent = new Intent(Checkout.this, BuyerOngoingOrders.class);
                 startActivity(intent);
+                Toast.makeText(getApplicationContext(),"Order placed, please pay cash upon collection!",Toast.LENGTH_LONG).show();
                 finish();
             }
 
         });
     }
-
     /*
     @Override
     public void onBackPressed() {

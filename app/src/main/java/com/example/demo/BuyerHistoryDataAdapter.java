@@ -48,7 +48,7 @@ public class BuyerHistoryDataAdapter extends RecyclerView.Adapter<BuyerHistoryDa
                 buyerHistoryViewHolder.collectionTime.setVisibility(View.VISIBLE);
             }
             buyerHistoryViewHolder.dishName.setText(data.dishName);
-            buyerHistoryViewHolder.price.setText(data.price);
+            buyerHistoryViewHolder.price.setText('$' + data.price);
             if(data.status.equalsIgnoreCase("Uncollected")){
                 buyerHistoryViewHolder.addReview.setVisibility(View.GONE);
             }else{

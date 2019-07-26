@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,13 +35,11 @@ public class BuyerOngoingOrders extends AppCompatActivity implements NavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer__history);
-        TextView textView = findViewById(R.id.buyer_history_past_orders);
-        textView.setText("Ongoing orders");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.buyer_history_drawer_layout);
-        NavigationView navigationView = findViewById(R.id.buyer_history_nav);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -87,9 +86,10 @@ public class BuyerOngoingOrders extends AppCompatActivity implements NavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        if(id == R.id.nav_profile){
-            Intent intent = new Intent(BuyerOngoingOrders.this, ProfileEditor.class);
+        if (id == R.id.nav_home) {
+            Intent intent = new Intent(BuyerOngoingOrders.this, BuyerViewRestaurant.class);
             startActivity(intent);
+            finish();
         } else if (id == R.id.nav_history) {
             Intent intent = new Intent(getApplicationContext(), BuyerHistory.class);
             startActivity(intent);
@@ -101,6 +101,7 @@ public class BuyerOngoingOrders extends AppCompatActivity implements NavigationV
             Intent intent = new Intent(BuyerOngoingOrders.this, InitialActivity.class);
             finish();
             startActivity(intent);
+
         }
 
         DrawerLayout drawer = findViewById(R.id.buyer_history_drawer_layout);

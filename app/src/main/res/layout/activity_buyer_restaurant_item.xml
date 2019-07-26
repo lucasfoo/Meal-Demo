@@ -25,7 +25,7 @@
         <include layout="@layout/content_buyer_restaurant_item" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/buyer_restaurant_item_nav_view"
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"

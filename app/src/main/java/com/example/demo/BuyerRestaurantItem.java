@@ -45,13 +45,12 @@ public class BuyerRestaurantItem extends AppCompatActivity implements Navigation
 
 
         DrawerLayout drawer = findViewById(R.id.buyer_restaurant_item_drawer_layout);
-        NavigationView navigationView = findViewById(R.id.buyer_restaurant_item_nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
 
         // add back arrow to toolbar
 
@@ -150,17 +149,13 @@ public class BuyerRestaurantItem extends AppCompatActivity implements Navigation
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        if(id == R.id.nav_profile){
-            Intent intent = new Intent(BuyerRestaurantItem.this, ProfileEditor.class);
-            startActivity(intent);
-        }
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            Intent intent = new Intent(BuyerRestaurantItem.this, BuyerViewRestaurant.class);
+            startActivity(intent);
+            finish();
         } else if (id == R.id.nav_history) {
             Intent intent = new Intent(getApplicationContext(), BuyerHistory.class);
             startActivity(intent);
-        } else if (id == R.id.nav_tools) {
-
         } else if (id == R.id.nav_seller) {
             Intent intent = new Intent(BuyerRestaurantItem.this, CreateRestaurant.class);
             startActivity(intent);
