@@ -16,6 +16,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -49,8 +51,11 @@ public class SellerExistingOrderDataAdapter extends RecyclerView.Adapter<SellerE
         final OrderData orderData = OrderList.get(i);
         orderViewHolder.buyersName.setText(orderData.buyerName);
         orderViewHolder.Dish_name.setText(orderData.dishName);
-        orderViewHolder.Order_num.setText("Order number: " + orderData.sellerOrderID);
         orderViewHolder.Collection_time.setText("Order time: " + orderData.orderTime);
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(orderData.imageRef);
+        GlideApp.with(SellerExistingOrderDataAdapter.OrderViewHolder.DishPhoto.getContext()/* context */)
+                .load(storageRef)
+                .into(SellerExistingOrderDataAdapter.OrderViewHolder.DishPhoto);
 
         SellerExistingOrderDataAdapter.OrderViewHolder.Collect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +96,6 @@ public class SellerExistingOrderDataAdapter extends RecyclerView.Adapter<SellerE
     public static class  OrderViewHolder extends RecyclerView.ViewHolder {
         protected static TextView buyersName;
         protected static TextView Dish_name;
-        protected static TextView Order_num;
         protected static TextView Collection_time;
         protected static Button Collect;
         public static View cardView;
@@ -102,7 +106,6 @@ public class SellerExistingOrderDataAdapter extends RecyclerView.Adapter<SellerE
             buyersName = view.findViewById(R.id.buyers_name);
             cardView = view.findViewById(R.id.single_order);
             Dish_name = view.findViewById(R.id.dish_name);
-            Order_num = view.findViewById(R.id.dish_num);
             Collection_time = view.findViewById(R.id.collection_time);
             Collect = view.findViewById(R.id.collectButton);
             DishPhoto = view.findViewById(R.id.exisiting_order_dish_photo);

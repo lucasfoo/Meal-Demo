@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.List;
 
 public class SellerHistoryDataAdapter extends RecyclerView.Adapter<SellerHistoryDataAdapter.SellerHistoryViewHolder>{
@@ -44,6 +47,10 @@ public class SellerHistoryDataAdapter extends RecyclerView.Adapter<SellerHistory
             sellerorderViewHolder.dishName.setText(data.dishName);
             sellerorderViewHolder.price.setText('$' + data.price);
             sellerorderViewHolder.orderDate.setText("Order date: " + data.orderDate);
+            StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(data.imageRef);
+            GlideApp.with(SellerHistoryViewHolder.historyPhoto.getContext()/* context */)
+                    .load(storageRef)
+                    .into(SellerHistoryViewHolder.historyPhoto);
         }catch (Exception exception){
 
         }

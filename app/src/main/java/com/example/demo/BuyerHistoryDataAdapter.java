@@ -12,6 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.List;
 
 
@@ -42,6 +45,10 @@ public class BuyerHistoryDataAdapter extends RecyclerView.Adapter<BuyerHistoryDa
             buyerHistoryViewHolder.orderTime.setText("Order Time: " + data.orderTime);
             buyerHistoryViewHolder.collectionTime.setText("Collection Time: " + data.collectionTime );
             buyerHistoryViewHolder.orderDate.setText(data.orderDate);
+            StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(data.imageRef);
+            GlideApp.with(BuyerHistoryViewHolder.historyPhoto.getContext()/* context */)
+                    .load(storageRef)
+                    .into(BuyerHistoryViewHolder.historyPhoto);
             if(data.collectionTime == null){
                 buyerHistoryViewHolder.collectionTime.setVisibility(View.INVISIBLE);
             }else {

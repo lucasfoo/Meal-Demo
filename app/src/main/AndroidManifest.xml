@@ -39,7 +39,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Checkout"
-            android:label="@string/title_activity_checkout" />
+            android:label="Checkout" />
         <activity
             android:name=".InitialActivity"
             android:noHistory="true">

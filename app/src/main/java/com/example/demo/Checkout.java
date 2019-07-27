@@ -40,12 +40,8 @@ public class Checkout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
         Button pay = findViewById(R.id.pay);
-        ImageView dish_image = findViewById(R.id.item_photo);
-
 
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -115,7 +111,7 @@ public class Checkout extends AppCompatActivity {
                     String time = df.format(Calendar.getInstance().getTime());
                     DatabaseReference sellerOrderRef = sellerRef.child(restaurantID).child("orders").push();
                     DatabaseReference buyerOrderRef = buyerRef.child("orders").push();
-                    OrderData orderData = new OrderData(buyerName, buyerID, date, time, itemCost, itemName,itemID, sellerOrderRef.getKey(), buyerOrderRef.getKey(), restaurantID,restaurantName, "Uncollected");
+                    OrderData orderData = new OrderData(buyerName, buyerID, date, time, itemCost, itemName,itemID, sellerOrderRef.getKey(), buyerOrderRef.getKey(), restaurantID,restaurantName, "Uncollected", cartItem.imageRef);
                     orderData.sellerOrderID = sellerOrderRef.getKey();
                     orderData.buyerOrderID = buyerOrderRef.getKey();
                     sellerOrderRef.setValue(orderData);

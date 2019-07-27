@@ -14,11 +14,12 @@ public class OrderData {
     public String sellerID;
     public String restaurantName;
     public String status;
+    public String imageRef;
 
 
     public OrderData(){}
 
-    public OrderData(String buyerName, String buyerID, String orderDate , String orderTime, String price, String dishName,String itemID, String sellerOrderID, String buyerOrderID, String sellerID, String restaurantName, String status){
+    public OrderData(String buyerName, String buyerID, String orderDate , String orderTime, String price, String dishName,String itemID, String sellerOrderID, String buyerOrderID, String sellerID, String restaurantName, String status, String imageRef){
         this.buyerName = buyerName;
         this.buyerID = buyerID;
         this.orderDate = orderDate;
@@ -31,6 +32,7 @@ public class OrderData {
         this.sellerID = sellerID;
         this.restaurantName = restaurantName;
         this.status = status;
+        this.imageRef = imageRef;
     }
 
 }
