@@ -28,8 +28,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SellerExistingOrder extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class SellerExistingOrder extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private String restaurantID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +49,8 @@ public class SellerExistingOrder extends AppCompatActivity
 
 
         String email = user.getEmail();
+        restaurantID = user.getUid();
+
         View view = navigationView.getHeaderView(0);
         TextView emailTextView = view.findViewById(R.id.tv_user_email);
         final TextView nameTextView = view.findViewById(R.id.tv_user_id);
@@ -135,6 +137,10 @@ public class SellerExistingOrder extends AppCompatActivity
             startActivity(intent);
         }else if(id == R.id.nav_seller_home){
 
+        }else if(id == R.id.nav_reviews){
+            Intent intent = new Intent(SellerExistingOrder.this, Review.class);
+            intent.putExtra("sellerID", restaurantID);
+            startActivity(intent);
         }
 
 

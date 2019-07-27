@@ -21,7 +21,10 @@
             android:id="@+id/nav_seller_edit_menu"
             android:icon="@drawable/ic_edit_black_24dp"
             android:title="Edit menu" />
-
+        <item
+            android:id="@+id/nav_reviews"
+            android:title="Reviews"
+            android:icon="@drawable/ic_comment_black_24dp"/>
     </group>
 
     <item android:title="">

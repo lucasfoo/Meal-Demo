@@ -65,7 +65,19 @@ public class BuyerRestaurantItem extends AppCompatActivity implements Navigation
         mAddress.setText(raddress);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        String name = user.getDisplayName();
+        String email = user.getEmail();
+        View view = navigationView.getHeaderView(0);
+        TextView emailTextView = view.findViewById(R.id.tv_user_email);
+        TextView nameTextView = view.findViewById(R.id.tv_user_id);
+        emailTextView.setText(email);
+        nameTextView.setText(name);
+
+        int color = getResources().getColor(R.color.colorPrimary);;
+        view.setBackgroundColor(color);
         String userID = user.getUid();
+        
         mDatabase = FirebaseDatabase.getInstance().getReference().child("sellers").child(restaurantID).child("Dishes");
         mDatabase.addValueEventListener(new ValueEventListener() {
             List<Dish> buyerRestaurantItemDataList = new ArrayList<>();

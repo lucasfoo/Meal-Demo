@@ -75,6 +75,7 @@ public class SellerExistingOrderDataAdapter extends RecyclerView.Adapter<SellerE
             }
         });
 
+        /*
         SellerExistingOrderDataAdapter.OrderViewHolder.cardView.setOnClickListener(new View.OnClickListener()  {
             @Override
             public void onClick(View view) {
@@ -83,6 +84,7 @@ public class SellerExistingOrderDataAdapter extends RecyclerView.Adapter<SellerE
                 view.getContext().startActivity(intent);
             }
         });
+        */
 
     }
 

@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SellerHistory extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
+    private String restaurantID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +51,7 @@ public class SellerHistory extends AppCompatActivity implements NavigationView.O
 
 
         String email = user.getEmail();
+        restaurantID = user.getUid();
         View view = navigationView.getHeaderView(0);
         TextView emailTextView = view.findViewById(R.id.tv_user_email);
         final TextView nameTextView = view.findViewById(R.id.tv_user_id);
@@ -133,6 +134,10 @@ public class SellerHistory extends AppCompatActivity implements NavigationView.O
             startActivity(intent);
         }else if(id == R.id.nav_seller_home){
             Intent intent = new Intent(SellerHistory.this, SellerExistingOrder.class);
+            startActivity(intent);
+        }else if(id == R.id.nav_reviews){
+            Intent intent = new Intent(SellerHistory.this, Review.class);
+            intent.putExtra("sellerID", restaurantID);
             startActivity(intent);
         }
 
