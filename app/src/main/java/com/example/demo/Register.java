@@ -27,7 +27,7 @@ public class Register extends AppCompatActivity {
     private Button button_create;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
-    private ToggleButton accType;
+//    private ToggleButton accType;
     private boolean is_buyer;
 
     @Override
@@ -47,20 +47,20 @@ public class Register extends AppCompatActivity {
             }
         });
 
-        accType = (ToggleButton) findViewById(R.id.accType);
-        is_buyer = true;
+//        accType = (ToggleButton) findViewById(R.id.accType);
+//        is_buyer = true;
         button_create = findViewById(R.id.btn_signup);
 
 
-        accType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    is_buyer = false;
-                } else {
-                    is_buyer = true;
-                }
-            }
-        });
+//        accType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    is_buyer = false;
+//                } else {
+//                    is_buyer = true;
+//                }
+//            }
+//        });
 
         button_create.setOnClickListener(new View.OnClickListener() {
             @Override
