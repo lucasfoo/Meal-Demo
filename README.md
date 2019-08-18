@@ -36,7 +36,8 @@ Just clone using android studio and run!
 
 * [Android Studio](https://developer.android.com/studio) - Android Studio
 * [Glide](https://github.com/bumptech/glide) - Glide library
-* 
+* [Image Cropper](https://github.com/ArthurHub/Android-Image-Cropper/) - for taking and cropping images
+
 
 ## Authors
 
@@ -49,4 +50,5 @@ See also the list of [contributors](https://github.com/your/project/contributors
 ## Acknowledgments
 
 * NUS Orbital Team for putting together this module., as well as our advisor Kerryn and the peer evaluation team for helping us throughout this small project.
+
 
