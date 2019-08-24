@@ -96,7 +96,7 @@
                     android:background="?attr/editTextBackground"
                     android:clickable="true"
                     android:layout_below="@id/preparation_duration"
-                    android:hint="Enter Dish Preparation Duration"
+                    android:hint="Preparation Duration"
                     android:imeOptions="actionDone"
                     android:inputType="number"
                     android:textSize="22sp" />
