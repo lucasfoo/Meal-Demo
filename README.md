@@ -1,8 +1,10 @@
-# Meal-Demo
+# Meal - A NUS Orbital CP2106 Software engineering project
+
+[NUS Orbital Page](https://orbital.comp.nus.edu.sg/)
  
 Meal is a platform for home chefs to sell their home cooked food to the consumers. It consists of a front end based on an Android App and a Firebase backend.
 
-The level of acheivement we are aiming for is Apollo. 
+The level of acheivement is Apollo, and the project was nominated for the judges choice award.
 
 
 ### Application Features
